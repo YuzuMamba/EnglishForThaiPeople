@@ -1,0 +1,509 @@
+/* ─── browse.css — Read-English course path + Library ──────────────────────
+   Shared visual language for the two "browse" screens. Imported by
+   src/screens/Script.tsx and src/screens/Library.tsx only. */
+
+/* ══ Shared page header ═══════════════════════════════════════════════════ */
+
+.browse-head { display: flex; flex-direction: column; gap: 6px; }
+.browse-sub {
+  color: var(--ink-dim);
+  font-weight: 700;
+  line-height: 1.55;
+  max-width: 620px;
+}
+
+.course-meter { display: flex; align-items: center; gap: 14px; margin-top: 10px; }
+.course-meter .pbar { flex: 1; height: 14px; }
+.course-meter .count {
+  font-weight: 900; font-size: 13px; color: var(--gold);
+  white-space: nowrap; letter-spacing: 0.2px;
+}
+
+/* ══ Read English — the course path ═══════════════════════════════════════ */
+
+/* Width-capped column: kills the vacant middle band between subtitle and pill
+   that opens up when the cards stretch the full 880px page column. */
+.path {
+  position: relative; display: flex; flex-direction: column;
+  gap: 16px; padding: 10px 0 8px;
+  max-width: 860px;
+}
+/* the vertical spine connecting step nodes — a consistent, visible alpha all
+   the way down (no decay-to-invisible on the later nodes) */
+.path::before {
+  content: '';
+  position: absolute;
+  top: 26px; bottom: 40px; left: 21px;
+  width: 4px; border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 138, 61, 0.55), rgba(255, 201, 77, 0.42));
+}
+
+.path-step { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; align-items: center; }
+
+.step-node {
+  position: relative; z-index: 1;
+  width: 44px; height: 44px; border-radius: 999px;
+  display: grid; place-items: center;
+  font-weight: 900; font-size: 17px;
+  background: var(--panel-solid);
+  border: 2.5px solid var(--stroke-strong);
+  color: var(--ink-faint);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
+}
+.step-node.done {
+  background: var(--green); border-color: #0d9668; color: #03301f;
+  box-shadow: 0 4px 0 #0d9668;
+}
+.step-node.active {
+  background: var(--orange); border-color: var(--orange-deep); color: #2b1400;
+  box-shadow: 0 4px 0 var(--orange-deep), 0 0 24px rgba(255, 138, 61, 0.5);
+}
+
+.lesson-card {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: 16px; align-items: center;
+  padding: 16px 20px 16px 16px;
+  text-align: left; cursor: pointer;
+  transition: transform 0.16s var(--spring), border-color 0.16s var(--ease), box-shadow 0.16s var(--ease);
+}
+.lesson-card:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.24); box-shadow: 0 20px 46px rgba(0, 0, 0, 0.42); }
+.lesson-card:active { transform: translateY(1px); }
+.lesson-card .lesson-title { font-size: 18px; font-weight: 900; letter-spacing: -0.2px; }
+.lesson-card .lesson-sub { color: var(--ink-dim); font-weight: 700; font-size: 13.5px; margin-top: 1px; }
+
+/* mini progress track inside the card */
+.lesson-mini {
+  margin-top: 9px; height: 6px; max-width: 300px;
+  border-radius: 999px; overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--stroke);
+}
+.lesson-mini > i {
+  display: block; height: 100%; border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
+  transition: width 0.5s var(--spring);
+}
+.lesson-mini.full > i { background: linear-gradient(90deg, var(--green), var(--teal)); }
+
+/* glyph chip — color doubles as lesson-kind pedagogy */
+.glyph-chip {
+  width: 64px; height: 64px; border-radius: 18px;
+  display: grid; place-items: center;
+  font-size: 32px; font-weight: 700; line-height: 1;
+  border: 2px solid;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+.glyph-chip.k-consonants { background: rgba(255, 138, 61, 0.15); border-color: rgba(255, 138, 61, 0.5); color: var(--orange-soft); }
+.glyph-chip.k-vowels { background: rgba(255, 201, 77, 0.13); border-color: rgba(255, 201, 77, 0.5); color: var(--gold); }
+.glyph-chip.k-practice { background: rgba(52, 211, 153, 0.13); border-color: rgba(52, 211, 153, 0.5); color: var(--green); }
+.glyph-chip.k-sounds { background: rgba(167, 139, 250, 0.15); border-color: rgba(167, 139, 250, 0.55); color: var(--violet); }
+
+/* per-lesson state chip */
+.lesson-state { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.pill {
+  padding: 5px 12px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 900; white-space: nowrap;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1.5px solid var(--stroke-strong);
+  color: var(--ink-dim);
+}
+.pill.going { background: rgba(255, 201, 77, 0.13); border-color: rgba(255, 201, 77, 0.5); color: var(--gold); }
+.pill.done { background: rgba(52, 211, 153, 0.15); border-color: rgba(52, 211, 153, 0.55); color: var(--green); }
+/* lesson kind, spelled out — the chip colour already encodes it, the word
+   makes it explicit */
+.kind-tag { font-size: 11.5px; font-weight: 900; color: var(--ink-faint); white-space: nowrap; }
+.kind-tag.k-consonants { color: var(--orange-soft); }
+.kind-tag.k-vowels { color: var(--gold); }
+.kind-tag.k-sounds { color: var(--violet); }
+.kind-tag.k-practice { color: var(--green); }
+
+/* ══ Read English — inside a lesson ═══════════════════════════════════════ */
+
+.lesson-head { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+
+.callout {
+  display: flex; gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, rgba(255, 201, 77, 0.1), rgba(255, 138, 61, 0.05));
+  border: 1.5px solid rgba(255, 201, 77, 0.3);
+  font-weight: 600; line-height: 1.65; font-size: 14.5px;
+}
+.callout .ico { font-size: 20px; flex: none; margin-top: 1px; filter: drop-shadow(0 2px 8px rgba(255, 201, 77, 0.4)); }
+
+/* identical-width letter cards; desktop caps at 4 columns so a 7-letter
+   lesson lays out 4 + 3 instead of 5 + an orphan pair */
+.char-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+@media (min-width: 760px) {
+  .char-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.char-card {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  padding: 22px 12px 30px;
+  text-align: center; cursor: pointer;
+  transition: transform 0.15s var(--spring), border-color 0.15s var(--ease);
+}
+.char-card:hover { transform: translateY(-3px); border-color: rgba(255, 201, 77, 0.45); }
+.char-card:active { transform: translateY(1px) scale(0.98); }
+.char-card .glyph { font-size: 48px; font-weight: 700; line-height: 1.25; }
+/* two lines reserved so multi-word romanizations don't unbalance row heights */
+.char-card .reading {
+  font-weight: 900; color: var(--gold); font-size: 14.5px;
+  line-height: 1.3; min-height: 2.6em;
+  display: flex; align-items: center; justify-content: center;
+}
+.char-card .cname { font-weight: 800; color: var(--ink-dim); font-size: 13px; }
+.char-card .cmeta { font-weight: 700; color: var(--ink-faint); font-size: 12px; }
+.char-card .speaker-corner { position: absolute; right: 10px; bottom: 8px; opacity: 0.8; }
+/* SRS badge on a letter card — colour tracks the stage the letter has
+   reached, so the grid doubles as a map of what is actually retained. */
+.char-card .seen-dot {
+  position: absolute; left: 9px; top: 9px;
+  width: 20px; height: 20px; border-radius: 999px;
+  display: grid; place-items: center;
+  font-size: 11px; font-weight: 900;
+  background: color-mix(in srgb, var(--stage, var(--green)) 20%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--stage, var(--green)) 62%, transparent);
+  color: var(--stage, var(--green));
+}
+
+/* read-aloud drills — focused column matching the quiz card, so wide screens
+   don't leave every row half-empty */
+.drill-list { width: 100%; max-width: 680px; margin-inline: auto; }
+
+/* read-aloud drill rows */
+.drill-row {
+  display: grid;
+  grid-template-columns: 44px auto minmax(0, 1fr);
+  align-items: center; gap: 16px;
+  padding: 10px 16px;
+}
+.drill-row .drill-en { font-size: 26px; font-weight: 700; line-height: 1.4; min-width: 72px; }
+.drill-row .drill-gloss { font-weight: 700; color: var(--ink-dim); font-size: 14.5px; }
+.drill-row .drill-gloss b { color: var(--gold); font-weight: 900; }
+
+/* "Sound it out" strip on a read-aloud drill.
+   .drill-row is a 3-column grid; the strip drops onto a second row spanning
+   from the English column across, so it reads as a footnote to the word
+   rather than a fourth column squeezing the others. One chip per grapheme
+   (the same cut the gate uses), reading underneath; a unit the course never
+   teaches is dimmed rather than hidden, so the learner can see what is left. */
+.drill-row { row-gap: 8px; }
+.drill-row .sound-chips { grid-column: 2 / -1; }
+.sound-chips { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: flex-start; }
+.sound-word { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.sound-chip {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 1px;
+  min-width: 30px; max-width: 110px;
+  padding: 4px 7px;
+  border-radius: 9px;
+  background: rgba(255, 201, 77, 0.10);
+  border: 1px solid rgba(255, 201, 77, 0.28);
+  line-height: 1.2; text-align: center;
+}
+.sound-chip .u { font-size: 14px; font-weight: 800; color: var(--ink); }
+.sound-chip .r { font-size: 10.5px; font-weight: 800; color: var(--gold); }
+.sound-chip.untaught { opacity: 0.5; background: rgba(255, 255, 255, 0.04); border-color: var(--stroke); }
+.sound-chip.untaught .u { color: var(--ink-dim); }
+
+/* letter self-quiz (lessons without drills) */
+.self-quiz {
+  width: 100%; max-width: 560px; margin-inline: auto;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.self-quiz .quiz-q {
+  text-align: center;
+  color: var(--ink-dim);
+  font-weight: 900; font-size: 12.5px;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.quiz-done {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-align: center; padding: 10px 0 4px;
+}
+.quiz-done .big { font-size: 46px; filter: drop-shadow(0 4px 16px rgba(255, 201, 77, 0.35)); }
+.quiz-done .note { color: var(--ink-dim); font-weight: 700; line-height: 1.6; max-width: 380px; }
+
+.quiz-glyph {
+  font-size: 84px; font-weight: 700; line-height: 1.3;
+  text-align: center;
+  text-shadow: 0 6px 34px rgba(0, 0, 0, 0.45);
+}
+.quiz-steps { display: flex; gap: 6px; justify-content: center; }
+.quiz-steps .qdot {
+  width: 9px; height: 9px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  transition: background 0.2s, transform 0.2s var(--spring);
+}
+.quiz-steps .qdot.hit { background: var(--green); }
+.quiz-steps .qdot.now { background: var(--gold); transform: scale(1.3); }
+
+/* ══ Library ══════════════════════════════════════════════════════════════ */
+
+.lib-search { position: relative; }
+.lib-search .mag {
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  font-size: 16px; opacity: 0.65; pointer-events: none;
+}
+.lib-search input {
+  width: 100%;
+  padding: 13px 18px 13px 46px;
+  border-radius: 16px;
+  font-size: 15px; font-weight: 700;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid var(--stroke-strong);
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.lib-search input::placeholder { color: var(--ink-faint); font-weight: 700; }
+.lib-search input:focus { border-color: rgba(255, 201, 77, 0.55); background: rgba(255, 255, 255, 0.09); }
+
+.fchips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.fchips .flabel { font-size: 12px; font-weight: 900; color: var(--ink-faint); letter-spacing: 0.6px; text-transform: uppercase; margin-right: 2px; }
+.fchip {
+  padding: 7px 14px; border-radius: 999px;
+  font-size: 13px; font-weight: 800; font-family: inherit;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid var(--stroke-strong);
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: transform 0.12s var(--spring), background 0.15s, border-color 0.15s, color 0.15s;
+}
+.fchip:hover { transform: translateY(-1px); color: var(--ink); border-color: rgba(255, 255, 255, 0.3); }
+.fchip:active { transform: translateY(1px); }
+.fchip.on {
+  background: linear-gradient(135deg, rgba(255, 138, 61, 0.24), rgba(255, 201, 77, 0.12));
+  border-color: rgba(255, 138, 61, 0.55);
+  color: var(--orange-soft);
+}
+
+/* sticky level headers — full-width opaque bar; rows slide UNDER it, never
+   interleaving with its text */
+.lib-section-head {
+  /* The page itself is the scroll container, so top: 0 parks these under the
+     status bar in the installed app. */
+  position: sticky; top: var(--safe-t); z-index: 4;
+  background: var(--panel-solid);
+  border-bottom: 1px solid var(--stroke-strong);
+  padding: 12px 4px 10px;
+  box-shadow: 0 10px 18px -10px rgba(0, 0, 0, 0.55);
+}
+.lib-section-head .inner {
+  display: flex; align-items: baseline; gap: 10px;
+  font-weight: 900; font-size: 14.5px;
+}
+.lib-section-head .lvl-n { color: var(--orange-soft); }
+.lib-section-head .lvl-count { font-size: 12px; font-weight: 800; color: var(--ink-faint); }
+
+.lib-rows { display: flex; flex-direction: column; gap: 8px; }
+.lib-row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: center; gap: 14px;
+  min-height: 64px;
+  padding: 10px 16px;
+}
+.lib-row .word { min-width: 0; }
+.lib-row .line1 { display: flex; align-items: baseline; gap: 10px; min-width: 0; flex-wrap: wrap; }
+.lib-row .w-en { font-size: 21px; font-weight: 700; line-height: 1.4; }
+.lib-row .w-reading { color: var(--gold); font-weight: 800; font-size: 14px; }
+.lib-row .w-en {
+  color: var(--ink-dim); font-weight: 700; font-size: 13.5px; margin-top: 1px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.lib-meta { display: flex; align-items: center; gap: 10px; justify-self: end; }
+.lib-meta .lvl-tag { font-size: 12px; font-weight: 900; color: var(--ink-faint); }
+
+.stage-badge {
+  padding: 4px 12px; border-radius: 999px;
+  font-weight: 900; font-size: 12px; letter-spacing: 0.2px;
+  border: 1.5px solid; white-space: nowrap;
+}
+.stage-badge.none {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--stroke);
+  color: var(--ink-faint);
+}
+
+.lib-empty {
+  padding: 40px 24px; text-align: center;
+  color: var(--ink-dim); font-weight: 700;
+}
+.lib-empty .big { font-size: 40px; margin-bottom: 8px; }
+
+/* ══ Mobile ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 560px) {
+  /* Library rows: badge sits inline with the English gloss line; the line
+     wraps if the row is tight — rows stay compact, never towers. */
+  .lib-row {
+    grid-template-columns: 40px minmax(0, 1fr);
+    min-height: 0;
+    padding: 10px 12px;
+  }
+  .lib-row .w-en { white-space: normal; }
+
+  /* Course path cards: state chip drops under the text block. */
+  .lesson-card { grid-template-columns: 56px minmax(0, 1fr); gap: 12px; padding: 14px; }
+  .lesson-card .lesson-state { grid-column: 2; flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; }
+  .glyph-chip { width: 56px; height: 56px; font-size: 27px; border-radius: 16px; }
+  .path-step { grid-template-columns: 36px minmax(0, 1fr); gap: 10px; }
+  .step-node { width: 36px; height: 36px; font-size: 14.5px; }
+  .path::before { left: 17px; }
+
+  .char-grid { grid-template-columns: repeat(auto-fill, minmax(136px, 1fr)); gap: 10px; }
+  .drill-row { grid-template-columns: 40px auto minmax(0, 1fr); gap: 12px; padding: 10px 12px; }
+  .drill-row .drill-en { font-size: 22px; min-width: 56px; }
+}
+
+/* ══ library round-3 ══════════════════════════════════════════════════════
+   New/changed Library rules for the round-3 fixes: gloss-line meta, pattern
+   rows, unlearned-level summary rows, and the desktop two-column grid. */
+
+/* English gloss line: meaning left, level tag + stage badge right */
+.lib-row .line2 {
+  display: flex; align-items: center; gap: 10px;
+  min-width: 0; margin-top: 2px;
+}
+.lib-row .line2 .w-en { flex: 0 1 auto; min-width: 0; margin-top: 0; }
+.lib-row .line2 .lib-meta { flex: none; margin-left: auto; }
+
+/* sentence-pattern rows: ✨ chip where the speaker would sit */
+.lib-row .pat-ico {
+  width: 44px; height: 44px; border-radius: 999px; flex: none;
+  display: grid; place-items: center;
+  font-size: 19px; line-height: 1;
+  background: rgba(167, 139, 250, 0.13);
+  border: 1.5px solid rgba(167, 139, 250, 0.45);
+  filter: drop-shadow(0 2px 8px rgba(167, 139, 250, 0.35));
+}
+
+/* untouched level → one calm summary row instead of a wall of "Not yet" */
+.lib-locked {
+  display: flex; align-items: center; gap: 12px;
+  padding: 15px 18px;
+  text-align: left; cursor: pointer;
+  font-family: inherit; font-size: 14px; font-weight: 700;
+  color: var(--ink-dim);
+  transition: transform 0.15s var(--spring), border-color 0.15s var(--ease);
+}
+.lib-locked:hover { transform: translateY(-1px); border-color: rgba(255, 255, 255, 0.26); }
+.lib-locked:active { transform: translateY(1px); }
+.lib-locked .lock-ico { font-size: 22px; flex: none; }
+.lib-locked .lock-text { min-width: 0; }
+.lib-locked .lock-text b { color: var(--ink); font-weight: 900; }
+.lib-locked .lock-cta {
+  margin-left: auto; flex: none;
+  font-size: 12px; font-weight: 900; letter-spacing: 0.4px;
+  color: var(--gold); white-space: nowrap;
+}
+
+/* wide desktop: two card columns so rows stop being 60% dead air */
+@media (min-width: 1101px) {
+  .lib-rows {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    align-items: start;
+  }
+}
+
+/* small screens: pattern chip matches the 40px icon column; the gloss line
+   may wrap so the badge tucks under long meanings instead of overflowing */
+@media (max-width: 560px) {
+  .lib-row .pat-ico { width: 40px; height: 40px; font-size: 17px; }
+  .lib-row .line2 { flex-wrap: wrap; row-gap: 6px; }
+  .lib-section-head { padding: 10px 2px 8px; }
+}
+
+/* ─── Mnemonic panel ──────────────────────────────────────────────────────── */
+/* The selected letter, opened out: picture, shape story, sound story, class. */
+
+.char-card.open {
+  border-color: rgba(255, 201, 77, 0.6);
+  box-shadow: 0 0 0 1px rgba(255, 201, 77, 0.35), 0 16px 34px -18px rgba(255, 201, 77, 0.55);
+}
+
+.mnem-card {
+  display: flex; flex-direction: column; gap: 14px;
+  border-color: rgba(255, 201, 77, 0.28);
+  animation: mnem-in 0.28s var(--ease) both;
+}
+@keyframes mnem-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .mnem-card { animation: none; } }
+
+/* The emoji badge overhangs the stage's bottom-right corner, so the gap has
+   to clear it as well as separate the two columns. */
+.mnem-top { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+
+/* Letter and picture, both fully legible.
+   Stacking the emoji behind the glyph was the obvious idea and it fails: a
+   74px letter lands squarely on the emoji's face, so 🧒 reads as a haircut.
+   The picture is pinned to the corner instead — close enough to be one object,
+   never overlapping the strokes the learner is trying to memorise. */
+.mnem-stage {
+  position: relative;
+  flex: 0 0 auto;
+  width: 132px; height: 132px;
+  display: grid; place-items: center;
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(78% 78% at 50% 42%, rgba(255, 201, 77, 0.17), transparent 72%),
+    var(--panel-solid);
+  border: 1px solid var(--stroke);
+}
+.mnem-emoji {
+  position: absolute;
+  right: -10px; bottom: -8px;
+  width: 52px; height: 52px;
+  display: grid; place-items: center;
+  font-size: 30px; line-height: 1;
+  border-radius: 999px;
+  background: var(--panel-raised);
+  border: 2px solid rgba(255, 201, 77, 0.45);
+  box-shadow: 0 8px 20px -6px rgba(5, 9, 20, 0.9);
+}
+.mnem-glyph {
+  font-size: 78px; font-weight: 700; line-height: 1;
+  color: var(--ink);
+  text-shadow: 0 2px 14px rgba(5, 9, 20, 0.7);
+}
+/* a letter team ("th") or magic e ("a-e") is two or three glyphs wide */
+.mnem-glyph[data-len="2"] { font-size: 64px; }
+.mnem-glyph[data-len="3"] { font-size: 50px; letter-spacing: -1px; }
+
+.mnem-id { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.mnem-name { font-size: 21px; font-weight: 800; }
+.mnem-reading { font-size: 16px; font-weight: 900; color: var(--gold); }
+.mnem-ipa { font-size: 13px; font-weight: 800; color: var(--ink-faint); margin-left: 2px; }
+.mnem-meta { font-size: 13px; font-weight: 700; color: var(--ink-faint); }
+.mnem-id .speak-btn, .mnem-id > button { margin-top: 4px; }
+
+.mnem-row { display: flex; flex-direction: column; gap: 4px; }
+.mnem-key {
+  font-size: 11px; font-weight: 900; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.mnem-text {
+  font-size: 15.5px; font-weight: 600; line-height: 1.55; color: var(--ink-dim);
+}
+.mnem-em { color: var(--gold); font-weight: 900; }
+
+@media (max-width: 480px) {
+  .mnem-stage { width: 108px; height: 108px; }
+  .mnem-emoji { width: 44px; height: 44px; font-size: 25px; right: -8px; bottom: -6px; }
+  .mnem-glyph { font-size: 64px; }
+  .mnem-glyph[data-len="2"] { font-size: 52px; }
+  .mnem-glyph[data-len="3"] { font-size: 40px; }
+  .mnem-top { gap: 22px; }
+  .mnem-name { font-size: 19px; }
+  .mnem-text { font-size: 15px; }
+}

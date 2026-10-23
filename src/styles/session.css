@@ -1,0 +1,420 @@
+/* ─── Session screens (Review + Builder) ─────────────────────────────────────
+   Layout + prompt-zone polish shared by the two practice surfaces.
+   Depends on tokens/components from global.css (btn, tile, choice, feedback…) */
+
+/* ── Structured session card: prompt centered, answers capped, footer pinned ─
+   Replaces the "content floats in the middle third" full-height card. The
+   prompt zone flexes to absorb spare height; answers + footer keep their
+   natural size, so grading never shoves the question around. */
+.session-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px clamp(16px, 4vw, 36px) 18px;
+}
+/* Prompt + answers travel as ONE centered group: spare card height splits
+   above and below the pair, never opens a vacuum between them. */
+.quiz-main {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+.prompt-zone {
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.answer-zone {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* Footer: hosts Check/Clear before grading and the feedback banner after —
+   same slot, so the card never reflows when the verdict lands. */
+.session-footer {
+  min-height: 86px;
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.session-footer .check-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.session-footer .feedback { width: 100%; }
+/* The sticky slot itself stays invisible — the halo belongs to the banner,
+   not to an empty footer or a lone Check button. */
+.session-footer.feedback-sticky { box-shadow: none; }
+.session-footer .feedback { box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5); }
+/* Narrow screens: let the action button drop to its own full-width row so the
+   verdict text keeps a readable measure. */
+@media (max-width: 480px) {
+  .session-footer .feedback { flex-wrap: wrap; gap: 12px 14px; }
+  .session-footer .feedback > .btn { flex: 1 0 100%; }
+}
+/* Clear the fixed bottom nav while sticking on mobile. */
+@media (max-width: 900px) {
+  .session-footer.feedback-sticky { bottom: calc(92px + env(safe-area-inset-bottom)); }
+  /* Once graded the sticky banner floats over the card — give the answer
+     block scroll clearance so every choice can scroll clear of the banner. */
+  .session-card.graded .quiz-main { padding-bottom: 90px; }
+}
+
+/* ── type-en input: result-aware, same accent language as the choices ────── */
+.type-input {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid var(--stroke-strong);
+  outline: none;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.type-input::placeholder { color: var(--ink-faint); }
+.type-input:focus { border-color: var(--orange-soft); }
+.type-input:disabled { color: var(--ink); opacity: 1; -webkit-text-fill-color: var(--ink); }
+.type-input.good {
+  border-color: var(--green);
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(45, 212, 191, 0.1));
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.25);
+}
+.type-input.bad {
+  border-color: var(--red);
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.2), rgba(239, 68, 68, 0.1));
+  animation: shake 0.4s var(--ease);
+}
+
+/* ── Answer strip verdict: wrongness lives on the tiles, not just the banner ─ */
+.answer-strip.strip-good {
+  border-style: solid;
+  border-color: rgba(52, 211, 153, 0.55);
+  background: rgba(52, 211, 153, 0.08);
+}
+.answer-strip.strip-good .tile {
+  border-color: color-mix(in srgb, var(--green) 60%, transparent);
+  background: color-mix(in srgb, var(--green) 16%, var(--panel-solid));
+}
+.answer-strip.strip-bad {
+  border-style: solid;
+  border-color: rgba(248, 113, 113, 0.55);
+  background: rgba(248, 113, 113, 0.07);
+  animation: shake 0.4s var(--ease);
+}
+.answer-strip.strip-bad .tile {
+  border-color: color-mix(in srgb, var(--red) 60%, transparent);
+  background: color-mix(in srgb, var(--red) 15%, var(--panel-solid));
+}
+
+/* ── Category cue above the prompt: pos tag, text only (emoji at this size
+      was an illegible smudge) ──────────────────────────────────────────────── */
+.cue-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(255, 201, 77, 0.09);
+  border: 1px solid rgba(255, 201, 77, 0.28);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+/* ── SRS stage pill (top-right) — tinted per-stage via inline vars ───────── */
+.stage-pill {
+  --stage: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 13px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--stage);
+  border: 1px solid color-mix(in srgb, var(--stage) 45%, transparent);
+  background: color-mix(in srgb, var(--stage) 13%, transparent);
+}
+.stage-pill::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 999px;
+  background: var(--stage);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--stage) 70%, transparent);
+}
+
+/* ── Audio prompt: hero speaker dead-center, turtle satellites off its side ─
+   The hero sits on the card's centerline; the slow button is absolutely
+   positioned so it never drags the group off-center, and its own center is
+   locked to the hero's vertical center (the label hangs free below). */
+.audio-hero {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+}
+.speak-hero {
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  border-radius: 28px;
+  background: linear-gradient(150deg, var(--orange-soft), var(--orange) 55%, var(--orange-deep));
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.35),
+    0 7px 0 var(--orange-deep),
+    0 20px 40px rgba(255, 138, 61, 0.35);
+  transition: transform 0.1s var(--ease), box-shadow 0.1s var(--ease), filter 0.15s;
+}
+.speak-hero:hover { filter: brightness(1.07); }
+.speak-hero:active {
+  transform: translateY(7px);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), 0 0 0 var(--orange-deep), 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+.speak-hero.speaking { animation: hero-pulse 1.1s ease-in-out infinite; }
+@keyframes hero-pulse {
+  0%, 100% { box-shadow: inset 0 2px 0 rgba(255,255,255,0.35), 0 7px 0 var(--orange-deep), 0 0 0 0 rgba(255, 138, 61, 0.55); }
+  50% { box-shadow: inset 0 2px 0 rgba(255,255,255,0.35), 0 7px 0 var(--orange-deep), 0 0 0 16px rgba(255, 138, 61, 0); }
+}
+
+.speak-slow-wrap {
+  position: absolute;
+  left: calc(50% + 48px + 24px);  /* half hero + gap */
+  top: 50%;
+  transform: translateY(-50%);
+}
+.speak-hero.slow {
+  width: 56px;
+  height: 56px;
+  border-radius: 17px;
+  font-size: 26px;
+  background: var(--panel-raised);
+  border: 2px solid var(--stroke-strong);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
+}
+.speak-hero.slow:hover { filter: none; border-color: var(--orange-soft); }
+.speak-hero.slow:active { transform: translateY(4px); box-shadow: 0 0 0 rgba(0, 0, 0, 0.35); }
+.speak-hero.slow.speaking { animation: speak-pulse 1s ease-in-out infinite; }
+.slow-lbl {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ── Choice list: 2-up grid when every label is short ────────────────────── */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.choices.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.choices.choice-grid .choice {
+  justify-content: center;
+  text-align: center;
+  padding: 18px 14px;
+}
+.choices.choice-grid .choice .key { position: absolute; left: 12px; }
+.choices.choice-grid .choice { position: relative; }
+.choices.choice-grid .choice.correct::after { margin-left: 8px; }
+@media (max-width: 420px) {
+  .choices.choice-grid { grid-template-columns: 1fr; }
+  .choices.choice-grid .choice { padding: 15px 18px; }
+}
+
+/* ── Tile tray: visibly "decided" once graded ────────────────────────────── */
+.tile-tray {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  transition: opacity 0.25s var(--ease), filter 0.25s var(--ease);
+}
+.tile-tray.frozen {
+  opacity: 0.55;
+  filter: saturate(0.55);
+  pointer-events: none;
+}
+.tile.in-answer .tile-sub { color: var(--ink-dim); }
+
+/* ── Drop zone: compact when empty, grows with tiles ─────────────────────── */
+.answer-strip.empty { min-height: 56px; padding: 8px 16px; }
+
+/* ── Builder header: one tight row, chips inline beneath on mobile ──────── */
+.builder-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  flex-wrap: wrap;
+}
+.builder-head-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+/* Solid text-shadow scrim: the 3D background's star particles drift behind
+   the header, the title must stay legible on top of them. */
+.builder-title {
+  font-size: clamp(20px, 4.5vw, 29px);
+  font-weight: 900;
+  letter-spacing: -0.4px;
+  white-space: nowrap;
+  text-shadow: 0 1px 3px rgba(5, 9, 20, 0.95), 0 4px 18px rgba(5, 9, 20, 0.75);
+}
+.builder-sub {
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(5, 9, 20, 0.9);
+}
+/* First-run cheer sits inline under the title — right next to the action,
+   not floating alone in the far corner. */
+.stat-chip.motivate {
+  color: var(--orange-soft);
+  border-color: rgba(255, 138, 61, 0.4);
+  background: linear-gradient(135deg, rgba(255, 138, 61, 0.16), rgba(255, 201, 77, 0.08)), var(--panel);
+  font-weight: 800;
+  font-size: 14px;
+}
+.builder-head-text .stat-chip.motivate { margin-top: 3px; padding: 7px 15px; }
+
+/* ── How many sentences these patterns are worth ─────────────────────────── */
+.build-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 2px 0 6px;
+}
+.build-meter .pbar { height: 8px; }
+/* .pbar's fill carries a 20px min-width so a small fraction stays visible.
+   This is the one bar that legitimately starts at zero, where that nub reads
+   as progress already made. Scoped here so every other meter keeps it. */
+.build-meter .pbar.at-zero > i { min-width: 0; box-shadow: none; }
+/* Same scrim as the title: the 3D starfield drifts behind this row. */
+.build-meter-label,
+.build-meter-count {
+  font-weight: 800;
+  text-shadow: 0 1px 3px rgba(5, 9, 20, 0.95);
+}
+/* Tabular figures so the ratio doesn't jitter sideways as it counts up. */
+.build-meter-count { white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* What the next pattern is worth — the thing that actually moves the number. */
+.build-meter-next {
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(5, 9, 20, 0.95);
+}
+.build-meter-next b { color: var(--gold); font-weight: 900; }
+@media (max-width: 640px) {
+  .builder-sub { display: none; }
+  .builder-head .statbar { width: 100%; flex-wrap: nowrap; }
+  .builder-head .stat-chip { padding: 7px 13px; gap: 8px; }
+  .builder-head .stat-chip .n { font-size: 15px; }
+  .builder-head .stat-chip .lbl { font-size: 11px; }
+}
+@media (max-width: 900px) {
+  /* Local scrim: particles pass right behind the header on small screens. */
+  .builder-head {
+    background: linear-gradient(180deg, rgba(11, 20, 40, 0.72), rgba(11, 20, 40, 0.5));
+    border: 1px solid var(--stroke);
+    border-radius: var(--r-md);
+    padding: 10px 14px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+/* ── Pattern hint: designed glass pill, not sub-contrast microtext ───────── */
+.pattern-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 2px;
+  padding: 6px 15px;
+  border-radius: 999px;
+  background: rgba(167, 139, 250, 0.1);
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.pattern-chip .lbl {
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--violet);
+}
+.pattern-chip .pat {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ── Builder body: why-panel sits beside the card on wide screens ────────── */
+.builder-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
+}
+.why-panel { align-self: stretch; }
+.why-panel .why-title {
+  font-size: 12.5px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  color: var(--violet);
+  margin-bottom: 6px;
+}
+.why-panel .why-body {
+  color: var(--ink-dim);
+  font-weight: 600;
+  line-height: 1.55;
+  font-size: 14px;
+}
+@media (min-width: 1080px) {
+  .builder-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 290px;
+    align-items: stretch;
+  }
+  .why-panel { align-self: start; position: sticky; top: calc(20px + var(--safe-t)); }
+}
+
+/* ─── ChaiEnglish additions ─────────────────────────────────────────────────── */
+/* The reading scaffold line under an English prompt: Thai reading, then IPA
+   in a quieter weight so it reads as a footnote to the reading. */
+.read-line { text-align: center; font-size: 19px; font-weight: 700; color: var(--gold); line-height: 1.5; }
+.read-line .ipa { margin-left: 10px; font-size: 0.78em; font-weight: 600; color: var(--ink-faint); font-family: var(--font-en); }
+/* Typed-answer input is English: Latin font, no auto-capitalisation games. */
+.type-input { font-family: var(--font-en); }

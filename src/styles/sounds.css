@@ -1,0 +1,183 @@
+/* ─── Sounds & stress: the pronunciation reference ─────────────────────────
+   Imported by src/screens/Sounds.tsx and (for the entry card) Script.tsx. */
+
+/* Entry point on the Read English screen */
+.sounds-entry {
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: linear-gradient(135deg, rgba(255, 201, 77, 0.16), rgba(255, 138, 61, 0.06));
+  border: 1px solid rgba(255, 201, 77, 0.34);
+  transition: transform 0.14s ease, border-color 0.14s ease;
+}
+.sounds-entry:hover { border-color: rgba(255, 201, 77, 0.6); }
+.sounds-entry:active { transform: scale(0.985); }
+
+/* ── Section lead-in ─────────────────────────────────────────────────────── */
+.sec-lead { color: var(--ink-dim); font-weight: 700; line-height: 1.6; }
+
+/* ── IPA / phoneme chips ──────────────────────────────────────────────────
+   One shape for every "this is the sound" badge on the page, so the eye
+   learns to read /x/ as a sound and the Thai beside it as how to make it. */
+.ipa-chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 15px; font-weight: 900; line-height: 1;
+  white-space: nowrap;
+  color: var(--gold);
+  background: rgba(255, 201, 77, 0.14);
+  border: 1px solid rgba(255, 201, 77, 0.34);
+}
+.ipa-chip.big {
+  flex: none;
+  min-width: 64px; height: 64px;
+  padding: 0 14px;
+  border-radius: 20px;
+  font-size: 24px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+/* the contrasting phoneme on a pair member */
+.phone-chip {
+  flex: none;
+  font-size: 13px;
+  padding: 4px 9px;
+  color: var(--sky);
+  background: rgba(56, 189, 248, 0.13);
+  border-color: rgba(56, 189, 248, 0.32);
+}
+
+/* ── A sound note: one card per sound / final ────────────────────────────── */
+.sound-note {
+  display: flex; flex-direction: column; gap: 12px;
+  padding: 14px;
+  border-radius: var(--r-md);
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+}
+.sound-head { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.sound-id { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.sound-title { font-size: 17px; font-weight: 900; letter-spacing: -0.2px; line-height: 1.3; }
+.sound-reading { font-size: 13.5px; font-weight: 900; color: var(--orange-soft); }
+
+.sound-row { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.sound-key {
+  font-size: 12px; font-weight: 900;
+  color: var(--ink-faint);
+  padding-top: 2px;
+}
+.sound-row p { font-weight: 600; line-height: 1.6; color: var(--ink-dim); font-size: 14.5px; }
+.sound-row.trap .sound-key { color: var(--pink); }
+
+/* example words — whole chip is the tap target, not just the icon */
+.eg-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.eg-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  min-height: 40px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  font-family: inherit; font-size: 16px; font-weight: 700;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid var(--stroke-strong);
+  cursor: pointer;
+  transition: transform 0.12s var(--spring), border-color 0.15s, background 0.15s;
+}
+.eg-chip:hover { transform: translateY(-1px); border-color: rgba(255, 201, 77, 0.5); background: rgba(255, 255, 255, 0.09); }
+.eg-chip:active { transform: translateY(1px); }
+.eg-chip.speaking { border-color: var(--orange-soft); animation: speak-pulse 1s ease-in-out infinite; }
+.eg-chip svg { flex: none; }
+
+/* ── Stress rules ─────────────────────────────────────────────────────────── */
+.stress-rule {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 14px;
+  border-radius: var(--r-md);
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+}
+.stress-title { font-size: 16.5px; font-weight: 900; line-height: 1.35; letter-spacing: -0.2px; }
+.stress-body { font-weight: 600; line-height: 1.6; color: var(--ink-dim); font-size: 14.5px; }
+.stress-eg { display: flex; flex-direction: column; gap: 6px; margin-top: 2px; }
+.stress-eg-row {
+  display: grid; grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center; gap: 10px;
+  padding: 6px 8px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--stroke);
+}
+.stress-eg-text { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; min-width: 0; }
+.stress-eg-en { font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.stress-eg-note { font-size: 13px; font-weight: 800; color: var(--gold); overflow-wrap: anywhere; }
+
+/* ── Minimal pairs ────────────────────────────────────────────────────────
+   Grouped by the confusion they demonstrate. Two members per pair; they
+   stack on a phone and sit side by side once there is room, so the contrast
+   reads as a comparison rather than a list. */
+.pair-group { display: flex; flex-direction: column; gap: 8px; }
+.pair-group-head {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 2px 2px 0;
+}
+.pair-group-label { font-size: 15px; font-weight: 900; color: var(--ink); }
+.pair-group-label .n { font-size: 12px; font-weight: 800; color: var(--ink-faint); margin-left: 8px; }
+.pair-group-why { font-size: 13px; font-weight: 700; color: var(--ink-dim); line-height: 1.55; }
+
+.pair-row {
+  position: relative;
+  padding: 10px;
+  border-radius: var(--r-md);
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+}
+.pair-row.met { border-color: rgba(52, 211, 153, 0.34); }
+.pair-members {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+}
+.pair-member {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--stroke);
+  min-width: 0;
+}
+.pair-text { min-width: 0; flex: 1; }
+.pair-en { font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.pair-reading { font-weight: 900; color: var(--orange-soft); font-size: 13.5px; }
+.pair-th { font-weight: 700; font-size: 12.5px; color: var(--ink-dim); overflow-wrap: anywhere; }
+.met-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11.5px; font-weight: 900;
+  color: var(--green);
+  background: rgba(52, 211, 153, 0.13);
+  border: 1px solid rgba(52, 211, 153, 0.34);
+}
+.pair-more { align-self: flex-start; }
+
+/* ── Notes ────────────────────────────────────────────────────────────────── */
+.rule-note {
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  background: rgba(255, 201, 77, 0.08);
+  border: 1px solid rgba(255, 201, 77, 0.24);
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+.rule-note b { color: var(--ink); font-weight: 900; }
+.rule-note .en { color: var(--orange-soft); }
+
+@media (max-width: 480px) {
+  .sound-row { grid-template-columns: 1fr; gap: 3px; }
+  .ipa-chip.big { min-width: 56px; height: 56px; font-size: 21px; border-radius: 16px; }
+  .pair-en { font-size: 20px; }
+}

@@ -1,0 +1,28 @@
+# Netlify config — zero-setup deploy for ChaiEnglish.
+# Import this repo in Netlify (production branch: main)
+# and everything below is applied automatically.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+  # Netlify's secrets scanner fails a build when the VALUE of an environment
+  # variable is found in the published output. For these two that is not a leak
+  # — it is the entire point. Vite inlines `VITE_*` at build time so the browser
+  # can reach Supabase, and the anon/publishable key is designed to be public:
+  # it only lets a request authenticate, after which the row-level security
+  # policies in supabase/schema.sql scope every row to its owner.
+  #
+  # Naming them here says "these two are intentionally public" without
+  # disabling the scanner, so a genuine secret leaking through some other
+  # variable still fails the build the way it should.
+  SECRETS_SCAN_OMIT_KEYS = "VITE_SUPABASE_URL,VITE_SUPABASE_ANON_KEY"
+
+# SPA fallback: serve index.html for any path.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "target": "ES2022"
+  },
+  "include": ["scripts/**/*.mts", "src"]
+}

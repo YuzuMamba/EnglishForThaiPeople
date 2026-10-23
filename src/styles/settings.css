@@ -1,0 +1,181 @@
+/* ── Settings screen ─────────────────────────────────────────────────────── */
+
+.pref-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 12px 0;
+}
+.pref-row + .pref-row { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.pref-name { font-weight: 800; font-size: 16px; }
+.pref-sub { color: var(--muted); font-weight: 700; font-size: 13px; margin-top: 2px; }
+
+/* iOS-style pill toggle, spring-loaded like the rest of the app */
+.toggle {
+  width: 52px; height: 30px; flex: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.16);
+  position: relative;
+  transition: background 0.18s var(--ease), border-color 0.18s;
+}
+.toggle .knob {
+  position: absolute; top: 2px; left: 2px;
+  width: 22px; height: 22px; border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s var(--spring);
+}
+.toggle.on { background: var(--green); border-color: var(--green); }
+.toggle.on .knob { transform: translateX(22px); }
+
+.data-note { font-weight: 700; font-size: 14px; line-height: 1.55; }
+.data-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.import-confirm {
+  border: 2px solid rgba(255, 201, 77, 0.45);
+  background: rgba(255, 201, 77, 0.08);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.ic-title { font-weight: 900; font-size: 16px; }
+.ic-body { font-weight: 700; color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+.data-notice {
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  font-weight: 800; font-size: 14px;
+}
+.data-notice.ok { background: rgba(52, 211, 153, 0.12); border: 1.5px solid rgba(52, 211, 153, 0.4); color: var(--green); }
+.data-notice.err { background: rgba(251, 113, 133, 0.12); border: 1.5px solid rgba(251, 113, 133, 0.45); color: #fb7185; }
+
+/* paste-import + recovery snapshots */
+.paste-box {
+  width: 100%; min-height: 110px;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  color: var(--ink);
+  font: 700 13px/1.5 monospace;
+  padding: 10px 12px;
+  resize: vertical;
+}
+.import-confirm.danger { border-color: rgba(251, 113, 133, 0.55); background: rgba(251, 113, 133, 0.08); }
+.ic-side { color: var(--ink-dim); font-weight: 900; }
+.rescue-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 9px 12px;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--stroke);
+}
+.rescue-when { font-weight: 800; font-size: 13.5px; }
+.rescue-what { font-weight: 700; font-size: 12.5px; color: var(--muted); }
+
+/* developer / recovery panel — only rendered with ?dev=1 */
+.dev-card { border-color: rgba(167, 139, 250, 0.35); }
+.dev-card .h2 { color: #c4b5fd; }
+.dev-num {
+  width: 74px; padding: 10px 12px;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid rgba(255, 255, 255, 0.16);
+  color: var(--ink);
+  font-weight: 900; font-size: 16px; text-align: center;
+}
+
+/* The Settings heading doubles as the developer-tools tap target. It has to
+   be a real <button> — iOS Safari won't dispatch clicks to a bare <div> — so
+   strip the button chrome and let .h1 carry the appearance. */
+.h1-tap {
+  appearance: none; -webkit-appearance: none;
+  background: none; border: 0; padding: 0; margin: 0;
+  /* `font: inherit` (the shorthand) would reset font-size to the body's and
+     silently shrink the heading to 16px — only the family is inherited here. */
+  font-family: inherit; color: inherit; text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Pacing sliders stack under their label so the track gets full width */
+.pref-row.pref-stack { flex-direction: column; align-items: stretch; gap: 10px; }
+.pace-range { width: 100%; accent-color: var(--orange); height: 28px; }
+
+/* Warning tone — used for storage problems, which are neither a success nor a
+   failed action the learner just took. */
+.data-notice.warn {
+  background: rgba(255, 201, 77, 0.12);
+  border: 1.5px solid rgba(255, 201, 77, 0.45);
+  color: var(--gold);
+}
+
+/* ── Storage health ─────────────────────────────────────────────────────── */
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+.store-pill {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 9px 12px;
+  border-radius: var(--r-sm);
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  font-size: 12px; font-weight: 800;
+}
+.store-pill b { font-size: 12.5px; font-weight: 900; color: var(--ink-dim); }
+.store-pill.s-ok span          { color: var(--green); }
+.store-pill.s-empty span       { color: var(--ink-faint); }
+.store-pill.s-unavailable span { color: #fb7185; }
+.store-pill.s-unavailable      { border-color: rgba(251, 113, 133, 0.4); }
+
+/* ── App-wide "nothing can be saved" banner ─────────────────────────────── */
+.storage-alarm {
+  display: flex; align-items: flex-start; gap: 12px;
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  background: rgba(251, 113, 133, 0.14);
+  border: 1.5px solid rgba(251, 113, 133, 0.5);
+  color: #ffd7dd;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.storage-alarm b { color: #fff; font-weight: 900; }
+.storage-alarm .ico { font-size: 20px; line-height: 1.2; }
+
+/* ── Account sync ───────────────────────────────────────────────────────── */
+.sync-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+  background: var(--panel-solid);
+  border: 1.5px solid var(--stroke);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  /* 16px minimum, or iOS Safari zooms the whole page on focus. */
+  font-size: 16px;
+}
+.sync-input:focus {
+  outline: none;
+  border-color: var(--orange);
+}
+.sync-input::placeholder { color: var(--ink-faint); font-weight: 600; }
+
+/* Informational variant of the storage banner: something to know and act on,
+   not something broken. Red would be wrong — nothing is lost in this case. */
+.storage-alarm.info {
+  background: rgba(56, 189, 248, 0.13);
+  border-color: rgba(56, 189, 248, 0.45);
+  color: #d9efff;
+}
+
+/* Build stamp — deliberately quiet. It exists to be found when someone asks
+   "is this device on the new version?", not to be read every visit. */
+.build-stamp {
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}

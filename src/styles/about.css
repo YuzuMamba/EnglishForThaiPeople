@@ -1,0 +1,130 @@
+/* ─── About: documentation page ───────────────────────────────────────────── */
+
+.about h2.h2 { margin-bottom: 10px; }
+
+.about-sec p {
+  font-weight: 600;
+  line-height: 1.68;
+  color: var(--ink-dim);
+  margin-bottom: 12px;
+}
+.about-sec p:last-child { margin-bottom: 0; }
+.about-sec b { color: var(--ink); font-weight: 900; }
+.about-sec .en { color: var(--orange-soft); font-weight: 700; }
+
+/* Live inventory strip */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+.about-stat {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+}
+.about-stat .n {
+  font-size: 24px; font-weight: 900;
+  background: linear-gradient(135deg, var(--orange), var(--gold));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.about-stat .l { font-size: 12.5px; font-weight: 800; color: var(--ink-faint); }
+
+/* The unlock rule callout */
+.gate-rule {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px;
+  margin: 4px 0 14px;
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, rgba(255, 138, 61, 0.16), rgba(255, 201, 77, 0.06)), var(--panel-solid);
+  border: 1.5px solid rgba(255, 138, 61, 0.4);
+  font-weight: 700; line-height: 1.55;
+}
+.gate-rule .badge {
+  flex: none;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #2b1400;
+  font-size: 11.5px; font-weight: 900;
+  letter-spacing: 0.4px; text-transform: uppercase;
+}
+
+/* Bullet lists */
+.about-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.about-list li {
+  position: relative;
+  padding-left: 24px;
+  font-weight: 600; line-height: 1.62;
+  color: var(--ink-dim);
+}
+.about-list li::before {
+  content: '';
+  position: absolute; left: 6px; top: 9px;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--orange);
+}
+.about-list.reasons li::before { background: var(--green); }
+
+/* SRS ladder */
+.ladder {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 8px;
+  margin: 4px 0 14px;
+}
+.rung {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1.5px solid var(--stroke-strong);
+  background: rgba(255, 255, 255, 0.03);
+}
+.rung .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.rung .nm { font-size: 13px; font-weight: 900; white-space: nowrap; }
+.rung .iv {
+  margin-left: auto;
+  font-size: 12px; font-weight: 800;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Practice modes */
+.modes { display: flex; flex-direction: column; gap: 12px; }
+.mode { display: flex; gap: 14px; align-items: flex-start; }
+.mode .ic {
+  flex: none;
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  font-size: 21px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid var(--stroke-strong);
+}
+.mode .t { font-weight: 900; font-size: 15.5px; margin-bottom: 2px; }
+.mode .b { font-weight: 600; font-size: 14px; line-height: 1.6; color: var(--ink-dim); }
+
+/* Honest-scope section reads as a quieter aside */
+.about-sec.scope {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(167, 139, 250, 0.04)), var(--panel);
+  border-color: rgba(56, 189, 248, 0.28);
+}
+
+@media (max-width: 640px) {
+  .about-stats { grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); }
+  .about-stat .n { font-size: 21px; }
+  .gate-rule { flex-direction: column; gap: 8px; }
+}
+
+/* Two rungs per row on a phone, tightened so a Thai stage name and its
+   interval sit on one line each — "แข็งแรง · 14 วัน" at 360px wide. */
+@media (max-width: 420px) {
+  .ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .rung { padding: 9px 10px; gap: 7px; }
+  .rung .nm { font-size: 12.5px; }
+  .rung .iv { font-size: 11.5px; }
+}

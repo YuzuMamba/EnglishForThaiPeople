@@ -1,0 +1,548 @@
+/* ─── ChaiEnglish design system ──────────────────────────────────────────────── */
+/* The UI is Thai; the thing being learned is English. --font-ui carries Thai
+   (Nunito for Latin, Noto Sans Thai for Thai script); --font-en is for English
+   the learner is studying, via the .en class. */
+
+:root {
+  /* Brand */
+  --orange: #ff8a3d;
+  --orange-deep: #f0691a;
+  --orange-soft: #ffb15e;
+  --gold: #ffc94d;
+  --teal: #2dd4bf;
+  --green: #34d399;
+  --green-deep: #10b981;
+  --sky: #38bdf8;
+  --pink: #f472b6;
+  --violet: #a78bfa;
+  --red: #f87171;
+  --red-deep: #ef4444;
+
+  /* Surfaces (dusk glass) */
+  --bg: #0b1428;
+  --panel: rgba(21, 32, 58, 0.92);
+  --panel-solid: #141f3a;
+  --panel-raised: rgba(32, 46, 79, 0.96);
+  --stroke: rgba(255, 255, 255, 0.09);
+  --stroke-strong: rgba(255, 255, 255, 0.16);
+
+  /* Text */
+  --ink: #f4f6fb;
+  --ink-dim: #aab4cd;
+  --ink-faint: #6e7a99;
+  /* Alias used by home.css / settings.css for secondary copy. */
+  --muted: var(--ink-dim);
+
+  /* Type */
+  --font-ui: 'Nunito Variable', 'Nunito', 'Noto Sans Thai', system-ui, -apple-system, sans-serif;
+  --font-en: 'Nunito Variable', 'Nunito', system-ui, sans-serif;
+
+  /* Motion */
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Safe areas.
+     index.html sets viewport-fit=cover with a black-translucent status bar, so
+     the viewport runs edge to edge and the top of the page sits UNDERNEATH the
+     status bar and the Dynamic Island. That is invisible in a browser tab —
+     Safari's own chrome pushes the page down — and only appears once the app is
+     installed to the home screen, where there is no chrome. Anything anchored
+     to a viewport edge has to offset by these or it renders untappable.
+
+     Aliased as variables rather than calling env() at each site so a test can
+     override them on :root; env() itself cannot be simulated. */
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+
+  /* Radii */
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: var(--font-ui);
+  /* Thai tone marks and vowels stack above and below the line; 1.5 keeps
+     them from clipping or colliding between lines. */
+  line-height: 1.5;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.en { font-family: var(--font-en); }
+
+button {
+  font-family: inherit;
+  /* UA default is `normal`, measured on Nunito — too tight for Thai marks. */
+  line-height: 1.45;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  background: none;
+}
+button:focus-visible, a:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Three.js background canvas host */
+.bg3d { position: fixed; inset: 0; z-index: 0; }
+.bg3d canvas { display: block; }
+
+/* Soft vignette so UI always sits on calm ground */
+.bg-vignette {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 10%, transparent 40%, rgba(5, 9, 20, 0.55) 100%),
+    linear-gradient(180deg, rgba(5, 9, 20, 0.15), rgba(5, 9, 20, 0.4));
+}
+
+/* ─── App shell ───────────────────────────────────────────────────────────── */
+
+.shell {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  min-height: 100vh;
+  max-width: 1240px;
+  margin: 0 auto;
+  gap: 24px;
+  padding:
+    calc(20px + var(--safe-t))
+    calc(24px + var(--safe-r))
+    20px
+    calc(24px + var(--safe-l));
+}
+
+.main {
+  min-width: 0;
+  padding-bottom: 60px;
+  animation: screen-in 0.45s var(--ease) both;
+}
+
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ─── Sidebar ─────────────────────────────────────────────────────────────── */
+
+.side {
+  position: sticky;
+  top: calc(20px + var(--safe-t));
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 14px;
+  border-radius: var(--r-xl);
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 10px 16px;
+  font-weight: 900; font-size: 22px; letter-spacing: -0.4px;
+}
+.logo .cup { font-size: 26px; filter: drop-shadow(0 2px 6px rgba(255, 138, 61, 0.5)); }
+.logo .chai { color: var(--orange); }
+.logo .eng-part { color: var(--ink); }
+
+.nav-btn {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  font-weight: 800; font-size: 15px;
+  color: var(--ink-dim);
+  transition: background 0.18s var(--ease), color 0.18s var(--ease), transform 0.18s var(--spring);
+  border: 1.5px solid transparent;
+}
+.nav-btn:hover { background: rgba(255, 255, 255, 0.06); color: var(--ink); transform: translateX(3px); }
+.nav-btn.on {
+  background: linear-gradient(135deg, rgba(255, 138, 61, 0.2), rgba(255, 201, 77, 0.1));
+  border-color: rgba(255, 138, 61, 0.45);
+  color: var(--orange-soft);
+}
+.nav-btn .ic { font-size: 20px; width: 24px; text-align: center; }
+.nav-btn .badge {
+  margin-left: auto;
+  min-width: 24px; height: 24px; padding: 0 7px;
+  display: grid; place-items: center;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #2b1400; font-size: 12px; font-weight: 900;
+  box-shadow: 0 3px 10px rgba(255, 138, 61, 0.45);
+}
+
+/* ─── Cards / panels ──────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  border-radius: var(--r-lg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card-pad { padding: 22px; }
+
+/* ─── Chunky 3D buttons (the Duolingo press) ─────────────────────────────── */
+
+.btn {
+  --btn-bg: var(--orange);
+  --btn-edge: var(--orange-deep);
+  --btn-ink: #2b1400;
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 26px;
+  border-radius: 16px;
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  font-weight: 900; font-size: 16px; letter-spacing: 0.3px;
+  box-shadow: 0 5px 0 var(--btn-edge), 0 12px 26px rgba(0, 0, 0, 0.35);
+  transition: transform 0.09s var(--ease), box-shadow 0.09s var(--ease), filter 0.15s;
+  user-select: none;
+}
+.btn:hover { filter: brightness(1.07); }
+.btn:active {
+  transform: translateY(5px);
+  box-shadow: 0 0 0 var(--btn-edge), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.btn:disabled {
+  cursor: default;
+  background: #333d55; color: #8b97b3;
+  border: 1.5px solid rgba(255, 255, 255, 0.13);
+  box-shadow: none; filter: none; transform: none;
+}
+.btn:disabled:active { transform: none; box-shadow: none; }
+
+.btn.green { --btn-bg: var(--green); --btn-edge: #0d9668; --btn-ink: #03301f; }
+.btn.sky { --btn-bg: var(--sky); --btn-edge: #0284c7; --btn-ink: #062a3d; }
+.btn.violet { --btn-bg: var(--violet); --btn-edge: #7c5cd6; --btn-ink: #221349; }
+.btn.ghost {
+  --btn-bg: #2b3a5c;
+  --btn-edge: #1d2940;
+  --btn-ink: var(--ink);
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+}
+.btn.big { padding: 18px 34px; font-size: 18px; border-radius: 20px; }
+.btn.small { padding: 9px 16px; font-size: 13.5px; border-radius: 12px; box-shadow: 0 4px 0 var(--btn-edge), 0 8px 18px rgba(0,0,0,0.3); }
+.btn.small:active { transform: translateY(4px); box-shadow: 0 0 0 var(--btn-edge); }
+
+/* ─── Stats / chips ───────────────────────────────────────────────────────── */
+
+.statbar { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.stat-chip {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(12px);
+  font-weight: 800;
+}
+.stat-chip .n { font-size: 17px; }
+.stat-chip .lbl { font-size: 12px; color: var(--ink-dim); font-weight: 700; }
+.stat-chip.flame .n { color: var(--gold); }
+
+/* ─── Progress ring & bars ───────────────────────────────────────────────── */
+
+.pbar {
+  height: 16px; border-radius: 999px;
+  background: #202c4e;
+  border: 1px solid var(--stroke);
+  overflow: hidden;
+}
+.pbar > i {
+  display: block; height: 100%;
+  min-width: 20px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
+  box-shadow: 0 0 14px rgba(255, 178, 77, 0.55);
+  transition: width 0.6s var(--spring);
+  position: relative;
+}
+.pbar > i::after {
+  content: ''; position: absolute; inset: 2px 3px auto;
+  height: 4px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+}
+.pbar.green > i { background: linear-gradient(90deg, var(--green), var(--teal)); box-shadow: 0 0 14px rgba(52, 211, 153, 0.5); }
+
+/* ─── Quiz shared ────────────────────────────────────────────────────────── */
+
+.quiz-prompt {
+  font-size: clamp(34px, 6vw, 56px);
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.35;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+.choice {
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: var(--r-md);
+  background: var(--panel-raised);
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-bottom-width: 4px;
+  border-bottom-color: rgba(0, 0, 0, 0.45);
+  font-weight: 800; font-size: 17px;
+  text-align: left;
+  display: flex; align-items: center; gap: 14px;
+  transition: transform 0.12s var(--spring), border-color 0.12s, background 0.12s;
+}
+.choice:hover:not(:disabled) { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.3); border-bottom-color: rgba(0, 0, 0, 0.45); background: rgba(48, 64, 102, 0.96); }
+.choice:active:not(:disabled) { transform: translateY(2px); border-bottom-width: 2px; }
+.choice.correct::after { content: '✓'; margin-left: auto; font-size: 20px; color: var(--green); font-weight: 900; }
+.choice .key {
+  width: 30px; height: 30px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--stroke-strong);
+  font-size: 13px; color: var(--ink-dim);
+}
+.choice.correct {
+  border-color: var(--green);
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.22), rgba(45, 212, 191, 0.12));
+  box-shadow: 0 4px 0 rgba(13, 150, 104, 0.6), 0 0 24px rgba(52, 211, 153, 0.3);
+  animation: pop 0.35s var(--spring);
+}
+.choice.wrong {
+  border-color: var(--red);
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.2), rgba(239, 68, 68, 0.1));
+  animation: shake 0.4s var(--ease);
+}
+.choice.dim { opacity: 0.45; }
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.045); }
+  100% { transform: scale(1); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-7px); }
+  55% { transform: translateX(6px); }
+  80% { transform: translateX(-3px); }
+}
+
+/* Word tiles (sentence builder) */
+.tile {
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: var(--panel-raised);
+  border: 2px solid var(--stroke-strong);
+  font-family: var(--font-en);
+  font-size: 22px; font-weight: 700;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s var(--spring), box-shadow 0.15s, border-color 0.15s, opacity 0.2s;
+  cursor: pointer;
+}
+.tile:hover { transform: translateY(-3px) rotate(-1deg); border-color: var(--orange-soft); }
+.tile:active { transform: translateY(2px); box-shadow: 0 0 0 rgba(0, 0, 0, 0.3); }
+.tile.used { opacity: 0.25; pointer-events: none; transform: scale(0.94); }
+.tile.in-answer:hover { border-color: var(--red); transform: translateY(-2px); }
+.tile-sub { display: block; font-family: var(--font-ui); font-size: 11px; font-weight: 700; color: var(--ink-faint); margin-top: 2px; }
+/* A word the learner has not been taught yet, glossed so the round is
+   buildable instead of a guess. Marked, not hidden: seeing WHICH word is new
+   is half the value — it doubles as a preview of what's coming. */
+.tile.fresh {
+  border-color: rgba(56, 189, 248, 0.55);
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.12), transparent), var(--panel-raised);
+}
+.tile-en {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 11px; font-weight: 800;
+  color: var(--sky);
+  margin-top: 1px;
+  max-width: 15ch;
+  overflow-wrap: anywhere;
+}
+
+/* Answer strip */
+.answer-strip {
+  min-height: 74px;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  border: 2px dashed var(--stroke-strong);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.2s;
+}
+.answer-strip.glow { border-style: solid; border-color: rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.06); }
+
+/* Feedback banner slides from the bottom of the quiz card */
+.feedback {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 22px;
+  border-radius: var(--r-lg);
+  animation: rise 0.35s var(--spring) both;
+  border: 1px solid;
+}
+.feedback.good {
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.18), rgba(45, 212, 191, 0.08)), var(--panel-solid);
+  border-color: rgba(52, 211, 153, 0.45);
+}
+.feedback.bad {
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.16), rgba(239, 68, 68, 0.07)), var(--panel-solid);
+  border-color: rgba(248, 113, 113, 0.4);
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Focus sessions (review / lesson / builder) fill the viewport so tall
+   screens never show a dead zone under the card. */
+.focus-col {
+  display: flex; flex-direction: column; gap: 18px;
+  min-height: calc(100vh - 60px);
+}
+.focus-col .grow-card {
+  flex: 1;
+  display: flex; flex-direction: column; justify-content: center;
+}
+
+/* Narrow content column — kills the dead-middle on wide rows */
+.page-narrow { max-width: 880px; width: 100%; margin-inline: auto; }
+.quiz-narrow { max-width: 680px; width: 100%; align-self: center; }
+
+/* Sticky feedback bar so grading is always visible without scrolling */
+.feedback-sticky { position: sticky; bottom: 12px; z-index: 5; box-shadow: 0 18px 44px rgba(0,0,0,0.5); }
+
+/* ─── Utility ─────────────────────────────────────────────────────────────── */
+
+.row { display: flex; align-items: center; gap: 12px; }
+.spread { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.col { display: flex; flex-direction: column; gap: 12px; }
+.muted { color: var(--ink-dim); }
+.faint { color: var(--ink-faint); }
+.h1 { font-size: 30px; font-weight: 900; letter-spacing: -0.5px; line-height: 1.35; }
+.h2 { font-size: 21px; font-weight: 900; letter-spacing: -0.3px; line-height: 1.35; }
+.small { font-size: 13px; }
+
+.icon-btn {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1.5px solid var(--stroke-strong);
+  font-size: 19px;
+  transition: transform 0.15s var(--spring), background 0.15s;
+}
+.icon-btn:hover { transform: scale(1.08); background: rgba(255, 255, 255, 0.12); }
+.icon-btn:active { transform: scale(0.94); }
+.icon-btn.speaking { animation: speak-pulse 1s ease-in-out infinite; border-color: var(--orange-soft); }
+@keyframes speak-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 138, 61, 0.5); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 138, 61, 0); }
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.14); border-radius: 999px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 1fr;
+    padding:
+      calc(12px + var(--safe-t))
+      calc(12px + var(--safe-r))
+      12px
+      calc(12px + var(--safe-l));
+    gap: 12px;
+  }
+  /* Stack call-to-action cards vertically; buttons go full width. */
+  .cta-card { flex-direction: column; align-items: stretch; text-align: left; }
+  .cta-card .btn { width: 100%; }
+  .focus-col { min-height: calc(100vh - 130px); }
+  .side {
+    position: fixed; top: auto; bottom: 0; left: 0; right: 0;
+    z-index: 50;
+    flex-direction: row; justify-content: space-around;
+    border-radius: 20px 20px 0 0;
+    padding:
+      8px
+      calc(6px + var(--safe-r))
+      calc(8px + var(--safe-b))
+      calc(6px + var(--safe-l));
+    background: var(--panel-solid);
+    border-top: 1px solid var(--stroke-strong);
+    box-shadow: 0 -14px 34px rgba(4, 8, 18, 0.7);
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+  }
+  .side .logo { display: none; }
+  /* The sidebar's column gap is dead width in a row of seven: on a 360px
+     phone it cost each tab 5px the Thai labels needed. */
+  .side { justify-content: space-between; gap: 2px; }
+  /* Seven tabs must share the width without overflowing narrow phones. */
+  .nav-btn {
+    position: relative;
+    flex: 1 1 0; min-width: 0;
+    flex-direction: column; gap: 3px;
+    padding: 8px 0;
+    font-size: 9.5px; letter-spacing: -0.1px;
+    border-radius: 14px;
+  }
+  .nav-btn:hover { transform: none; }
+  /* Thai labels run wider than the English they replaced: สร้างประโยค needs
+     ~50px where a 360px phone gives a tab ~46px. A label may spill 6px into
+     the empty space either side of its tab (its neighbours are all short)
+     and stays centred under its icon; the ellipsis remains as a last resort
+     for anything wider still. */
+  .nav-btn .txt {
+    max-width: none;
+    margin-inline: -6px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .nav-btn .ic { font-size: 19px; width: auto; }
+  .nav-btn .badge {
+    position: absolute; top: 1px; right: 50%;
+    transform: translateX(22px);
+    min-width: 17px; height: 17px; font-size: 10px; padding: 0 4px;
+  }
+  .main { padding-bottom: 118px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ─── Focus mode: lessons & reviews hide navigation chrome ────────────────── */
+
+.shell.focus { grid-template-columns: 1fr; max-width: 980px; }
+.shell.focus .side { display: none; }
+
+@media (max-width: 900px) {
+  .feedback-sticky { bottom: calc(88px + env(safe-area-inset-bottom)); }
+}
+@media (max-width: 480px) {
+  .feedback { flex-wrap: wrap; }
+  .feedback .btn { width: 100%; }
+}
+
+/* Touch devices: keyboard-shortcut chips are desktop-only affordances */
+@media (pointer: coarse) {
+  .choice .key { display: none; }
+}

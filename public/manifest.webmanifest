@@ -1,0 +1,17 @@
+{
+  "name": "ChaiEnglish — เรียนอังกฤษที่ใช้พูดจริง",
+  "short_name": "ChaiEnglish",
+  "description": "เรียนอังกฤษแบบเว้นระยะทบทวน: คำศัพท์ แพตเทิร์นประโยค และการออกเสียง ที่วนกลับมาจนติดปาก",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e1a2b",
+  "theme_color": "#0e1a2b",
+  "categories": ["education"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

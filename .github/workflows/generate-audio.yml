@@ -1,0 +1,174 @@
+name: Generate audio
+
+# Re-cuts the English audio corpus with Google Cloud Text-to-Speech and commits
+# the result. It exists because the owner works from an iPad, where there is no
+# terminal to run `npx tsx scripts/generate-audio.mts` — and because the API key
+# belongs in repo secrets, never in a chat message or a checked-in file.
+#
+# ⚠ One-time manual step: repo Settings → Secrets and variables → Actions →
+# New repository secret, named GOOGLE_TTS_API_KEY. Until that exists, a real
+# run fails immediately with a message saying so; `plan_only` runs fine without
+# it, since they never call Google.
+
+on:
+  workflow_dispatch:
+    inputs:
+      plan_only:
+        description: 'Preview only — no API calls, nothing spent, nothing committed'
+        type: boolean
+        default: true
+      force:
+        description: 'Re-cut every clip, even ones already voiced by this panel'
+        type: boolean
+        default: false
+      voices:
+        description: 'Optional: pin the panel, comma-separated (blank = every en-US Chirp3-HD voice)'
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    # A full corpus re-cut is ~2,400 clips at ~60ms spacing plus API latency.
+    timeout-minutes: 90
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Commit back to whichever branch this was dispatched from, never a
+          # hardcoded one.
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      # Always plan first, even for a real run. The plan asserts the properties
+      # that are invisible until you listen: a dialogue character keeps one
+      # voice, castmates never share one, nobody is voiced against the gender
+      # CAST (src/data/listening.ts) declares for them, every speaker IS in
+      # CAST, and a slow replay matches its normal clip. It exits non-zero if
+      # any of that breaks, so a bad panel costs nothing.
+      # The key is passed here too, but only ever reaches voices.list, which is
+      # free and synthesizes nothing. Without it the plan falls back to an
+      # invented panel and can only check the wiring — not who will speak.
+      - name: Plan the run
+        env:
+          GOOGLE_TTS_PLAN: '1'
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+          GOOGLE_TTS_VOICES: ${{ inputs.voices }}
+        run: npx tsx scripts/generate-audio.mts
+
+      - name: Check the secret exists
+        if: ${{ !inputs.plan_only }}
+        env:
+          KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+        run: |
+          if [ -z "$KEY" ]; then
+            echo "::error::GOOGLE_TTS_API_KEY is not set. Add it under"
+            echo "::error::Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+
+      # The audibility audit decodes with ffmpeg, which ubuntu-latest does NOT
+      # ship. Install it BEFORE synthesizing: a missing tool must fail while
+      # the run is still free, not after 1,500 paid clips are sitting on a
+      # runner that is about to be thrown away (run 4, 2026-09-25).
+      - name: Install ffmpeg
+        if: ${{ !inputs.plan_only }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1
+
+      - name: Synthesize
+        id: synth
+        if: ${{ !inputs.plan_only }}
+        env:
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+          GOOGLE_TTS_FORCE: ${{ inputs.force && '1' || '' }}
+          GOOGLE_TTS_VOICES: ${{ inputs.voices }}
+        run: npx tsx scripts/generate-audio.mts
+
+      # Google sporadically returns a valid MP3 that is barely audible — right
+      # headers, decodes fine, about fifty times too quiet. Size cannot see it:
+      # a whispered clip and a genuinely short word look identical on disk, and
+      # the size heuristic this replaces called whispered clips healthy while a
+      # learner was hearing nothing.
+      #
+      # So: decode, find them, drop them, cut them again, and check the result.
+      # A sporadic upstream failure should heal in the run that produced it,
+      # not wait for someone to notice by ear.
+      - name: Drop inaudible clips
+        if: ${{ !inputs.plan_only }}
+        run: npx tsx scripts/audit-audio.mts --recut
+
+      - name: Re-cut them
+        if: ${{ !inputs.plan_only }}
+        env:
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+          GOOGLE_TTS_VOICES: ${{ inputs.voices }}
+        run: npx tsx scripts/generate-audio.mts
+
+      # A second round, because the first re-cut is not always enough: a voice
+      # that whispers a given short word tends to whisper it again. The audit
+      # shuns that voice for that word, and this round cuts it with another
+      # speaker. Two rounds healed everything the corpus has shown so far.
+      - name: Drop inaudible clips (round 2)
+        if: ${{ !inputs.plan_only }}
+        run: npx tsx scripts/audit-audio.mts --recut
+
+      - name: Re-cut them (round 2)
+        if: ${{ !inputs.plan_only }}
+        env:
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+          GOOGLE_TTS_VOICES: ${{ inputs.voices }}
+        run: npx tsx scripts/generate-audio.mts
+
+      # Google does not level-match its output: item clips spanned 14 dB, and
+      # the quiet end was day-one vocabulary heard as whispers next to louder
+      # neighbours. Plain gain to a common speech level, after the re-cuts so
+      # new clips are covered, and after the inaudible drop so a whisper is
+      # never boosted into a hiss that passes. Clips already at level are not
+      # touched, so this re-encodes nothing on a run that cut nothing.
+      - name: Normalize loudness
+        if: ${{ !inputs.plan_only }}
+        run: npx tsx scripts/normalize-audio.mts
+
+      - name: Confirm every clip is audible
+        if: ${{ !inputs.plan_only }}
+        run: |
+          npx tsx scripts/audit-audio.mts | tee audit.log
+          if grep -q 'below peak' audit.log; then
+            echo "::warning::Some clips are still inaudible after a re-cut — see the log."
+          fi
+          rm -f audit.log
+
+      # Runs whenever synthesis itself succeeded, even if the audit or re-cut
+      # after it failed: those clips are paid for, and the manifest and voice
+      # log are only written once synthesis completes, so what is on disk is
+      # consistent. Losing it to a crashed audit step means paying twice.
+      - name: Commit
+        if: ${{ !inputs.plan_only && !cancelled() && steps.synth.outcome == 'success' }}
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add public/audio
+          if git diff --cached --quiet; then
+            echo "Nothing changed — every clip was already current."
+            exit 0
+          fi
+          n=$(git diff --cached --name-only | grep -c '\.mp3$' || true)
+          git commit -m "Regenerate $n audio clip(s) across the Chirp3-HD voice panel
+
+          Dialogue characters keep one voice each, matched to the gender the
+          cast list declares; slow variants share their normal clip's voice.
+
+          Generated by .github/workflows/generate-audio.yml"
+          git push origin HEAD:${{ github.ref_name }}
