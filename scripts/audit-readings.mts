@@ -22,7 +22,8 @@ const warnOnly = args.includes('--warn')
 const li = args.indexOf('--level')
 const onlyLevel = li >= 0 ? Number(args[li + 1]) : undefined
 
-const norm = (r: string): string => r.replace(/[-\s]/g, '').replace(/[่-๋]/g, '')
+// Intonation arrows (↗ ↘) decorate the stress drills' readings and are not sound.
+const norm = (r: string): string => r.replace(/[-\s↗↘]/g, '').replace(/[\u0E48-\u0E4B]/g, '')
 const isSlot = (t: string): boolean => /^\{\w+\}$/.test(t)
 const tidy = (t: string): string => t.replace(/[,.!?;:"]+$/g, '').replace(/^["(]+/, '')
 

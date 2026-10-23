@@ -36,6 +36,10 @@ export const EXCEPTIONS: Record<string, Exception> = {
   line: { reading: 'ไลน์' },                                      // the app; also the common noun, same reading
   '7-eleven': { reading: 'เซ-เว่น', ipa: '/ˈsɛvən/' },            // Thai says just "เซเว่น"; digits are not in CMUdict
 
+  // ── Interjections CMUdict lists without a vowel (HH M) — nothing to syllabify ──
+  hmm: { reading: 'อืม', ipa: '/hm/' },
+  hm: { reading: 'อืม', ipa: '/hm/' },
+
   // ── English words whose fixed Thai form disagrees with the GA sound ──
   hello: { reading: 'เฮล-โล' },          // HH AH0 L OW1 → ฮะ-โล by rule; Thai writes เฮลโล (CMUdict's own variant is HH EH0 L OW1)
   world: { reading: 'เวิลด์' },          // W ER1 L D → เวิร์ลด์; Thai drops the ร์ before ลด์
@@ -54,9 +58,18 @@ export const EXCEPTIONS: Record<string, Exception> = {
   school: { reading: 'สคูล' },           // S K UW1 L → สกูล by the S-cluster rule (sky สกาย); สคูล is the fixed Thai spelling
   new: { reading: 'นิว' },               // N UW1 → นู (GA drops the /j/); Thai keeps it: นิว, นิวยอร์ก
   news: { reading: 'นิวส์' },            // as above
+  knew: { reading: 'นิว' },              // as new
   // CMUdict reduces -day to /di/ in these four (M AH1 N D IY0 → มัน-ดี้); Thai always says เดย์, as in birthday เบิร์ธ-เดย์.
   monday: { reading: 'มัน-เดย์' },
   tuesday: { reading: 'ทูส-เดย์' },
   wednesday: { reading: 'เวนส์-เดย์' },
   sunday: { reading: 'ซัน-เดย์' },
+
+  // ── Heteronyms where CMUdict's FIRST pronunciation is the rarer sense ──
+  // The deriver always takes the first entry (determinism), so these pin the
+  // sense a learner meets first. `ipa` is given because the derived one is wrong too.
+  live: { reading: 'ลิฟ', ipa: '/lɪv/' },        // L AY1 V (adjective, "live music") is listed first; the verb is what we teach
+  lives: { reading: 'ลิฟส์', ipa: '/lɪvz/' },    // as above
+  read: { reading: 'รีด', ipa: '/rid/' },        // R EH1 D (past tense) is listed first
+  lead: { reading: 'ลีด', ipa: '/lid/' },        // L EH1 D (the metal) is listed first
 }

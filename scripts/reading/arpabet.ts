@@ -170,6 +170,8 @@ export const AH0_L = 'เCิF'
 /** SH/ZH/CH/JH + AH0 + N — the -tion/-sion ending: station สเต-ชั่น, vision วิ-ชั่น. */
 export const AH0_PALATAL_N = 'Cั่F'
 export const PALATALS: ReadonlySet<Consonant> = new Set<Consonant>(['SH', 'ZH', 'CH', 'JH'])
+/** EY with Z as its only coda is the open form + s: days เดย์ส์, always ออล-เวย์ส์ (plurals and 3sg outnumber raise/phase in speech). */
+export const EY_Z = 'เCย์F'
 /** AW before an N or L coda keeps the าว shape: down ดาวน์, town ทาวน์, owl อาวล์. */
 export const AW_NL = 'CาวF'
 export const AW_NL_CODAS: ReadonlySet<Consonant> = new Set<Consonant>(['N', 'L'])

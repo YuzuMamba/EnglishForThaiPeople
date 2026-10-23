@@ -16,7 +16,7 @@ import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import {
-  AA_OPEN_BEFORE_R, AH0_FORMS, AH0_L, AH0_PALATAL_N, AW_NL, AW_NL_CODAS, AY_FINAL_CARRIER,
+  AA_OPEN_BEFORE_R, AH0_FORMS, AH0_L, AH0_PALATAL_N, AW_NL, AW_NL_CODAS, AY_FINAL_CARRIER, EY_Z,
   CARRIER, CODA, CODA_K_AFTER_SONORANT, DH_NON_INITIAL, GEMINATE,
   IPA_BY_STRESS, IPA_CONSONANT, IPA_PRIMARY, IPA_SECONDARY, KARAN, MID_CLASS,
   ONSET, ONSET_AFTER_S, ONSET_S_CLUSTER, ONSET_S_K_BEFORE_GLIDE, PALATALS, S_K_GLIDES,
@@ -139,7 +139,7 @@ function onsetLetters(s: ThaiSyl, wordInitial: boolean): [string, string] {
   const letters = cs.map((c, i) => {
     if (i === 0 && s.geminateOnset) return GEMINATE[c]![1]
     if (c === 'S' && cs.length > 1 && i === 0) return ONSET_S_CLUSTER
-    if (i > 0 && cs[0] === 'S' && c === 'K' && S_K_GLIDES.has(cs[i + 1])) return ONSET_S_K_BEFORE_GLIDE
+    if (i > 0 && cs[0] === 'S' && c === 'K' && (S_K_GLIDES.has(cs[i + 1]) || (i === cs.length - 1 && s.nucleus === 'IW'))) return ONSET_S_K_BEFORE_GLIDE
     if (i > 0 && cs[0] === 'S' && ONSET_AFTER_S[c]) return ONSET_AFTER_S[c]!
     if (c === 'DH' && !wordInitial) return DH_NON_INITIAL
     return ONSET[c]
@@ -174,7 +174,10 @@ function vowelTemplate(s: ThaiSyl, isFinal: boolean, next: ThaiSyl | undefined):
   const nextStartsR = next?.onset[0] === 'R'
 
   if (s.coda.length === 0) {
-    if (isFinal) {
+    // AY/EY keep their word-final shape before the -ing syllable: trying ทราย-อิง, playing เพลย์-อิง
+    // (but not before AH0: quiet ไคว-อัต, science ไซ-อันส์).
+    const beforeIng = next !== undefined && next.onset.length === 0 && next.nucleus === 'IH' && next.stress === 0
+    if (isFinal || (beforeIng && (s.nucleus === 'AY' || s.nucleus === 'EY'))) {
       if (s.nucleus === 'AY' && (s.onset.length === 0 || (s.onset.length === 1 && s.onset[0] === 'HH'))) {
         return { tmpl: AY_FINAL_CARRIER, glide, rColoured: false }
       }
@@ -187,11 +190,14 @@ function vowelTemplate(s: ThaiSyl, isFinal: boolean, next: ThaiSyl | undefined):
   if (s.coda[0] === 'R') return { tmpl: forms.r ?? forms.closed, glide: false, rColoured: true }
   if (s.nucleus === 'AH' && s.stress === 0) {
     if (s.coda[0] === 'L') return { tmpl: AH0_L, glide, rColoured: false }
-    if (s.coda[0] === 'N' && s.onset.length > 0 && PALATALS.has(s.onset[s.onset.length - 1])) {
+    // -tion / -sion (and their plurals): ชั่น, ชั่นส์. Not agent, patient (N + T).
+    const nOrNz = s.coda[0] === 'N' && (s.coda.length === 1 || (s.coda.length === 2 && s.coda[1] === 'Z'))
+    if (nOrNz && s.onset.length > 0 && PALATALS.has(s.onset[s.onset.length - 1])) {
       return { tmpl: AH0_PALATAL_N, glide, rColoured: false }
     }
   }
   if (s.nucleus === 'AW' && AW_NL_CODAS.has(s.coda[0])) return { tmpl: AW_NL, glide, rColoured: false }
+  if (s.nucleus === 'EY' && s.coda.length === 1 && s.coda[0] === 'Z') return { tmpl: EY_Z, glide: true, rColoured: false }
   // The short mark ็ (เ-็ แ-็) only in a word-final syllable with a single coda consonant.
   const short = isFinal && s.coda.length === 1 && !s.geminateCoda
   return { tmpl: short ? forms.closed : forms.closedLong ?? forms.closed, glide, rColoured: false }
@@ -213,7 +219,8 @@ function renderSyllable(s: ThaiSyl, i: number, all: ThaiSyl[]): string {
   let text = lead + tmpl.replace('C', main).replace('F', coda)
 
   // Word-final unstressed -y falls: ี้ after a mid-class letter, ี่ otherwise (happy แฮป-ปี้, very เว-รี่).
-  if (isFinal && s.nucleus === 'IY' && s.stress === 0 && s.coda.length === 0) {
+  // CMUdict marks some of these IY2 (nobody, company, probably); secondary stress is unstressed to a Thai ear.
+  if (isFinal && s.nucleus === 'IY' && s.stress !== 1 && s.coda.length === 0) {
     text += MID_CLASS.has(main[main.length - 1]) ? TONE_FALLING_MID : TONE_FALLING_OTHER
   }
   return text
@@ -241,7 +248,10 @@ function lookup(word: string): WordReading | null {
   if (exc) {
     return { word, reading: exc.reading, ipa: exc.ipa ?? (phones ? ipaOf(phones) : '?'), source: 'EXCEPTION' }
   }
-  if (phones) return { word, reading: readingOf(phones), ipa: ipaOf(phones), source: 'DERIVED' }
+  // A CMUdict entry with no vowel (hm, shh) has no syllable to write: treat it as MISSING.
+  if (phones && phones.some(p => /\d$/.test(p))) {
+    return { word, reading: readingOf(phones), ipa: ipaOf(phones), source: 'DERIVED' }
+  }
   return null
 }
 
