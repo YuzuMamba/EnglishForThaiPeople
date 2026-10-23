@@ -58,15 +58,30 @@ const store = (fn) => page.evaluate(async src => {
   const m = await import('/src/core/store.ts')
   const d = await import('/src/core/dev.ts')
   const v = await import('/src/core/vault.ts')
-  return new Function('m', 'd', 'v', `return (${src})(m, d, v)`)(m, d, v)
+  const data = await import('/src/data/index.ts')
+  return new Function('m', 'd', 'v', 'data', `return (${src})(m, d, v, data)`)(m, d, v, data)
 }, fn.toString())
+
+/**
+ * Progress to lose, seeded through the store's own `learnItem`. The vault
+ * mirrors whatever `progress` holds and never asks what the ids mean —
+ * progress is keyed by id and orphans survive by design (CLAUDE.md §2) — so
+ * it is seeded from the corpus when there is one and from stable placeholder
+ * ids while the levels are still being authored. Inlined because `store()`
+ * serialises the function and runs it inside the page.
+ */
+const SEED = `
+  const real = Object.keys(data.ITEMS).slice(0, 12)
+  const ids = real.length ? real : Array.from({ length: 12 }, (_, i) => 'seed-item-' + (i + 1))
+  for (const id of ids) m.useApp.getState().learnItem(id)
+`
 
 await page.goto(`${BASE}/`, { waitUntil: 'networkidle' })
 await page.evaluate(k => localStorage.removeItem(k), KEY)
 await page.goto(`${BASE}/`, { waitUntil: 'networkidle' })
 
 // ── 1. The mirror is written ────────────────────────────────────────────────
-await store((m, d) => { d.jumpToLevel(3); m.useApp.getState().addXp(250) })
+await store(new Function('m', 'd', 'v', 'data', `${SEED}; m.useApp.getState().addXp(250)`))
 await page.waitForTimeout(2500) // debounce is 1500ms
 
 const seeded = await page.evaluate(k => {
@@ -105,7 +120,7 @@ check('diagnosis: the backup copy is found', diag.indexedDb === 'ok', `idb=${dia
 check('diagnosis: it knows progress was lost since the last save',
   diag.lostSinceLastSave === true, `lostSinceLastSave=${diag.lostSinceLastSave}`)
 check('diagnosis: the verdict points at the recoverable backup',
-  /backup copy/i.test(diag.verdict), diag.verdict.slice(0, 90))
+  /สำเนาสำรอง/.test(diag.verdict) && /กู้คืนได้/.test(diag.verdict), diag.verdict.slice(0, 90))
 
 // ── 4. Restoring from the mirror actually returns the progress ──────────────
 const restored = await store(async (m, _d, v) => {
@@ -142,7 +157,7 @@ const fresh = await wiped.evaluate(async () => {
 check('a truly clean device is NOT reported as data loss',
   fresh.lostSinceLastSave === false, `lostSinceLastSave=${fresh.lostSinceLastSave}`)
 check('a clean device says storage is working rather than raising an alarm',
-  /No progress has been saved/i.test(fresh.verdict), fresh.verdict.slice(0, 80))
+  /ยังไม่มีความคืบหน้าถูกบันทึก/.test(fresh.verdict), fresh.verdict.slice(0, 80))
 await cleanCtx.close()
 
 // ── 6. Blocked storage is detected, not silently tolerated ──────────────────
@@ -166,7 +181,8 @@ const blockedDiag = await blocked.evaluate(async () => {
 })
 check('persistenceBlocked() detects it', blockedDiag.blocked === true)
 check('the verdict tells the learner nothing can be saved',
-  /blocking local storage/i.test(blockedDiag.d.verdict), blockedDiag.d.verdict.slice(0, 80))
+  /บล็อกการเก็บข้อมูล/.test(blockedDiag.d.verdict) && /บันทึกไม่ได้/.test(blockedDiag.d.verdict),
+  blockedDiag.d.verdict.slice(0, 80))
 await blocked.close()
 
 // ── 7. Private Browsing — the failure that actually cost three weeks ────────
@@ -191,10 +207,13 @@ const eph = await ipage.evaluate(async () => {
 check('a private-session quota is recognised as ephemeral', eph.check.likely === true,
   `quota=${eph.check.quotaMb}MB`)
 check('private browsing raises the app-wide banner', eph.banners > 0, `banners=${eph.banners}`)
-check('the verdict names private browsing', /PRIVATE BROWSING/.test(eph.d.verdict),
+// The Thai verdict keeps the Latin name of the mode, because that is what the
+// learner sees in Safari's own UI.
+check('the verdict names private browsing',
+  /Private Browsing/.test(eph.d.verdict) && /โหมดเลือกดูแบบส่วนตัว/.test(eph.d.verdict),
   eph.d.verdict.slice(0, 70))
 check('private browsing outranks "nothing saved yet" in the verdict',
-  !/No progress has been saved/i.test(eph.d.verdict))
+  !/ยังไม่มีความคืบหน้าถูกบันทึก/.test(eph.d.verdict))
 await ipage.close()
 
 // …and must NOT fire on a normal profile, or the warning becomes noise.
@@ -249,7 +268,7 @@ check('an installed (standalone) launch is detected', inst.standalone === true)
 check('an empty installed app explains the separate storage bucket',
   inst.banners > 0, `banners=${inst.banners}`)
 check('the verdict says the progress is not lost, and where to find it',
-  /own storage/i.test(inst.d.verdict) && /not lost/i.test(inst.d.verdict),
+  /ที่เก็บข้อมูลของตัวเอง/.test(inst.d.verdict) && /ไม่ได้หายไปไหน/.test(inst.d.verdict) && /Safari/.test(inst.d.verdict),
   inst.d.verdict.slice(0, 80))
 check('it is reported as a fresh install, not as data loss',
   inst.d.freshInstall === true && inst.d.lostSinceLastSave === false,
@@ -258,8 +277,10 @@ check('it is reported as a fresh install, not as data loss',
 // Once there IS progress here, the notice must disappear — otherwise it becomes
 // permanent furniture and stops meaning anything.
 await installed.evaluate(async () => {
-  const d = await import('/src/core/dev.ts')
-  d.jumpToLevel(2)
+  const m = await import('/src/core/store.ts')
+  const data = await import('/src/data/index.ts')
+  const id = Object.keys(data.ITEMS)[0] ?? 'seed-item-1'
+  m.useApp.getState().learnItem(id)
 })
 await installed.waitForTimeout(600)
 const afterStudy = await installed.evaluate(() => document.querySelectorAll('.storage-alarm.info').length)

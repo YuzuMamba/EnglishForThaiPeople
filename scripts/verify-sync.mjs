@@ -363,8 +363,8 @@ check('a secret key is refused even in the URL slot, where it is published too',
   /SECRET/.test(shapes.secretInUrlSlot ?? ''), (shapes.secretInUrlSlot ?? '').slice(0, 50))
 check('a URL with the Data API path still attached is rejected',
   /does not look like/i.test(shapes.restPath ?? ''), (shapes.restPath ?? '').slice(0, 60))
-check('a missing URL names the URL variable', /VITE_SUPABASE_URL is missing/.test(shapes.noUrl ?? ''))
-check('a missing key names the key variable', /VITE_SUPABASE_ANON_KEY is missing/.test(shapes.noKey ?? ''))
+check('a missing URL names the URL variable', /ขาด VITE_SUPABASE_URL/.test(shapes.noUrl ?? ''), (shapes.noUrl ?? '').slice(0, 60))
+check('a missing key names the key variable', /ขาด VITE_SUPABASE_ANON_KEY/.test(shapes.noKey ?? ''), (shapes.noKey ?? '').slice(0, 60))
 check('no credentials at all is silence, not a warning', shapes.neither === null)
 
 check('zero uncaught page errors', pageErrors.length === 0,

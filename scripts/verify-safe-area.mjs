@@ -94,7 +94,9 @@ const topOfContent = page => page.evaluate(() => {
   return { top, who }
 })
 
-const SCREENS = ['home', 'review', 'builder', 'listening', 'script', 'library', 'about', 'settings']
+// Every tab plus the two reference screens reached from inside them: Sounds
+// (from the Read-English course) and Settings (from Home).
+const SCREENS = ['home', 'review', 'builder', 'listening', 'script', 'sounds', 'library', 'about', 'settings']
 
 for (const width of [390, 360]) {
   const { ctx, page } = await screen(width, 844, INSET)

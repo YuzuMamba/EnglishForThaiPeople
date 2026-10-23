@@ -2,10 +2,10 @@
 // Hardened after adversarial review; every scenario here maps to a way real
 // learner data could have been lost:
 //
-//   1. v0 and version-LESS blobs boot intact and are re-stamped v1 — with a
+//   1. v0 and version-LESS blobs boot intact and are re-stamped — with a
 //      discriminating probe (stage 99 → 9) proving migration actually RAN
 //   2. corrupted entries normalize instead of crashing; a damaged stage falls
-//      back to the streak floor, never silently Seedling
+//      back to the streak floor, never silently เมล็ด
 //   3. unreadable JSON boots fresh AND preserves the original under a rescue
 //      key — the first tap must never overwrite recoverable text
 //   4. a blob from a NEWER app version is stashed before best-effort load
@@ -13,10 +13,13 @@
 //      versions, and DAMAGED version fields (no fail-open guessing)
 //   6. snapshotOf's key set is pinned — a forgotten field fails here, not in
 //      a learner's backup
-//   7. the real UI: export downloads; importing a SMALLER backup over live
-//      data warns with both sides shown; rescue snapshots accumulate without
-//      clobbering and restore; imports survive a reload; a storage write
-//      failure reports failure, not success
+//   7. the real UI (all Thai): export downloads; importing a SMALLER backup
+//      over live data warns with both sides shown; rescue snapshots accumulate
+//      without clobbering and restore; imports survive a reload; a storage
+//      write failure reports failure, not success
+//   8. the developer tools (?dev=1) — content-dependent: advanceClock and
+//      jumpToLevel walk the real curriculum, so this section reports the
+//      missing levels until src/data/levels/ is authored
 //
 // Usage: node scripts/verify-backup.mjs   (dev server on :5173)
 import { chromium } from 'playwright-core'
@@ -29,7 +32,7 @@ const KEY = 'chaienglish-v1'
 
 const results = []
 function check(name, cond, detail = '') {
-  results.push({ name, pass: !!cond })
+  results.push({ name, pass: !!cond, detail })
   console.log(`${cond ? 'PASS' : 'FAIL'}  ${name}${detail ? '  —  ' + detail : ''}`)
 }
 
@@ -82,15 +85,17 @@ try {
     `v${PERSIST_VERSION}`)
 
   // ── 1. version migration ───────────────────────────────────────────────────
+  // Ids are opaque to persistence — orphans are preserved by design — so these
+  // need not resolve to items in the current build.
   const v0state = {
     screen: 'home', activeLevel: 2,
     progress: {
-      sawatdii: prog(5),
-      'p-yaak': prog(3),
+      hello: prog(5),
+      'p-i-want-to': prog(3),
       'ghost-id-from-2024': prog(7),
       wild: prog(99),  // discriminator: only a RUN migration clamps this
     },
-    scriptProgress: { 'ก': prog(2) },
+    scriptProgress: { a: prog(2) },
     maxUnlocked: 3, xp: 777, streakDays: 4, lastActiveDay: '2026-08-17',
     history: [{ day: '2026-08-17', reviews: 9, xp: 120 }],
     settings: { sound: false, showReading: true },
@@ -102,9 +107,9 @@ try {
     await bootWith(page, blob)
     const st = await getState(page)
     check(`migration: ${label} boots with data intact`,
-      st.progress?.sawatdii?.stage === 5 && st.xp === 777 && st.maxUnlocked === 3 &&
+      st.progress?.hello?.stage === 5 && st.xp === 777 && st.maxUnlocked === 3 &&
       st.settings?.sound === false,
-      `stage=${st.progress?.sawatdii?.stage}, xp=${st.xp}`)
+      `stage=${st.progress?.hello?.stage}, xp=${st.xp}`)
     check(`migration: ${label} PROVABLY ran (stage 99 clamped to 9)`,
       st.progress?.wild?.stage === 9,
       `wild.stage=${st.progress?.wild?.stage} — if 99, migrate was skipped`)
@@ -141,7 +146,7 @@ try {
   })
   const st2 = await getState(page)
   check('corruption: wild stage clamped into 0–9', st2.progress.stageWild?.stage === 9)
-  check('corruption: unreadable stage falls back to the streak floor, not Seedling',
+  check('corruption: unreadable stage falls back to the streak floor, not เมล็ด',
     st2.progress.stageInfMature?.stage === 7 && st2.progress.stageNaNFresh?.stage === 0,
     `Infinity+streak7 → ${st2.progress.stageInfMature?.stage}, NaN+streak0 → ${st2.progress.stageNaNFresh?.stage}`)
   check('corruption: burn sentinel due=MAX_SAFE_INTEGER survives exactly',
@@ -154,7 +159,7 @@ try {
     st2.maxUnlocked === 1 && st2.xp === 0 && st2.settings.sound === true)
 
   // ── 3. unreadable blob → fresh boot + rescue stash ─────────────────────────
-  const truncated = '{"state":{"progress":{"sawatdii":{"stage":8},"khoop'
+  const truncated = '{"state":{"progress":{"hello":{"stage":8},"thank'
   await bootWith(page, truncated)
   const fresh = await getState(page)
   const rk1 = await rescueKeys(page)
@@ -175,19 +180,22 @@ try {
   const rkF = await rescueKeys(page)
   const stashedF = await page.evaluate(k => localStorage.getItem(k), rkF.find(k => k.includes('newer')) ?? '')
   check('newer blob: known fields load best-effort',
-    stF.progress?.sawatdii?.stage === 5 && stF.xp === 777)
+    stF.progress?.hello?.stage === 5 && stF.xp === 777)
   check('newer blob: the ORIGINAL (with fields this build cannot read) is stashed first',
     stashedF === futureBlob && stashedF.includes('onlyTheFutureKnows'),
     rkF.join(', ') || 'NO RESCUE — downgrade would silently destroy v7 data')
 
   // ── 5. backup pure functions ───────────────────────────────────────────────
+  // The error messages are Thai — they are shown to the learner — so the
+  // probes match the Thai wording (CLAUDE.md §6: UI copy and these suites move
+  // together).
   const pure = await page.evaluate(async () => {
     const b = await import('/src/core/backup.ts')
     const s = await import('/src/core/store.ts')
     const now = Date.now()
     const p = st => ({ stage: st, due: now, correct: 1, incorrect: 0, streak: 1, learnedAt: now, updatedAt: now })
     const snap = {
-      progress: { a: p(3) }, scriptProgress: { 'ก': p(2) },
+      progress: { a: p(3) }, scriptProgress: { th: p(2) },
       maxUnlocked: 4, xp: 100, streakDays: 2, lastActiveDay: '2026-08-18',
       history: [], settings: { sound: true, showReading: false, newPerDay: 6, sessionSize: 20 },
       // v4. A backup that drops this silently un-spaces Sentence Builder on
@@ -197,9 +205,13 @@ try {
     const json = b.serializeBackup(snap)
     const tryParse = txt => { try { b.parseBackup(txt); return 'accepted' } catch (e) { return e.message } }
     return {
+      app: JSON.parse(json).app,
+      filename: b.backupFilename(new Date('2026-08-18T10:00:00Z')),
       roundOk: JSON.stringify(b.parseBackup(json).state) === JSON.stringify(snap),
       junk: tryParse('haha'),
       wrongApp: tryParse(JSON.stringify({ app: 'other', version: 1, state: {} })),
+      // the sibling app's file must be refused too — same shape, different learner
+      siblingApp: tryParse(JSON.stringify({ app: 'chaithai', version: 1, state: snap })),
       future: tryParse(JSON.stringify({ app: 'chaienglish', version: s.PERSIST_VERSION + 5, state: snap })),
       versionString: tryParse(JSON.stringify({ app: 'chaienglish', version: '2', state: snap })),
       versionMissing: tryParse(JSON.stringify({ app: 'chaienglish', state: snap })),
@@ -228,18 +240,23 @@ try {
       })).state.progress.a,
     }
   })
+  check('backup: the file is stamped app: "chaienglish"', pure.app === 'chaienglish', pure.app)
+  check('backup: the download is named chaienglish-backup-<date>.json',
+    pure.filename === 'chaienglish-backup-2026-08-18.json', pure.filename)
   check('backup: serialize → parse round-trips identically', pure.roundOk)
   check('backup: a pre-v3 record gets updatedAt backfilled from learnedAt, not from now',
     pure.v3Backfill.updatedAt === 12345,
     `updatedAt=${pure.v3Backfill.updatedAt}, learnedAt=${pure.v3Backfill.learnedAt}`)
-  check('backup: junk text refused', /not valid JSON/i.test(pure.junk))
-  check('backup: foreign JSON refused', /not a ChaiEnglish backup/i.test(pure.wrongApp))
-  check('backup: future version refused', /newer version/i.test(pure.future))
+  check('backup: junk text refused', /ไม่ใช่ JSON ที่ถูกต้อง/.test(pure.junk), pure.junk)
+  check('backup: foreign JSON refused', /ไม่ใช่ไฟล์สำรองของ ChaiEnglish/.test(pure.wrongApp), pure.wrongApp)
+  check('backup: a ChaiThai file is refused — same shape, the other direction',
+    /ไม่ใช่ไฟล์สำรองของ ChaiEnglish/.test(pure.siblingApp), pure.siblingApp)
+  check('backup: future version refused', /เวอร์ชันใหม่กว่า/.test(pure.future), pure.future)
   check('backup: STRING version field refused, not guessed as v0',
-    /version field is damaged/i.test(pure.versionString), pure.versionString)
+    /ช่องเวอร์ชัน.*เสียหาย/.test(pure.versionString), pure.versionString)
   check('backup: MISSING version field refused, not guessed as v0',
-    /version field is damaged/i.test(pure.versionMissing), pure.versionMissing)
-  check('backup: empty backup cannot wipe real progress', /no progress/i.test(pure.empty))
+    /ช่องเวอร์ชัน.*เสียหาย/.test(pure.versionMissing), pure.versionMissing)
+  check('backup: empty backup cannot wipe real progress', /ไม่มีความคืบหน้า/.test(pure.empty), pure.empty)
   check('backup: old v0 backup file migrates on import (99→9)', pure.oldMigrated === 9)
   check('migration v1→v2: pacing settings defaulted on an older backup',
     pure.v1Settings.newPerDay === 6 && pure.v1Settings.sessionSize === 20 &&
@@ -258,8 +275,8 @@ try {
     state: {
       ...v0state,
       progress: {
-        sawatdii: prog(6), khoop_khun: prog(5), 'p-yaak': prog(4),
-        aroi: prog(5), phet: prog(4),
+        hello: prog(6), 'thank-you': prog(5), 'p-i-want-to': prog(4),
+        coffee: prog(5), spicy: prog(4),
       },
       xp: 4242, maxUnlocked: 4,
     },
@@ -270,20 +287,21 @@ try {
   const dlDir = mkdtempSync(join(tmpdir(), 'chaienglish-bk-'))
   const [download] = await Promise.all([
     page.waitForEvent('download', { timeout: 10000 }),
-    page.getByRole('button', { name: /Download backup/ }).click(),
+    page.getByRole('button', { name: /ดาวน์โหลดไฟล์สำรอง/ }).click(),
   ])
   const richFile = join(dlDir, download.suggestedFilename())
   await download.saveAs(richFile)
   check('ui: export downloads a dated JSON file',
     /^chaienglish-backup-\d{4}-\d{2}-\d{2}\.json$/.test(download.suggestedFilename()) &&
-    JSON.parse(readFileSync(richFile, 'utf8')).state.xp === 4242)
+    JSON.parse(readFileSync(richFile, 'utf8')).state.xp === 4242,
+    download.suggestedFilename())
 
   // A one-lesson spare-device backup — the classic foot-gun.
   const smallFile = join(dlDir, 'small.json')
   writeFileSync(smallFile, JSON.stringify({
     app: 'chaienglish', version: 1, exportedAt: '2026-08-01T00:00:00Z',
     state: {
-      progress: { sawatdii: prog(1) }, scriptProgress: {},
+      progress: { hello: prog(1) }, scriptProgress: {},
       maxUnlocked: 1, xp: 40, streakDays: 1, lastActiveDay: '2026-08-01',
       history: [], settings: { sound: true, showReading: true },
     },
@@ -293,11 +311,12 @@ try {
   const confirmBox = await page.locator('.import-confirm').innerText()
   const isDanger = await page.locator('.import-confirm.danger').count()
   check('ui: importing a smaller backup over live data warns loudly',
-    isDanger === 1 && /LESS than you have now/i.test(confirmBox))
+    isDanger === 1 && /มีข้อมูลน้อยกว่าที่คุณมีอยู่ตอนนี้/.test(confirmBox),
+    confirmBox.split('\n')[0])
   check('ui: the confirm shows BOTH sides, not just the incoming file',
-    /Now on this device:[\s\S]*5 items/.test(confirmBox) && /1 items · 0 letters/.test(confirmBox),
+    /ตอนนี้ในเครื่องนี้:[\s\S]*5 รายการ/.test(confirmBox) && /1 รายการ · 0 ตัวอักษร/.test(confirmBox),
     confirmBox.replace(/\n/g, ' · ').slice(0, 120))
-  await page.getByRole('button', { name: /Replace anyway/ }).click()
+  await page.getByRole('button', { name: /แทนที่อยู่ดี/ }).click()
   await page.waitForTimeout(400)
   const afterSmall = await getState(page)
   const rkImport1 = await rescueKeys(page)
@@ -309,10 +328,11 @@ try {
   // ── 7. restore from the recovery snapshot ──────────────────────────────────
   await page.waitForSelector('.rescue-row', { timeout: 5000 })
   check('ui: the recovery snapshot row shows what it holds',
-    /5 items/.test(await page.locator('.rescue-row').first().innerText()))
-  await page.locator('.rescue-row').first().getByRole('button', { name: /Restore/ }).click()
+    /5 รายการ/.test(await page.locator('.rescue-row').first().innerText()),
+    (await page.locator('.rescue-row').first().innerText()).replace(/\n/g, ' · ').slice(0, 80))
+  await page.locator('.rescue-row').first().getByRole('button', { name: /กู้คืน/ }).click()
   await page.waitForSelector('.import-confirm', { timeout: 5000 })
-  await page.locator('.import-confirm').getByRole('button', { name: /Replace/ }).first().click()
+  await page.locator('.import-confirm').getByRole('button', { name: /แทนที่/ }).first().click()
   await page.waitForTimeout(400)
   const restored = await getState(page)
   const rkImport2 = await rescueKeys(page)
@@ -341,23 +361,23 @@ try {
   })
   await page.locator('input[type=file]').setInputFiles(smallFile)
   await page.waitForSelector('.import-confirm', { timeout: 5000 })
-  await page.getByRole('button', { name: /Replace anyway/ }).click()
+  await page.getByRole('button', { name: /แทนที่อยู่ดี/ }).click()
   await page.waitForTimeout(400)
   const quotaNotice = await page.locator('.data-notice.err').innerText().catch(() => '')
   check('ui: a quota failure during import reports FAILURE, never success',
-    /could not be SAVED/i.test(quotaNotice), quotaNotice.slice(0, 80) || 'no error notice shown')
+    /บันทึกลงเครื่องไม่สำเร็จ/.test(quotaNotice), quotaNotice.slice(0, 80) || 'no error notice shown')
   await page.reload({ waitUntil: 'networkidle' })  // clears the monkeypatch
 
   // ── 10. paste-import path ──────────────────────────────────────────────────
   await page.waitForTimeout(400)
   await gotoSettings(page)
-  await page.getByRole('button', { name: /Paste backup/ }).click()
+  await page.getByRole('button', { name: /วางข้อความสำรอง/ }).click()
   await page.locator('.paste-box').fill(readFileSync(smallFile, 'utf8'))
-  await page.getByRole('button', { name: /Read pasted backup/ }).click()
+  await page.getByRole('button', { name: /อ่านข้อความที่วาง/ }).click()
   await page.waitForSelector('.import-confirm', { timeout: 5000 })
   check('ui: pasted backup text reaches the same confirm pipeline',
-    (await page.locator('.import-confirm').innerText()).includes('pasted text'))
-  await page.locator('.import-confirm').getByRole('button', { name: /Cancel|anyway/ }).last().click()
+    (await page.locator('.import-confirm').innerText()).includes('ข้อความที่วาง'))
+  await page.locator('.import-confirm').getByRole('button', { name: /ยกเลิก|แทนที่/ }).last().click()
 
   // ── 11. toggles persist ────────────────────────────────────────────────────
   const sndBefore = (await getState(page)).settings.sound
@@ -372,12 +392,18 @@ try {
   check('dev: the panel is hidden without ?dev=1',
     (await page.locator('.dev-card').count()) === 0)
 
+  // Content-dependent: advanceClock is measured through dueReviewIds (real
+  // ids only) and jumpToLevel seeds the real curriculum. Until the levels are
+  // authored this reports what is missing rather than crashing.
   const dev = await page.evaluate(async () => {
     const m = await import('/src/core/store.ts')
     const d = await import('/src/core/dev.ts')
     const data = await import('/src/data/index.ts')
     const now = Date.now()
-    const ids = data.CURRICULUM[0].itemIds.slice(0, 3)
+    const ids = data.CURRICULUM[0]?.itemIds.slice(0, 3) ?? []
+    if (ids.length < 3 || !data.CURRICULUM[3]) {
+      return { noContent: `levels authored=${data.CURRICULUM.length} — the dev tools need levels 1–9` }
+    }
     const prog = {}
     // A real, mature record the tools must not damage.
     prog[ids[0]] = { stage: 7, due: now + 500 * 3600e3, correct: 40, incorrect: 2, streak: 12, learnedAt: now - 9e8 }
@@ -400,24 +426,25 @@ try {
       matureIntact: afterJump.progress[ids[0]].stage === 7 && afterJump.progress[ids[0]].correct === 40,
       seededStage: afterJump.progress[data.CURRICULUM[3].itemIds[0]]?.stage,
       seededDueWithin: (afterJump.progress[data.CURRICULUM[3].itemIds[0]]?.due ?? 0) - Date.now() <= 25 * 3600e3,
-      lettersSeeded: Object.keys(afterJump.scriptProgress).length,
+      graphemesSeeded: Object.keys(afterJump.scriptProgress).length,
       gateNeed: m.SCRIPT_GATES[9],
       unlocked: m.effectiveUnlocked(afterJump),
     }
   })
+  const nc = dev.noContent ? `content-dependent — ${dev.noContent}` : ''
   check('dev: advanceClock makes future reviews due now',
-    dev.dueBefore === 0 && dev.dueAfterClock >= 1, `${dev.dueBefore} → ${dev.dueAfterClock} due`)
-  check('dev: advanceClock never resurrects a burned item', dev.burnedUntouched)
-  check('dev: advanceClock fabricates no knowledge (stages unchanged)', dev.stagesUnchangedByClock)
+    !dev.noContent && dev.dueBefore === 0 && dev.dueAfterClock >= 1, nc || `${dev.dueBefore} → ${dev.dueAfterClock} due`)
+  check('dev: advanceClock never resurrects a burned item', !dev.noContent && dev.burnedUntouched, nc)
+  check('dev: advanceClock fabricates no knowledge (stages unchanged)', !dev.noContent && dev.stagesUnchangedByClock, nc)
   check('dev: jumpToLevel seeds at the unlock threshold, no higher',
-    dev.seededStage === 4, `seeded at stage ${dev.seededStage}`)
+    !dev.noContent && dev.seededStage === 4, nc || `seeded at stage ${dev.seededStage}`)
   check('dev: seeded items come back for a real answer within a day',
-    dev.seededDueWithin === true)
-  check('dev: jumpToLevel never overwrites real progress', dev.matureIntact,
-    'a stage-7 record with 40 corrects survived untouched')
+    !dev.noContent && dev.seededDueWithin === true, nc)
+  check('dev: jumpToLevel never overwrites real progress', !dev.noContent && dev.matureIntact,
+    nc || 'a stage-7 record with 40 corrects survived untouched')
   check('dev: jumpToLevel satisfies the reading checkpoint it crosses',
-    dev.lettersSeeded >= dev.gateNeed && dev.unlocked >= 9,
-    `${dev.lettersSeeded} letters seeded for L9 (needs ${dev.gateNeed}), unlocked=${dev.unlocked}`)
+    !dev.noContent && dev.graphemesSeeded >= dev.gateNeed && dev.unlocked >= 9,
+    nc || `${dev.graphemesSeeded} graphemes seeded for L9 (needs ${dev.gateNeed}), unlocked=${dev.unlocked}`)
 
   check('zero uncaught page errors across every scenario', pageErrors.length === 0,
     pageErrors.slice(0, 3).join(' | ') || 'clean')
@@ -427,4 +454,8 @@ try {
 
 const failed = results.filter(r => !r.pass)
 console.log(`\n${results.length} assertions, ${failed.length} failed`)
-if (failed.length) process.exit(1)
+if (failed.length) {
+  console.log('FAILED:')
+  for (const f of failed) console.log(`  - ${f.name}  —  ${f.detail}`)
+  process.exit(1)
+}

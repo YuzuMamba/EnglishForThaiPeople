@@ -81,12 +81,16 @@ const snapshot = p => p.evaluate(async () => {
   return { items: Object.keys(s.progress).length, letters: Object.keys(s.scriptProgress).length, xp: s.xp }
 })
 
+// The buttons. `exact` because "สมัครบัญชี" (submit) is a prefix of
+// "สมัครบัญชีใหม่" (the mode switch), and has-text matches substrings.
+const btn = (p, name) => p.getByRole('button', { name, exact: true })
+
 // ── The card only appears when the build has credentials ───────────────────
 const phone = await device('phone')
 await gotoSettings(phone.page)
 await phone.page.waitForTimeout(600)
 check('the sync card appears when the build is configured',
-  await phone.page.locator('text=Account sync').count() > 0)
+  await phone.page.locator('text=ซิงก์บัญชี').count() > 0)
 const credOk = await phone.page.evaluate(async () => {
   const s = await import('/src/core/sync.ts')
   return s.credentialProblem()
@@ -95,22 +99,30 @@ check('a correctly configured build reports no credential problem', credOk === n
   String(credOk).slice(0, 70))
 
 // ── Sign up, then sync a first payload ─────────────────────────────────────
+// Progress to carry across, seeded through the store's own `learnItem`. Sync
+// merges per record and never asks what an id means (orphans survive by
+// design, CLAUDE.md §2), so the corpus is used when there is one and stable
+// placeholder ids while the levels are still being authored.
 await phone.page.evaluate(async () => {
-  const d = await import('/src/core/dev.ts')
   const m = await import('/src/core/store.ts')
-  d.jumpToLevel(3)
+  const data = await import('/src/data/index.ts')
+  const real = Object.keys(data.ITEMS).slice(0, 12)
+  const ids = real.length ? real : Array.from({ length: 12 }, (_, i) => `seed-item-${i + 1}`)
+  for (const id of ids) m.useApp.getState().learnItem(id)
   m.useApp.getState().addXp(400)
 })
 const phoneBefore = await snapshot(phone.page)
+check('the first device has progress to push', phoneBefore.items > 0 && phoneBefore.xp === 400,
+  JSON.stringify(phoneBefore))
 
-await phone.page.locator('button:has-text("Create an account")').click()
+await btn(phone.page, 'สมัครบัญชีใหม่').click()
 await phone.page.locator('input[type=email]').fill('learner@example.com')
 await phone.page.locator('input[type=password]').fill('correct-horse-battery')
-await phone.page.locator('button:has-text("Create account")').click()
+await btn(phone.page, 'สมัครบัญชี').click()
 await phone.page.waitForTimeout(2500)
 
 const phoneNote = await phone.page.locator('.sync-notice').last().textContent()
-check('sign-up succeeds and the first sync pushes', /saved to your account|Synced/i.test(phoneNote ?? ''),
+check('sign-up succeeds and the first sync pushes', /บันทึกความคืบหน้าไว้ในบัญชี|ซิงก์แล้ว/.test(phoneNote ?? ''),
   (phoneNote ?? '').slice(0, 80))
 check('the server now holds exactly one row', api.rowCount() === 1, `rows=${api.rowCount()}`)
 
@@ -123,7 +135,7 @@ check('the second device starts empty', ipadEmpty.items === 0, `${ipadEmpty.item
 
 await ipad.page.locator('input[type=email]').fill('learner@example.com')
 await ipad.page.locator('input[type=password]').fill('correct-horse-battery')
-await ipad.page.locator('button:has-text("Sign in")').first().click()
+await btn(ipad.page, 'เข้าสู่ระบบ').first().click()
 await ipad.page.waitForTimeout(2500)
 
 const ipadAfter = await snapshot(ipad.page)
@@ -145,10 +157,10 @@ const advanced = await ipad.page.evaluate(async () => {
 check('the second device advanced a shared record', advanced.after === advanced.before + 1,
   `${advanced.id}: ${advanced.before} → ${advanced.after}`)
 
-await ipad.page.locator('button:has-text("Sync now")').click()
+await ipad.page.locator('button:has-text("ซิงก์ตอนนี้")').click()
 await ipad.page.waitForTimeout(2000)
 
-await phone.page.locator('button:has-text("Sync now")').click()
+await phone.page.locator('button:has-text("ซิงก์ตอนนี้")').click()
 await phone.page.waitForTimeout(2000)
 
 const phoneFinal = await phone.page.evaluate(async ([id]) => {
@@ -177,11 +189,15 @@ await gotoSettings(badLogin.page)
 await badLogin.page.waitForTimeout(400)
 await badLogin.page.locator('input[type=email]').fill('learner@example.com')
 await badLogin.page.locator('input[type=password]').fill('wrong-password')
-await badLogin.page.locator('button:has-text("Sign in")').first().click()
+await btn(badLogin.page, 'เข้าสู่ระบบ').first().click()
 await badLogin.page.waitForTimeout(1500)
 const badNote = await badLogin.page.locator('.sync-notice').last().textContent()
+// GoTrue's own reason is relayed verbatim (it is the server's wording), with
+// the Thai reassurance that nothing on this device changed appended.
 check('a wrong password reports the real reason', /invalid login/i.test(badNote ?? ''),
   (badNote ?? '').slice(0, 60))
+check('a wrong password still says the device is unaffected', /ยังอยู่ครบ/.test(badNote ?? ''),
+  (badNote ?? '').slice(0, 90))
 await badLogin.ctx.close()
 
 // ── A key the project refuses ──────────────────────────────────────────────
@@ -191,31 +207,31 @@ await badLogin.ctx.close()
 // credentials the server never even looked at.
 api.setGatewayRejects(true)
 
-await phone.page.locator('button:has-text("Sync now")').click()
+await phone.page.locator('button:has-text("ซิงก์ตอนนี้")').click()
 await phone.page.waitForTimeout(1500)
 const keyNote = await phone.page.locator('.sync-notice').last().textContent() ?? ''
 check('a rejected API key is explained, not relayed as a status code',
-  /rejected this app's API key/i.test(keyNote) && !/HTTP 401/.test(keyNote),
+  /ปฏิเสธ API key/.test(keyNote) && !/HTTP 401/.test(keyNote),
   keyNote.slice(0, 80))
 check('a rejected API key is named as a configuration problem, not a login one',
-  /configuration problem/i.test(keyNote) && /redeploy/i.test(keyNote))
+  /ปัญหาการตั้งค่า/.test(keyNote) && /deploy ใหม่/.test(keyNote) && /ไม่ใช่อีเมลหรือรหัสผ่าน/.test(keyNote))
 check('a rejected API key still says the device is unaffected — exactly once',
-  (keyNote.match(/untouched/gi) ?? []).length === 1,
-  `${(keyNote.match(/untouched/gi) ?? []).length} occurrences`)
+  (keyNote.match(/ยังอยู่ครบ/g) ?? []).length === 1,
+  `${(keyNote.match(/ยังอยู่ครบ/g) ?? []).length} occurrences`)
 
 const signup = await device('bad-key-signup')
 await gotoSettings(signup.page)
 await signup.page.waitForTimeout(400)
-await signup.page.locator('button:has-text("Create an account")').click()
+await btn(signup.page, 'สมัครบัญชีใหม่').click()
 await signup.page.locator('input[type=email]').fill('nobody@example.com')
 await signup.page.locator('input[type=password]').fill('correct-horse-battery')
-await signup.page.locator('button:has-text("Create account")').click()
+await btn(signup.page, 'สมัครบัญชี').click()
 await signup.page.waitForTimeout(1500)
 const signupNote = await signup.page.locator('.sync-notice').last().textContent() ?? ''
 check('sign-up under a rejected key blames the key, not the learner',
-  /rejected this app's API key/i.test(signupNote), signupNote.slice(0, 80))
+  /ปฏิเสธ API key/.test(signupNote), signupNote.slice(0, 80))
 check('sign-up under a rejected key states no account was created',
-  /no account was created/i.test(signupNote))
+  /ไม่มีการสร้างบัญชี/.test(signupNote))
 await signup.ctx.close()
 
 api.setGatewayRejects(false)
@@ -223,7 +239,7 @@ api.setGatewayRejects(false)
 // The server going away must never cost local progress.
 await api.close()
 const beforeOutage = await snapshot(phone.page)
-await phone.page.locator('button:has-text("Sync now")').click()
+await phone.page.locator('button:has-text("ซิงก์ตอนนี้")').click()
 await phone.page.waitForTimeout(2500)
 const afterOutage = await snapshot(phone.page)
 const outageNote = await phone.page.locator('.sync-notice').last().textContent()
@@ -231,15 +247,15 @@ check('a failed sync leaves local progress completely untouched',
   JSON.stringify(beforeOutage) === JSON.stringify(afterOutage),
   `before=${JSON.stringify(beforeOutage)} after=${JSON.stringify(afterOutage)}`)
 check('a failed sync says so, and says the device is unaffected',
-  /untouched/i.test(outageNote ?? ''), (outageNote ?? '').slice(0, 90))
+  /ยังอยู่ครบ/.test(outageNote ?? ''), (outageNote ?? '').slice(0, 90))
 // Browsers word a network-layer rejection differently — Safari "Load failed",
 // Chrome "Failed to fetch" — and none of those wordings tells anyone anything.
 check('an unreachable server is explained, not relayed as the browser\'s wording',
-  /could not reach the sync server/i.test(outageNote ?? '') &&
+  /ติดต่อเซิร์ฟเวอร์ซิงก์ไม่ได้/.test(outageNote ?? '') &&
   !/load failed|failed to fetch/i.test(outageNote ?? ''),
   (outageNote ?? '').slice(0, 90))
 check('an unreachable server names the causes worth checking',
-  /paused/i.test(outageNote ?? '') && /content blocker|VPN/i.test(outageNote ?? ''))
+  /ถูกพัก/.test(outageNote ?? '') && /ตัวบล็อกโฆษณา|VPN/.test(outageNote ?? ''))
 
 // Signing in is where a failure is most likely to read as lost progress, and
 // that path used to show the raw message with no reassurance at all.
@@ -248,11 +264,11 @@ await gotoSettings(offlineLogin.page)
 await offlineLogin.page.waitForTimeout(400)
 await offlineLogin.page.locator('input[type=email]').fill('learner@example.com')
 await offlineLogin.page.locator('input[type=password]').fill('correct-horse-battery')
-await offlineLogin.page.locator('button:has-text("Sign in")').first().click()
+await btn(offlineLogin.page, 'เข้าสู่ระบบ').first().click()
 await offlineLogin.page.waitForTimeout(2000)
 const offlineNote = await offlineLogin.page.locator('.sync-notice').last().textContent() ?? ''
 check('a sign-in against an unreachable server says the device is unaffected',
-  /untouched/i.test(offlineNote) && /could not reach/i.test(offlineNote),
+  /ยังอยู่ครบ/.test(offlineNote) && /ติดต่อเซิร์ฟเวอร์ซิงก์ไม่ได้/.test(offlineNote),
   offlineNote.slice(0, 90))
 await offlineLogin.ctx.close()
 

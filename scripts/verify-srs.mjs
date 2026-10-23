@@ -8,7 +8,15 @@
 //   4. Builder first-Check on a non-due pattern never moves stage/due
 //   5. maxUnlocked is monotonic
 //   6. Listening XP is granted once per exercise id
-//   7. zero console errors
+//   7. the typed-English matcher: word order, contractions, a forgiven leading
+//      article, one slip in a long word, and negation that never crosses
+//   8. zero console errors
+//
+// Everything that plays the UI is content-dependent — the demo seed, the
+// distractor pool, the Builder meter and the Listening cycle all walk the
+// real levels — so those phases report the missing content until
+// src/data/levels/ is authored. The typed-English matcher and the quiz-kind
+// ladder are pure and pass on the engine alone.
 //
 // Usage: node scripts/verify-srs.mjs
 import { chromium } from 'playwright-core'
@@ -16,9 +24,9 @@ import { chromium } from 'playwright-core'
 const BASE = 'http://localhost:5173'
 const KEY = 'chaienglish-v1'
 const INTERVALS = [4, 8, 24, 48, 96, 168, 336, 720, 2880, Infinity] // SRS_INTERVALS_H
-const STAGE_NAMES = [ // SRS_STAGE_NAMES
-  'Seedling', 'Sprout', 'Growing', 'Rooted',
-  'Blooming', 'Strong', 'Deep', 'Golden', 'Evergreen', 'Burned',
+const STAGE_NAMES = [ // SRS_STAGE_NAMES — Thai, garden metaphor kept
+  'เมล็ด', 'งอก', 'ต้นอ่อน', 'หยั่งราก',
+  'ออกดอก', 'แข็งแรง', 'หยั่งลึก', 'ทอง', 'ยืนต้น', 'ฝังใจ',
 ]
 const DUE_TOL_MS = 2 * 60_000
 
@@ -89,7 +97,10 @@ async function loadData(page) {
     const m = await import('/src/data/index.ts')
     const items = {}
     for (const [id, it] of Object.entries(m.ITEMS)) {
-      items[id] = { id, en: it.en, th: it.th, audioHint: it.audioHint ?? null }
+      items[id] = {
+        id, en: it.en, th: it.th, reading: it.reading, altEn: it.altEn ?? [],
+        audioHint: it.audioHint ?? null,
+      }
     }
     const patterns = {}
     for (const [id, p] of Object.entries(m.PATTERNS)) {
@@ -106,12 +117,15 @@ async function loadData(page) {
 }
 
 // ─── sentence oracle (mirrors core/generate.ts deterministically) ────────────
+// A round shows a THAI meaning and asks for the ENGLISH tiles. The oracle
+// rebuilds the Thai a pattern + fills renders, and the English tokens that
+// build it; English tokens are joined with ' ' everywhere (CLAUDE.md §2).
 function cleanTh(raw) {
   let s = raw.split('/')[0].trim()
-  s = s.replace(/^to /, '').replace(/\s*\(.*?\)\s*/g, ' ').trim()
+  s = s.replace(/\s*\(.*?\)\s*/g, ' ').trim()
   return s
 }
-function englishFor(pattern, fills, items) {
+function thaiFor(pattern, fills, items) {
   const filledIds = pattern.slots.map(s => fills[s.name]).filter(Boolean)
   const ov = pattern.thOverrides
   const override = ov?.[filledIds.join('+')] ?? (filledIds.length === 1 ? ov?.[filledIds[0]] : undefined)
@@ -132,8 +146,8 @@ function tokensFor(pattern, fills, items) {
   }
   return tokens
 }
-/** Find the token sequence for a displayed round (english + tray tiles). */
-function solveAssemble(patternList, items, english, trayLabels) {
+/** Find the token sequence for a displayed round (Thai meaning + tray tiles). */
+function solveAssemble(patternList, items, meaning, trayLabels) {
   for (const pattern of patternList) {
     const optionLists = pattern.slots.map(s => (s.optional ? ['', ...s.itemIds] : s.itemIds))
     let combos = [[]]
@@ -141,7 +155,7 @@ function solveAssemble(patternList, items, english, trayLabels) {
     for (const combo of combos) {
       const fills = {}
       pattern.slots.forEach((s, i) => { fills[s.name] = combo[i] })
-      if (englishFor(pattern, fills, items) !== english) continue
+      if (thaiFor(pattern, fills, items) !== meaning) continue
       const toks = tokensFor(pattern, fills, items)
       const pool = [...trayLabels]
       let ok = true
@@ -157,22 +171,26 @@ function solveAssemble(patternList, items, english, trayLabels) {
 }
 
 // ─── DOM readers / actions ───────────────────────────────────────────────────
+// Sub-labels stripped before matching text: the key letter on a choice, the
+// reading under a choice or tile, and the Thai gloss on an unmet tile.
+const SUB_LABELS = '.key, .tile-sub, .tile-en, .muted'
+
 async function readUi(page) {
-  return await page.evaluate(() => {
+  return await page.evaluate(sub => {
     const txt = el => (el ? el.textContent.trim() : null)
     const strip = btn => {
       const c = btn.cloneNode(true)
-      c.querySelectorAll('.key, .tile-sub').forEach(e => e.remove())
+      c.querySelectorAll(sub).forEach(e => e.remove())
       return c.textContent.trim()
     }
     const body = document.body.innerText
-    // Review renders the English prompt as .quiz-prompt; Builder renders it as
-    // a bare styled div inside .prompt-zone — fall back to the “…”-quoted div.
+    // Review renders the Thai prompt as .quiz-prompt; Builder renders it as a
+    // bare styled div inside .prompt-zone — fall back to the “…”-quoted div.
     const qp = [...document.querySelectorAll('.quiz-prompt')].find(e => !e.classList.contains('en'))
       ?? [...document.querySelectorAll('.prompt-zone > div')].find(e => /^“.*”$/s.test(e.textContent.trim()))
     return {
-      complete: body.includes('Session complete!'),
-      caughtUp: body.includes('All caught up!'),
+      complete: body.includes('จบรอบแล้ว!'),
+      caughtUp: body.includes('ทบทวนครบแล้ว!'),
       feedback: document.querySelector('.feedback.good') ? 'good'
         : document.querySelector('.feedback.bad') ? 'bad' : null,
       choices: [...document.querySelectorAll('.choices .choice')].map(strip),
@@ -182,14 +200,16 @@ async function readUi(page) {
       hasInput: !!document.querySelector('.type-input'),
       stagePill: txt(document.querySelector('.stage-pill')),
       hasAudioHero: !!document.querySelector('.audio-hero'),
-      promptThai: txt(document.querySelector('.quiz-prompt.en')),
-      promptEn: qp ? qp.textContent.trim().replace(/^[“"]/, '').replace(/[”"]$/, '') : null,
+      // The English target, in the Latin font (meaning-mc prompt).
+      promptEnglish: txt(document.querySelector('.quiz-prompt.en')),
+      // The Thai meaning, quoted (reading-mc / type-en / assemble prompt).
+      promptMeaning: qp ? qp.textContent.trim().replace(/^[“"]/, '').replace(/[”"]$/, '') : null,
       spoken: (window.__spoken ?? []).slice(),
       patternName: txt(document.querySelector('.pattern-chip .pat')),
       labQuestion: txt(document.querySelector('.lab-question-title')),
       labChoices: [...document.querySelectorAll('.lab-choices .choice')].map(strip),
     }
-  })
+  }, SUB_LABELS)
 }
 
 async function clickChoice(page, scope, idx) {
@@ -197,15 +217,15 @@ async function clickChoice(page, scope, idx) {
 }
 
 async function clickTileByLabel(page, label) {
-  const idx = await page.evaluate(lbl => {
+  const idx = await page.evaluate(([lbl, sub]) => {
     const tiles = [...document.querySelectorAll('.tile-tray .tile')]
     return tiles.findIndex(b => {
       if (b.classList.contains('used')) return false
       const c = b.cloneNode(true)
-      c.querySelectorAll('.tile-sub').forEach(e => e.remove())
+      c.querySelectorAll(sub).forEach(e => e.remove())
       return c.textContent.trim() === lbl
     })
-  }, label)
+  }, [label, SUB_LABELS])
   if (idx < 0) throw new Error('tile not found in tray: ' + label)
   await page.locator('.tile-tray .tile').nth(idx).click()
 }
@@ -222,6 +242,9 @@ async function clickAndClear(page, buttonRe) {
   await page.waitForTimeout(120)
 }
 
+/** The one Check button on screen (Builder also has ล้าง next to it). */
+const checkButton = page => page.getByRole('button', { name: 'ตรวจ', exact: true })
+
 async function gotoDemo(page, screen) {
   await page.goto(`${BASE}/?demo=1&screen=${screen}`, { waitUntil: 'networkidle' })
   await page.waitForTimeout(700) // seed + persist + mount settle
@@ -230,9 +253,12 @@ async function gotoDemo(page, screen) {
 // ─── phase 1+2+4: review session ─────────────────────────────────────────────
 async function reviewPhase(page, data) {
   await gotoDemo(page, 'review')
-  const itemByThai = {}
+  const itemByEn = {}, itemByTh = {}
   const itemsArr = Object.values(data.items)
-  for (const it of itemsArr) (itemByThai[it.en] ??= []).push(it)
+  for (const it of itemsArr) {
+    (itemByEn[it.en] ??= []).push(it)
+    ;(itemByTh[it.th] ??= []).push(it)
+  }
   const patternList = Object.values(data.patterns)
 
   let st = await snap(page)
@@ -240,7 +266,8 @@ async function reviewPhase(page, data) {
   const seeded = st
   check('review: demo seed present after load',
     Object.keys(seeded.progress).length > 0 && seeded.xp === 4260,
-    `${Object.keys(seeded.progress).length} items seeded, xp=${seeded.xp}`)
+    `${Object.keys(seeded.progress).length} items seeded, xp=${seeded.xp}` +
+    (itemsArr.length ? '' : ' (content-dependent — no levels authored yet)'))
 
   const wrongAnsweredIds = new Set() // ids whose next appearance is a requeue
   let scheduledGood = 0, scheduledBad = 0, requeueChecks = 0, qNum = 0
@@ -255,40 +282,44 @@ async function reviewPhase(page, data) {
     if (ui.tray.length > 0) kind = 'assemble'
     else if (ui.hasInput) kind = 'type-en'
     else if (ui.hasAudioHero) kind = 'listen-mc'
-    else if (ui.promptThai) kind = 'meaning-mc'
+    else if (ui.promptEnglish) kind = 'meaning-mc'
     else kind = 'reading-mc'
 
     // find the correct answer deterministically where possible
     let correctIdx = -1
-    let correctText = null // for type-en
+    let correctText = null // for type-en: the English to type
     let assembleSolution = null
     let candId = null // item id identified BEFORE clicking, when possible
-    if (kind === 'meaning-mc' && ui.promptThai) {
-      const cand = (itemByThai[ui.promptThai] ?? []).find(it => ui.choices.includes(it.th))
+    if (kind === 'meaning-mc' && ui.promptEnglish) {
+      // English shown → pick the Thai meaning
+      const cand = (itemByEn[ui.promptEnglish] ?? []).find(it => ui.choices.includes(it.th))
       if (cand) { correctIdx = ui.choices.indexOf(cand.th); candId = cand.id }
-    } else if (kind === 'reading-mc' && ui.promptEn) {
-      const en = ui.choices.find(t => (itemByThai[t] ?? []).some(it => it.th === ui.promptEn))
+    } else if (kind === 'reading-mc' && ui.promptMeaning) {
+      // Thai meaning shown → pick the English
+      const en = ui.choices.find(t => (itemByEn[t] ?? []).some(it => it.th === ui.promptMeaning))
       if (en) {
         correctIdx = ui.choices.indexOf(en)
-        candId = (itemByThai[en] ?? []).find(it => it.th === ui.promptEn)?.id ?? null
+        candId = (itemByEn[en] ?? []).find(it => it.th === ui.promptMeaning)?.id ?? null
       }
     } else if (kind === 'listen-mc') {
+      // English spoken → pick the Thai meaning
       const spoken = ui.spoken[ui.spoken.length - 1]
       const cand = itemsArr.find(it =>
         (it.audioHint === spoken || it.en.replace(/_/g, '') === spoken) && ui.choices.includes(it.th))
       if (cand) { correctIdx = ui.choices.indexOf(cand.th); candId = cand.id }
-    } else if (kind === 'type-en' && ui.promptThai) {
-      const cand = (itemByThai[ui.promptThai] ?? [])[0]
-      if (cand) { correctText = cand.th; candId = cand.id }
-    } else if (kind === 'assemble' && ui.promptEn) {
-      assembleSolution = solveAssemble(patternList, data.items, ui.promptEn, ui.tray.map(t => t.label))
+    } else if (kind === 'type-en' && ui.promptMeaning) {
+      // Thai meaning shown → TYPE the English (production)
+      const cand = (itemByTh[ui.promptMeaning] ?? [])[0]
+      if (cand) { correctText = cand.en; candId = cand.id }
+    } else if (kind === 'assemble' && ui.promptMeaning) {
+      assembleSolution = solveAssemble(patternList, data.items, ui.promptMeaning, ui.tray.map(t => t.label))
       candId = assembleSolution?.patternId ?? null
     }
 
     // Quiz-kind ladder: record what was served against the stage the question
     // was BUILT from — the pill renders that creation-time snapshot, which is
-    // exactly what kindsForStage() was handed. Only vocabulary counts: letters
-    // run their own two-kind table and patterns are always 'assemble'.
+    // exactly what kindsForStage() was handed. Only vocabulary counts:
+    // graphemes run their own two-kind table and patterns are always 'assemble'.
     if (candId && data.items[candId]) {
       kindTrail.push({ id: candId, kind, stage: STAGE_NAMES.indexOf(ui.stagePill) })
     }
@@ -303,7 +334,7 @@ async function reviewPhase(page, data) {
 
     if (kind === 'type-en') {
       await page.fill('.type-input', wantWrong || !correctText ? 'xyzzy plugh' : correctText)
-      await page.getByRole('button', { name: 'Check' }).click()
+      await checkButton(page).click()
     } else if (kind === 'assemble') {
       if (!wantWrong && assembleSolution) {
         for (const tok of assembleSolution.tokens) await clickTileByLabel(page, tok)
@@ -313,7 +344,7 @@ async function reviewPhase(page, data) {
           !(assembleSolution && assembleSolution.tokens.length === 1 && assembleSolution.tokens[0] === t.label))
         await clickTileByLabel(page, (bad ?? ui.tray[0]).label)
       }
-      await page.getByRole('button', { name: 'Check' }).click()
+      await checkButton(page).click()
     } else {
       let idx
       if (wantWrong) idx = correctIdx === -1 ? 0 : (correctIdx + 1) % ui.choices.length
@@ -348,7 +379,7 @@ async function reviewPhase(page, data) {
       }
     }
 
-    await clickAndClear(page, /Continue/)
+    await clickAndClear(page, /ไปต่อ/)
   }
 
   check('review: covered >=6 scheduled questions with both outcomes',
@@ -362,7 +393,6 @@ async function reviewPhase(page, data) {
       : `no identifiable stage>=5 item appeared this session (met=${highStageMet})`)
 }
 
-// ─── phase 3: builder gating ─────────────────────────────────────────────────
 // ─── distractors must be words the learner has actually met ──────────────────
 // Drawing distractors from the whole corpus makes an early question answerable
 // by recognition alone: with ~15 items learned, all three wrong answers were
@@ -374,7 +404,7 @@ async function distractorPhase(page) {
     const d = await import('/src/data/index.ts')
     const now = Date.now()
     // A Level-1-only learner: the worst case for distractor leakage.
-    const ids = d.CURRICULUM[0].itemIds.filter(i => d.ITEMS[i])
+    const ids = (d.CURRICULUM[0]?.itemIds ?? []).filter(i => d.ITEMS[i])
     const progress = {}
     for (const id of ids) {
       progress[id] = { stage: 2, due: now - 1000, correct: 3, incorrect: 0, streak: 3, learnedAt: now - 4e8 }
@@ -389,14 +419,14 @@ async function distractorPhase(page) {
   const met = new Set(seeded)
 
   let questions = 0, leaked = 0, allMetQuestions = 0
-  for (let n = 0; n < 12; n++) {
+  for (let n = 0; n < (met.size ? 12 : 1); n++) {
     await page.goto(`${BASE}/`, { waitUntil: 'networkidle' })
     await page.evaluate(async () => {
       const m = await import('/src/core/store.ts')
       m.useApp.getState().go('review')
     })
     await page.waitForTimeout(320)
-    // Map every rendered choice back to an item id via its Thai / English text.
+    // Map every rendered choice back to an item id via its English / Thai text.
     const shown = await page.evaluate(async () => {
       const d = await import('/src/data/index.ts')
       const btns = [...document.querySelectorAll('.choices .choice')]
@@ -420,27 +450,28 @@ async function distractorPhase(page) {
     if (unseen.length === 0) allMetQuestions++
   }
 
+  const nc = met.size ? '' : ' (content-dependent — level 1 has no items yet)'
   check('distractors: every choice is a word the learner has met',
     questions > 0 && allMetQuestions === questions,
-    `${allMetQuestions}/${questions} questions had all choices from the learned set`)
+    `${allMetQuestions}/${questions} questions had all choices from the learned set${nc}`)
   check('distractors: no question is answerable by picking the only familiar word',
-    leaked === 0, `${leaked}/${questions} questions had every distractor unseen`)
+    questions > 0 && leaked === 0, `${leaked}/${questions} questions had every distractor unseen${nc}`)
 }
 
 // ─── mature items are produced, not recognised ───────────────────────────────
-// The demo seed tops out below Golden, so the live end of the kind ladder needs
-// its own seed: a learner whose whole vocabulary sits at Evergreen must never
-// be shown a multiple choice, because four months of claimed retention cannot
+// The demo seed tops out below ทอง, so the live end of the kind ladder needs
+// its own seed: a learner whose whole vocabulary sits at ยืนต้น must never be
+// shown a multiple choice, because four months of claimed retention cannot
 // rest on a 25% guess. Stage 2 is the control — the same items, same screen —
 // so a pass proves the STAGE is driving the card, not that review is broken.
 async function maturePhase(page) {
   const serve = async (stage, rounds) => {
     await page.goto(`${BASE}/`, { waitUntil: 'networkidle' })
-    await page.evaluate(async (s) => {
+    const n = await page.evaluate(async (s) => {
       const d = await import('/src/data/index.ts')
       const now = Date.now()
       const progress = {}
-      for (const id of d.CURRICULUM[0].itemIds.filter(i => d.ITEMS[i])) {
+      for (const id of (d.CURRICULUM[0]?.itemIds ?? []).filter(i => d.ITEMS[i])) {
         progress[id] = { stage: s, due: now - 1000, correct: 9, incorrect: 0, streak: 9, learnedAt: now - 4e8 }
       }
       localStorage.setItem('chaienglish-v1', JSON.stringify({
@@ -448,30 +479,29 @@ async function maturePhase(page) {
         state: { screen: 'review', activeLevel: 1, progress, scriptProgress: {}, maxUnlocked: 1,
           xp: 0, streakDays: 0, lastActiveDay: '', history: [], settings: { sound: false, showReading: true } },
       }))
+      return Object.keys(progress).length
     }, stage)
     const cards = []
-    for (let n = 0; n < rounds; n++) {
+    for (let k = 0; k < (n ? rounds : 1); k++) {
       await page.goto(`${BASE}/`, { waitUntil: 'networkidle' })
       await page.evaluate(async () => {
         const m = await import('/src/core/store.ts')
         m.useApp.getState().go('review')
       })
       await page.waitForTimeout(320)
-      const c = await page.evaluate(async () => {
+      const c = await page.evaluate(() => {
         const pill = document.querySelector('.stage-pill')
         if (!pill) return null
-        const d = await import('/src/data/index.ts')
-        // The prompt's romanization line, shown only while the scaffold holds.
-        // Identify it by its own reading rather than by styling: it must be the
-        // Thai on screen, spelled out.
-        const en = document.querySelector('.prompt-zone .quiz-prompt.en')?.textContent.trim()
-        const item = en ? Object.values(d.ITEMS).find(i => i.en === en) : null
-        const zone = document.querySelector('.prompt-zone')?.innerText ?? ''
+        const zone = document.querySelector('.prompt-zone')
         return {
           pill: pill.textContent.trim(),
           typed: !!document.querySelector('.type-input'),
           choices: document.querySelectorAll('.choices .choice').length,
-          reading: !!item && zone.includes(item.reading),
+          // A typed card is production: the prompt is the Thai meaning, and
+          // neither the English nor its reading may appear — that would spell
+          // the answer out.
+          promptIsThai: /[ก-๙]/.test(zone?.querySelector('.quiz-prompt')?.textContent ?? ''),
+          leaksAnswer: !!zone?.querySelector('.quiz-prompt.en') || !!zone?.querySelector('.read-line'),
         }
       })
       if (c) cards.push(c)
@@ -480,17 +510,21 @@ async function maturePhase(page) {
   }
 
   const mature = await serve(8, 8)
-  check('mature: an Evergreen item is never offered multiple choice',
+  check('mature: a ยืนต้น item is never offered multiple choice',
     mature.length > 0 && mature.every(c => c.typed && c.choices === 0),
-    `${mature.length} cards: ${mature.map(c => `${c.pill}/${c.typed ? 'typed' : `mc(${c.choices})`}`).join(' ')}`)
-  check('mature: the typed card still shows its reading to a learner who cannot decode',
-    mature.length > 0 && mature.every(c => c.reading),
-    'scriptProgress is empty, so canReadEnglish() is false for every word on screen')
+    mature.length
+      ? `${mature.length} cards: ${mature.map(c => `${c.pill}/${c.typed ? 'typed' : `mc(${c.choices})`}`).join(' ')}`
+      : 'no card served (content-dependent — level 1 has no items yet)')
+  check('mature: the typed card shows the Thai meaning and never the English or its reading',
+    mature.length > 0 && mature.every(c => c.promptIsThai && !c.leaksAnswer),
+    'type-en is production — the reading would spell the answer out')
 
   const young = await serve(2, 6)
-  check('mature: the control — the same items at Growing are multiple choice',
+  check('mature: the control — the same items at ต้นอ่อน are multiple choice',
     young.length > 0 && young.every(c => !c.typed && c.choices > 0),
-    `${young.length} cards: ${young.map(c => `${c.pill}/${c.typed ? 'typed' : `mc(${c.choices})`}`).join(' ')}`)
+    young.length
+      ? `${young.length} cards: ${young.map(c => `${c.pill}/${c.typed ? 'typed' : `mc(${c.choices})`}`).join(' ')}`
+      : 'no card served (content-dependent — level 1 has no items yet)')
 }
 
 // ─── pacing: daily new-item budget, rolling frontier, due-sorted queue ───────
@@ -505,11 +539,12 @@ async function pacingPhase(page) {
       learnedAt: now - learnedAgoDays * 86400e3,
     })
     const S = { sound: false, showReading: true, newPerDay: 6, sessionSize: 20 }
+    const lvl = n => d.CURRICULUM[n - 1] ?? { n, itemIds: [], patternIds: [] }
 
     // ── budget ──
     const p1 = {}
-    d.CURRICULUM[0].itemIds.slice(0, 4).forEach(id => { p1[id] = mk(1, 1e9, 0) })   // today
-    d.CURRICULUM[0].itemIds.slice(4, 9).forEach(id => { p1[id] = mk(4, 1e9, 10) })  // older
+    lvl(1).itemIds.slice(0, 4).forEach(id => { p1[id] = mk(1, 1e9, 0) })   // today
+    lvl(1).itemIds.slice(4, 9).forEach(id => { p1[id] = mk(4, 1e9, 10) })  // older
     const budget = {
       learnedToday: s.learnedTodayCount(p1),
       left: s.newBudgetRemaining({ progress: p1, settings: S }),
@@ -517,7 +552,6 @@ async function pacingPhase(page) {
     }
 
     // ── frontier ──
-    const lvl = n => d.CURRICULUM[n - 1]
     const metL1 = {}
     for (const id of lvl(1).itemIds.concat(lvl(1).patternIds)) metL1[id] = mk(1, 1e9)
     const halfL1 = {}
@@ -526,13 +560,18 @@ async function pacingPhase(page) {
     for (const l of d.CURRICULUM.filter(x => x.n <= 4)) {
       for (const id of l.itemIds.concat(l.patternIds)) thru4[id] = mk(4, 1e9)
     }
-    const sevenLetters = {}
-    Object.keys(d.SCRIPT_CHARS).slice(0, 7).forEach(c => { sevenLetters[c] = mk(2, 1e9) })
+    // The Level 5 checkpoint, satisfied: the first SCRIPT_GATES[5] graphemes
+    // (course order) retained at the gate stage.
+    const need = s.SCRIPT_GATES[5]
+    const gateChars = {}
+    Object.keys(d.SCRIPT_CHARS).slice(0, need).forEach(c => { gateChars[c] = mk(2, 1e9) })
     const frontier = {
+      need,
+      levels: d.CURRICULUM.length,
       metNotMastered: s.learningFrontier({ progress: metL1, scriptProgress: {}, maxUnlocked: 1 }),
       halfMet: s.learningFrontier({ progress: halfL1, scriptProgress: {}, maxUnlocked: 1 }),
       blockedByGate: s.learningFrontier({ progress: thru4, scriptProgress: {}, maxUnlocked: 4 }),
-      gateSatisfied: s.learningFrontier({ progress: thru4, scriptProgress: sevenLetters, maxUnlocked: 4 }),
+      gateSatisfied: s.learningFrontier({ progress: thru4, scriptProgress: gateChars, maxUnlocked: 4 }),
     }
 
     // ── due-sorted queue: 40 due items, 20-question session ──
@@ -543,11 +582,12 @@ async function pacingPhase(page) {
     const served = s.dueQueue({ progress: many, scriptProgress: {}, settings: S })
     const expected = ids.slice(0, 20)          // the 20 MOST overdue
     const queue = {
+      corpus: ids.length,
       size: served.length,
       isMostOverdue: JSON.stringify(served.map(x => x.id)) === JSON.stringify(expected),
       respectsSetting: s.dueQueue({ progress: many, scriptProgress: {}, settings: { ...S, sessionSize: 35 } }).length,
       // burned items must never be served
-      excludesBurned: s.dueQueue({
+      excludesBurned: ids.length > 0 && s.dueQueue({
         progress: { ...many, [ids[0]]: { ...mk(9, -1e6), due: Number.MAX_SAFE_INTEGER } },
         scriptProgress: {}, settings: S,
       }).every(x => x.id !== ids[0]),
@@ -555,25 +595,26 @@ async function pacingPhase(page) {
     return { budget, frontier, queue }
   })
 
+  const nc = r.frontier.levels >= 5 ? '' : ` (content-dependent — levels authored=${r.frontier.levels})`
   check('pacing: new-item budget counts only items started today',
     r.budget.learnedToday === 4 && r.budget.left === 2,
-    `${r.budget.learnedToday} today, ${r.budget.left} of 6 left`)
+    `${r.budget.learnedToday} today, ${r.budget.left} of 6 left${nc}`)
   check('pacing: budget bottoms out at zero, never negative',
-    r.budget.exhausted === 0)
+    r.budget.exhausted === 0, `${r.budget.exhausted} left of 4 after 4 started today${nc}`)
   check('pacing: frontier rolls ahead once a level is fully MET (not mastered)',
-    r.frontier.metNotMastered === 2, `frontier=${r.frontier.metNotMastered}`)
+    r.frontier.metNotMastered === 2, `frontier=${r.frontier.metNotMastered}${nc}`)
   check('pacing: frontier holds while the current level is only half met',
-    r.frontier.halfMet === 1, `frontier=${r.frontier.halfMet}`)
+    r.frontier.halfMet === 1, `frontier=${r.frontier.halfMet}${nc}`)
   check('pacing: frontier never crosses an unsatisfied reading checkpoint',
-    r.frontier.blockedByGate === 4, `frontier=${r.frontier.blockedByGate} (L5 needs 7 letters)`)
-  check('pacing: frontier rolls past the checkpoint once letters are retained',
-    r.frontier.gateSatisfied === 5, `frontier=${r.frontier.gateSatisfied}`)
+    r.frontier.blockedByGate === 4, `frontier=${r.frontier.blockedByGate} (L5 needs ${r.frontier.need} graphemes)${nc}`)
+  check('pacing: frontier rolls past the checkpoint once the graphemes are retained',
+    r.frontier.gateSatisfied === 5, `frontier=${r.frontier.gateSatisfied}${nc}`)
   check('queue: serves exactly the session size',
     r.queue.size === 20 && r.queue.respectsSetting === 35,
-    `${r.queue.size} at default, ${r.queue.respectsSetting} at sessionSize=35`)
+    `${r.queue.size} at default, ${r.queue.respectsSetting} at sessionSize=35 (corpus ${r.queue.corpus})${nc}`)
   check('queue: serves the MOST OVERDUE items, not a random slice',
-    r.queue.isMostOverdue, '40 due, 20 served, oldest-first')
-  check('queue: burned items are never served', r.queue.excludesBurned)
+    r.queue.corpus >= 40 && r.queue.isMostOverdue, `40 due, 20 served, oldest-first${nc}`)
+  check('queue: burned items are never served', r.queue.excludesBurned, nc.trim())
 }
 
 async function builderPhase(page, data) {
@@ -582,9 +623,16 @@ async function builderPhase(page, data) {
   for (const p of Object.values(data.patterns)) patternByName[p.name] = p
   const patternList = Object.values(data.patterns)
 
+  // Content-dependent: every check below walks the real patterns.
+  if (patternList.length === 0) {
+    check('builder: patterns exist to drive Sentence Builder', false,
+      'content-dependent — no levels authored yet; the whole Builder phase needs them')
+    return
+  }
+
   let dueRounds = 0, nonDueRounds = 0, nonDueCorrect = 0, dueCorrect = 0
 
-  // ── the "sentences you can build" meter ──────────────────────────────────
+  // ── the "sentences your patterns can build" meter ────────────────────────
   // Its denominator is a promise: these patterns really can produce that many
   // distinct sentences, and the generator really can serve every one of them.
   // A number the learner cannot reach would be worse than no number at all.
@@ -621,8 +669,11 @@ async function builderPhase(page, data) {
     // a repeat is the right answer — but it must still be a real round.
     const last = g.makeRound(avail, ages)
     const exhausted = last.tokens.length > 0 && last.tray.length > 0 && seen.has(g.sentenceKey(last))
+    // English is joined with spaces — a sentence key without them is a bug.
+    const spaced = [...seen].every(k => k.split(' ').length >= 2 || !k.includes('{'))
+    const spoken = last.tokens.map(t => t.en).join(' ')
 
-    return { total, reached: seen.size, patterns: avail.length, exhausted }
+    return { total, reached: seen.size, patterns: avail.length, exhausted, spaced, spoken, sample: [...seen].slice(0, 3) }
   })
 
   check('builder: every sentence the meter counts is reachable by the generator',
@@ -630,6 +681,8 @@ async function builderPhase(page, data) {
     `reached ${truth.reached} of ${truth.total} across ${truth.patterns} patterns`)
   check('builder: with everything built, the generator still serves a real round',
     truth.exhausted, 'repeats gracefully rather than looping or returning nothing')
+  check('builder: English tokens are joined with spaces, never run together',
+    truth.spaced && /\S \S/.test(truth.spoken), truth.sample.join(' | '))
 
   // ── spacing ACROSS sittings ──────────────────────────────────────────────
   // Reported from use: "I tend to get the same sentences" on reopening. The
@@ -786,11 +839,11 @@ async function builderPhase(page, data) {
     remedial.share <= 0.45, `${(remedial.share * 100).toFixed(0)}% of rounds`)
 
   // ── glossing unmet words ─────────────────────────────────────────────────
-  // A tile the learner has never been taught shows its meaning, so the round
-  // is buildable rather than a guess on that one word. The rule has to apply
-  // to DISTRACTORS too: if only the answer's new words were glossed, the gloss
-  // would say "this tile belongs in the sentence" and the round would be
-  // solvable without reading a word of Thai.
+  // A tile the learner has never been taught shows its Thai meaning, so the
+  // round is buildable rather than a guess on that one word. The rule has to
+  // apply to DISTRACTORS too: if only the answer's new words were glossed, the
+  // gloss would say "this tile belongs in the sentence" and the round would
+  // be solvable without reading a word of Thai.
   const gloss = await page.evaluate(async () => {
     const g = await import('/src/core/generate.ts')
     const s = await import('/src/core/store.ts')
@@ -806,27 +859,27 @@ async function builderPhase(page, data) {
     const known = new Set(ids.filter((_, i) => i % 2 === 0))
     const fresh = t => !t.id.startsWith('lit:') && t.th !== '' && !known.has(t.id)
 
-    let itemTiles = 0, withEn = 0, litWithEn = 0
+    let itemTiles = 0, withTh = 0, litWithTh = 0
     let glossedDistractors = 0, glossedKnown = 0, roundsWithNew = 0
     for (let i = 0; i < 400; i++) {
       const r = g.makeRound(avail)
       const answer = new Set(r.tokens.map(t => t.id))
       for (const t of r.tray) {
-        if (t.id.startsWith('lit:')) { if (t.th) litWithEn++; continue }
+        if (t.id.startsWith('lit:')) { if (t.th) litWithTh++; continue }
         itemTiles++
-        if (t.th) withEn++
+        if (t.th) withTh++
         if (fresh(t) && !answer.has(t.id)) glossedDistractors++
         if (known.has(t.id) && fresh(t)) glossedKnown++
       }
       if (r.tray.some(fresh)) roundsWithNew++
     }
-    return { itemTiles, withEn, litWithEn, glossedDistractors, glossedKnown, roundsWithNew }
+    return { itemTiles, withTh, litWithTh, glossedDistractors, glossedKnown, roundsWithNew }
   })
 
-  check('builder: every item tile carries a gloss the renderer can show',
-    gloss.withEn === gloss.itemTiles, `${gloss.withEn} of ${gloss.itemTiles} item tiles`)
+  check('builder: every item tile carries a Thai gloss the renderer can show',
+    gloss.withTh === gloss.itemTiles, `${gloss.withTh} of ${gloss.itemTiles} item tiles`)
   check('builder: literal pattern words carry no gloss — they are the pattern, not vocabulary',
-    gloss.litWithEn === 0, `${gloss.litWithEn} literals carried one`)
+    gloss.litWithTh === 0, `${gloss.litWithTh} literals carried one`)
   check('builder: a word already learned is never glossed',
     gloss.glossedKnown === 0, `${gloss.glossedKnown} known words were marked new`)
   // The one that matters. If the gloss only ever appeared on answer tiles it
@@ -846,7 +899,7 @@ async function builderPhase(page, data) {
   // learning words — which is what it did, and what got reported.
   const label = await page.locator('.build-meter-label').textContent() ?? ''
   check('builder: the meter says the count is about PATTERNS, not vocabulary',
-    /patterns/i.test(label) && !/you can build/i.test(label), label)
+    /แพตเทิร์น/.test(label) && !/คำศัพท์|คำที่คุณรู้/.test(label), label)
 
   // And it names the thing that does move it.
   const nextLine = await page.locator('[data-testid=next-unlock]').textContent().catch(() => null)
@@ -881,16 +934,16 @@ async function builderPhase(page, data) {
   }
 
   // Distinct sentences solved, by the same identity the component uses: the
-  // written Thai. Solving one twice must advance the meter once.
+  // written English. Solving one twice must advance the meter once.
   const distinctSolved = new Set()
   let repeats = 0
 
   for (let round = 1; round <= 14; round++) {
     const ui = await readUi(page)
     if (!ui.patternName || ui.tray.length === 0) break
-    const sol = solveAssemble(patternList, data.items, ui.promptEn ?? '', ui.tray.map(t => t.label))
+    const sol = solveAssemble(patternList, data.items, ui.promptMeaning ?? '', ui.tray.map(t => t.label))
       ?? (patternByName[ui.patternName]
-        ? solveAssemble([patternByName[ui.patternName]], data.items, ui.promptEn ?? '', ui.tray.map(t => t.label))
+        ? solveAssemble([patternByName[ui.patternName]], data.items, ui.promptMeaning ?? '', ui.tray.map(t => t.label))
         : null)
 
     const wantWrong = round % 2 === 1 || !sol
@@ -903,7 +956,7 @@ async function builderPhase(page, data) {
       const bad = ui.tray.find(t => !(sol && sol.tokens.length === 1 && sol.tokens[0] === t.label))
       await clickTileByLabel(page, (bad ?? ui.tray[0]).label)
     }
-    await page.getByRole('button', { name: 'Check' }).click()
+    await checkButton(page).click()
     await waitFeedback(page)
     const outcome = (await readUi(page)).feedback
     const post = await snap(page)
@@ -938,7 +991,7 @@ async function builderPhase(page, data) {
         if (outcome === 'good') nonDueCorrect++
       }
     }
-    await clickAndClear(page, /Next/)
+    await clickAndClear(page, /ถัดไป/)
   }
 
   check('builder: isDue gate exercised on both sides',
@@ -962,7 +1015,8 @@ async function listeningPhase(page, data) {
 
   const ui0 = await readUi(page)
   const first = findEx(ui0)
-  check('listening: current exercise identified from data', !!first, `q='${ui0.labQuestion}'`)
+  check('listening: current exercise identified from data', !!first,
+    `q='${ui0.labQuestion}'` + (data.listening.length ? '' : ' (content-dependent — no dialogues authored yet)'))
   if (!first) return
 
   // total cycle length shown as "pos / total"
@@ -1023,7 +1077,7 @@ async function listeningPhase(page, data) {
 
   // walk the rest of the cycle answering WRONG (no xp) until the first ex repeats
   for (let k = 1; k < total; k++) {
-    await clickAndClear(page, /Next/)
+    await clickAndClear(page, /ถัดไป/)
     const uk = await readUi(page)
     const ex = findEx(uk)
     const preK = (await snap(page)).xp
@@ -1039,7 +1093,7 @@ async function listeningPhase(page, data) {
   }
 
   // cycle wrapped: same exercise again — correct answer must NOT re-grant xp
-  await clickAndClear(page, /Next/)
+  await clickAndClear(page, /ถัดไป/)
   const uiW = await readUi(page)
   const exW = findEx(uiW)
   check('listening: cycle wrapped back to the first exercise',
@@ -1106,63 +1160,115 @@ try {
     `trail (deduped): ${seen.join(' → ')}`)
 
   // ── Typed answers ─────────────────────────────────────────────────────────
-  // The 'type-en' card scores free text against the item's glosses. The
-  // tokeniser drops stop-words so "to go" matches "go" — but a gloss made
-  // ENTIRELY of stop-words reduced to nothing and was scored WRONG every time.
-  // That hit ผม "I (male)", ฉัน "I (female)" and อยู่ "to be (somewhere)": the
-  // three earliest and most-reviewed words in the course, where the one
-  // correct answer could never be accepted.
+  // 'type-en' is PRODUCTION: the card shows the Thai meaning and the learner
+  // types the English, scored by typedMatches() against item.en and altEn.
+  // The contract (CLAUDE.md §2): word by word, IN ORDER; contractions expanded
+  // on both sides; a leading article or `to` forgiven; one slip tolerated in a
+  // word of six letters or more; and a negation never accepted on one side
+  // only. Pure, so it is pinned here with its own answer lists rather than
+  // through the corpus.
   const typedCases = await page.evaluate(async () => {
     const r = await import('/src/screens/Review.tsx')
-    const d = await import('/src/data/index.ts')
-    const glosses = id => { const it = d.ITEMS[id]; return [it.th, ...(it.altTh ?? [])] }
+    // [group, typed, accepted forms (item.en first, then altEn), expected]
     const cases = [
-      // the exact text each card asks for must be accepted
-      ['phom', 'I (male)', true], ['phom', 'I', true], ['phom', 'me', true],
-      ['chan', 'I (female)', true], ['chan', 'I', true],
-      ['yuu', 'to be (somewhere)', true], ['yuu', 'to be at', true],
-      // …and wrong answers must still be rejected, or the fix is worthless
-      ['phom', 'you', false], ['phom', 'cat', false], ['chan', 'friend', false],
-      ['yuu', 'to go', false],
-      // ordinary items unaffected
-      ['bpai', 'to go', true], ['bpai', 'go', true], ['bpai', 'come', false],
-      ['gin', 'eat', true], ['gin', 'drink', false],
-      ['khun', 'you', true], ['gaafae', 'coffee', true], ['gaafae', 'tea', false],
+      // the exact English, however it is cased or punctuated
+      ['exact', 'coffee', ['coffee'], true],
+      ['exact', 'Coffee!', ['coffee'], true],
+      ['exact', 'thank you', ['Thank you'], true],
+      ['exact', '  thank   you ', ['thank you'], true],
+      ['exact', 'How much is it?', ['how much is it'], true],
+      // word order is part of the answer
+      ['order', 'you thank', ['thank you'], false],
+      ['order', 'go I', ['I go'], false],
+      ['order', 'it is how much', ['how much is it'], false],
+      // contractions are one answer, whichever side has them
+      ['contractions', "I'm fine", ['I am fine'], true],
+      ['contractions', 'I am fine', ["I'm fine"], true],
+      ['contractions', 'I’m fine', ['I am fine'], true],          // curly apostrophe
+      ['contractions', "don't know", ['do not know'], true],
+      ['contractions', "I can't", ['I cannot'], true],
+      ['contractions', "it's ok", ['it is okay'], true],
+      ['contractions', 'wanna go', ['want to go'], true],
+      ['contractions', "where's it", ['where is it'], true],
+      // a leading article or infinitive marker is not what the card tests…
+      ['leading', 'a coffee', ['coffee'], true],
+      ['leading', 'the coffee', ['coffee'], true],
+      ['leading', 'an apple', ['apple'], true],
+      ['leading', 'to go', ['go'], true],
+      ['leading', 'coffee', ['a coffee'], true],
+      // …but only at the START — mid-sentence the article counts
+      ['leading', 'I want coffee', ['I want a coffee'], false],
+      ['leading', 'I want a coffee', ['I want coffee'], false],
+      // one slip in a long word is a typo; in a short word it is another word
+      ['slip', 'recieve', ['receive'], true],
+      ['slip', 'tomorow', ['tomorrow'], true],
+      ['slip', 'resturant', ['restaurant'], true],
+      ['slip', 'ship', ['sheep'], false],
+      ['slip', 'hose', ['house'], false],
+      ['slip', 'bed', ['bad'], false],
+      ['slip', 'cats', ['cat'], false],
+      ['slip', 'reciave', ['receive'], false],                   // two slips
+      // negation never crosses, whatever the edit distance says
+      ['negation', 'not sure', ['sure'], false],
+      ['negation', 'sure', ['not sure'], false],
+      ['negation', "I don't know", ['I know'], false],
+      ['negation', 'I know', ["I don't know"], false],
+      ['negation', "I don't know", ['I do not know'], true],
+      ['negation', "I can't", ['I can'], false],
+      ['negation', 'never late', ['always late'], false],
+      ['negation', 'no', ['no'], true],
+      ['negation', 'no problem', ['no problem'], true],
+      // altEn: the other accepted English forms
+      ['altEn', 'yeah', ['yes', 'yeah'], true],
+      ['altEn', 'yeah', ['yes'], false],
+      ['altEn', 'OK', ['okay', 'OK'], true],
+      ['altEn', 'I am', ["I'm", 'I am'], true],
+      ['altEn', 'hi', ['hello / hi'], true],                      // slash-joined form
+      // extra or missing words are a different sentence
+      ['length', 'very good', ['good'], false],
+      ['length', 'good', ['very good'], false],
+      // digits are answers too
+      ['digits', '20', ['20'], true],
+      ['digits', 'twenty', ['20'], false],
+      ['digits', '5 pm', ['5 pm'], true],
       // empty input is never a pass
-      ['gin', '', false], ['gin', '   ', false],
-      // digits are answers too: the tokeniser used to strip them, so "20"
-      // for ยี่สิบ and "1" for หนึ่ง were scored wrong on every card
-      ['yiisip', '20', true], ['yiisip', 'twenty', true], ['yiisip', '21', false],
-      ['nueng', '1', true], ['haa', '5', true], ['sip', '10', true],
-      ['muen', '10,000', true], ['muen', '10000', true],
-      ['laan', 'million', true], ['laan', '1000', false],
-      // the one-extra-word tolerance must never accept a negation the answer
-      // lacks: "not sure" for แน่ใจ and "not in time" for ทัน are the opposite
-      ['naejai', 'sure', true], ['naejai', 'not sure', false], ['naejai', 'quite sure', true],
-      ['than', 'in time', true], ['than', 'not in time', false],
-      ['mai-than', 'not in time', true], ['mai-than', 'too late', true],
-      ['mai-neg', 'not', true], ['mai-neg', 'no', true],
+      ['empty', '', ['coffee'], false],
+      ['empty', '   ', ['coffee'], false],
     ]
-    return cases.map(([id, typed, want]) => ({ id, typed, want, got: r.typedMatches(typed, glosses(id)) }))
+    return cases.map(([group, typed, answers, want]) =>
+      ({ group, typed, answers, want, got: r.typedMatches(typed, answers) }))
   })
   const typedWrong = typedCases.filter(c => c.got !== c.want)
-  check('typed answers: a gloss of only stop-words is still answerable',
-    typedCases.filter(c => ['phom', 'chan', 'yuu'].includes(c.id) && c.want).every(c => c.got),
-    'ผม "I (male)", ฉัน "I (female)", อยู่ "to be (somewhere)"')
-  check('typed answers: wrong text is still rejected',
-    typedCases.filter(c => !c.want).every(c => !c.got))
-  check('typed answers: all cases score as expected', typedWrong.length === 0,
+  const groupOk = g => typedCases.filter(c => c.group === g).every(c => c.got === c.want)
+  const groupBad = g => typedWrong.filter(c => c.group === g)
+    .map(c => `"${c.typed}" vs [${c.answers.join(' | ')}] want ${c.want} got ${c.got}`).join(' ; ')
+  check('typed: the exact English is accepted whatever the case, spacing or punctuation',
+    groupOk('exact'), groupBad('exact'))
+  check('typed: word order is part of the answer', groupOk('order'), groupBad('order'))
+  check('typed: contractions expand on both sides ("I\'m fine" == "I am fine")',
+    groupOk('contractions'), groupBad('contractions'))
+  check('typed: a leading a/an/the/to is forgiven, and only a leading one',
+    groupOk('leading'), groupBad('leading'))
+  check('typed: one slip is tolerated in a word of 6+ letters ("recieve"), not in a short one ("ship" ≠ "sheep")',
+    groupOk('slip'), groupBad('slip'))
+  check('typed: a negation never crosses ("not sure" ≠ "sure", "I don\'t know" ≠ "I know")',
+    groupOk('negation'), groupBad('negation'))
+  check('typed: altEn forms are accepted', groupOk('altEn'), groupBad('altEn'))
+  check('typed: extra or missing words fail, digits count, empty input never passes',
+    groupOk('length') && groupOk('digits') && groupOk('empty'),
+    [groupBad('length'), groupBad('digits'), groupBad('empty')].filter(Boolean).join(' ; '))
+  check('typed: all cases score as expected', typedWrong.length === 0,
     typedWrong.length
-      ? typedWrong.map(c => `${c.id}:"${c.typed}" want ${c.want} got ${c.got}`).join(' | ')
+      ? typedWrong.map(c => `${c.group}:"${c.typed}" want ${c.want} got ${c.got}`).join(' | ')
       : `${typedCases.length} cases`)
 
   // ── Quiz-kind ladder ──────────────────────────────────────────────────────
   // Multiple choice puts a 25% floor under every answer. That is fine while
   // an item is young — a lucky guess costs one four-hour interval. It is not
-  // fine at the top of the ladder, where Golden claims a month of retention
-  // and Evergreen four: an interval that long has to be earned by PRODUCING
-  // the answer, not by recognising it among three strangers. So from stage 7
-  // the only kind offered is 'type-en'.
+  // fine at the top of the ladder, where ทอง claims a month of retention and
+  // ยืนต้น four: an interval that long has to be earned by PRODUCING the
+  // answer, not by recognising it among three strangers. So from stage 7 the
+  // only kind offered is 'type-en'.
   const ladder = await page.evaluate(async () => {
     const r = await import('/src/screens/Review.tsx')
     return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(s => r.kindsForStage(s))

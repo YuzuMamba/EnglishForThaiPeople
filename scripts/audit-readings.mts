@@ -38,7 +38,7 @@ const report = (where: string, en: string, written: string, derived: string, src
 /** Derive one English string and summarise the per-word sources. */
 const check = (where: string, en: string, written: string): void => {
   const d = derive(en)
-  const src = d.words.some(w => w.source === 'MISSING') ? 'MISSING' : 'OK'
+  const src = d.words.some((w: { source: string }) => w.source === 'MISSING') ? 'MISSING' : 'OK'
   report(where, en, written, d.reading, src)
 }
 
