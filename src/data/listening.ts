@@ -316,4 +316,54 @@ export const LISTENING: ListeningExercise[] = [
     explanation:
       'แบงค์ถาม Do you have a taxi? และมิสเตอร์ลีตอบ Not yet (ยังเลย) แล้วขอต่อว่า Can I have a taxi, please? แบงค์จึงรับปากด้วย I will call a taxi now — ฟังคำว่า not yet ให้ดี เพราะถ้าได้ยินแค่คำว่า taxi อาจเข้าใจผิดว่ามีแล้ว',
   },
+
+  // ── Added 2026-10-24 from level06.ts ──────────────────────────────
+  {
+    id: 'lis-hotel-two-rooms',
+    level: 6,
+    lines: [
+      { speaker: 'Tom', en: 'Hello! How much is this one?', reading: 'เฮล-โล ฮาว มัช อิส ดิส วัน', th: 'สวัสดีครับ ห้องนี้ราคาเท่าไหร่ครับ' },
+      { speaker: 'Nam', en: 'Hello. This one is big. It is eight hundred baht.', reading: 'เฮล-โล ดิส วัน อิส บิก อิต อิส เอต ฮัน-เดร็ด บาท', th: 'สวัสดีค่ะ ห้องนี้ใหญ่ ราคาแปดร้อยบาทค่ะ' },
+      { speaker: 'Tom', en: 'It is nice. And that one?', reading: 'อิต อิส ไนส์ อันด์ แด็ต วัน', th: 'ดูดีนะครับ แล้วห้องนั้นล่ะครับ' },
+      { speaker: 'Nam', en: 'That one is small. It is five hundred baht.', reading: 'แด็ต วัน อิส สมอล อิต อิส ไฟฟ์ ฮัน-เดร็ด บาท', th: 'ห้องนั้นเล็กค่ะ ราคาห้าร้อยบาท' },
+      { speaker: 'Tom', en: 'Five hundred? That one is cheaper!', reading: 'ไฟฟ์ ฮัน-เดร็ด แด็ต วัน อิส ชี-เพอร์', th: 'ห้าร้อยเหรอครับ ห้องนั้นถูกกว่านี่' },
+      { speaker: 'Nam', en: 'Yes. This one is bigger. That one is cheaper.', reading: 'เย็ส ดิส วัน อิส บิก-เกอร์ แด็ต วัน อิส ชี-เพอร์', th: 'ใช่ค่ะ ห้องนี้ใหญ่กว่า ห้องนั้นถูกกว่า' },
+      { speaker: 'Tom', en: 'Okay. I want that one, please.', reading: 'โอ-เค ไอ วอนต์ แด็ต วัน พลีส', th: 'โอเค ผมเอาห้องนั้นครับ' },
+      { speaker: 'Nam', en: 'Okay! Thank you, Tom.', reading: 'โอ-เค แธงค์ ยู ทอม', th: 'ได้ค่ะ ขอบคุณค่ะคุณทอม' },
+    ],
+    question: 'ทอมเลือกห้องไหน และเพราะอะไร?',
+    choices: [
+      'ห้องเล็ก เพราะราคาถูกกว่า',
+      'ห้องใหญ่ เพราะสวยกว่า',
+      'ห้องใหญ่ เพราะราคาถูกกว่า',
+      'ห้องเล็ก เพราะอยู่ใกล้กว่า',
+    ],
+    answer: 0,
+    explanation:
+      'ฟังตอนท้าย: ทอมพูด I want that one, please. หลังจากที่น้ำบอกว่า That one is small และทอมเองอุทานว่า That one is cheaper! — เขาเลือกห้องเล็กเพราะราคาถูกกว่า ไม่ใช่เพราะขนาด ส่วนห้องใหญ่ (This one is big / bigger) เขาแค่ชมว่า nice แล้วถามราคาอีกห้อง',
+  },
+  {
+    id: 'lis-market-too-expensive',
+    level: 6,
+    lines: [
+      { speaker: 'Sarah', en: 'Ploy, this is beautiful! How much is it?', reading: 'พลอย ดิส อิส บิว-ติ-ฟูล ฮาว มัช อิส อิต', th: 'พลอย อันนี้สวยจัง ราคาเท่าไหร่' },
+      { speaker: 'Ploy', en: 'It is three hundred baht.', reading: 'อิต อิส ธรี ฮัน-เดร็ด บาท', th: 'สามร้อยบาทค่ะ' },
+      { speaker: 'Sarah', en: 'Three hundred? It is too expensive.', reading: 'ธรี ฮัน-เดร็ด อิต อิส ทู เอ็กซ์-เพน-ซิฟ', th: 'สามร้อยเหรอ แพงเกินไป' },
+      { speaker: 'Ploy', en: 'Yes. This one is one hundred baht.', reading: 'เย็ส ดิส วัน อิส วัน ฮัน-เดร็ด บาท', th: 'ใช่ อันนี้ร้อยเดียวเอง' },
+      { speaker: 'Sarah', en: 'This one is nice. Is it new?', reading: 'ดิส วัน อิส ไนส์ อิส อิต นิว', th: 'อันนี้สวยดี ของใหม่หรือเปล่า' },
+      { speaker: 'Ploy', en: 'Yes, it is new. And it is cheaper.', reading: 'เย็ส อิต อิส นิว อันด์ อิต อิส ชี-เพอร์', th: 'ใช่ ของใหม่ แล้วก็ถูกกว่าด้วย' },
+      { speaker: 'Sarah', en: 'Okay, I want this one. Thank you, Ploy!', reading: 'โอ-เค ไอ วอนต์ ดิส วัน แธงค์ ยู พลอย', th: 'โอเค เอาอันนี้ ขอบใจนะพลอย' },
+      { speaker: 'Ploy', en: 'Good! Can we eat now? I am hungry.', reading: 'กุด แค็น วี อีต นาว ไอ แอ็ม ฮัง-กรี่', th: 'ดีเลย ไปกินข้าวกันเลยไหม หิวแล้ว' },
+    ],
+    question: 'ทำไมซาร่าถึงไม่ซื้อของชิ้นแรก?',
+    choices: [
+      'เพราะราคาแพงเกินไป',
+      'เพราะเป็นของเก่าแล้ว',
+      'เพราะพลอยบอกว่าไม่สวย',
+      'เพราะอยากกินข้าวก่อน',
+    ],
+    answer: 0,
+    explanation:
+      'ซาร่าถามราคาชิ้นแรกว่า How much is it? พอได้ยิน three hundred baht เธอพูดทันทีว่า It is too expensive — too แปลว่า "เกินไป" คือบ่นว่าแพง ส่วนคำว่า new และ nice เป็นเรื่องของชิ้นที่สองที่เธอตัดสินใจซื้อ (I want this one) และ I am hungry เป็นคำพูดของพลอยตอนท้าย',
+  },
 ]
