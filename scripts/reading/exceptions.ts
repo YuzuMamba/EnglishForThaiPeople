@@ -105,4 +105,9 @@ export const EXCEPTIONS: Record<string, Exception> = {
   lives: { reading: 'ลิฟส์', ipa: '/lɪvz/' },    // as above
   read: { reading: 'รีด', ipa: '/rid/' },        // R EH1 D (past tense) is listed first
   lead: { reading: 'ลีด', ipa: '/lid/' },        // L EH1 D (the metal) is listed first
+
+  // ── Plurals whose CMUdict FIRST entry carries a different vowel from the singular ──
+  // The deriver reads each word on its own, so the plural card would teach a
+  // different vowel than the singular card beside it. Pinned to singular + ส.
+  coffees: { reading: 'คอฟ-ฟีส', ipa: '/ˈkɑfiz/' }, // K AO1 F IY0 Z → คอ-ฟีส; coffee is K AA1 F IY0 → คอฟ-ฟี่ (gemination), so the plural is that + ส
 }
