@@ -366,4 +366,78 @@ export const LISTENING: ListeningExercise[] = [
     explanation:
       'ซาร่าถามราคาชิ้นแรกว่า How much is it? พอได้ยิน three hundred baht เธอพูดทันทีว่า It is too expensive — too แปลว่า "เกินไป" คือบ่นว่าแพง ส่วนคำว่า new และ nice เป็นเรื่องของชิ้นที่สองที่เธอตัดสินใจซื้อ (I want this one) และ I am hungry เป็นคำพูดของพลอยตอนท้าย',
   },
+
+  // ── Added 2026-10-24 from level03.ts ──────────────────────────────
+  {
+    id: 'lis-night-market-prices',
+    level: 3,
+    lines: [
+      { speaker: 'Tom', en: 'Excuse me. How much is this?', reading: 'เอ็กซ์-คิวส์ มี ฮาว มัช อิส ดิส', th: 'ขอโทษครับ อันนี้เท่าไหร่' },
+      { speaker: 'Fah', en: 'This one? Two hundred baht.', reading: 'ดิส วัน ทู ฮัน-เดร็ด บาท', th: 'อันนี้เหรอคะ สองร้อยบาทค่ะ' },
+      { speaker: 'Tom', en: 'Hmm. And this one?', reading: 'อืม อันด์ ดิส วัน', th: 'อืม แล้วอันนี้ล่ะครับ' },
+      { speaker: 'Fah', en: 'One hundred fifty baht.', reading: 'วัน ฮัน-เดร็ด ฟิฟ-ตี้ บาท', th: 'ร้อยห้าสิบบาทค่ะ' },
+      { speaker: 'Tom', en: 'Okay. This one, please. One hundred fifty.', reading: 'โอ-เค ดิส วัน พลีส วัน ฮัน-เดร็ด ฟิฟ-ตี้', th: 'โอเค เอาอันนี้ครับ ร้อยห้าสิบ' },
+      { speaker: 'Fah', en: 'Yes. One hundred fifty baht. Thank you!', reading: 'เย็ส วัน ฮัน-เดร็ด ฟิฟ-ตี้ บาท แธงค์ ยู', th: 'ค่ะ ร้อยห้าสิบบาท ขอบคุณค่ะ!' },
+      { speaker: 'Tom', en: 'Here. Thank you. Bye!', reading: 'เฮียร์ แธงค์ ยู บาย', th: 'นี่ครับ ขอบคุณ บาย!' },
+      { speaker: 'Fah', en: 'Bye bye!', reading: 'บาย บาย', th: 'บ๊ายบายค่ะ!' },
+    ],
+    question: 'สุดท้ายทอมซื้ออันไหน?',
+    choices: [
+      'อันที่ราคา 150 บาท',
+      'อันที่ราคา 200 บาท',
+      'ซื้อทั้งสองอันเลย',
+      'ไม่ซื้อเพราะแพงเกินไป',
+    ],
+    answer: 0,
+    explanation:
+      'ฟ้าบอกราคาสองอย่าง: อันแรก Two hundred baht (200) อันที่สอง One hundred fifty baht (150) แล้วทอมตัดสินใจว่า This one, please. One hundred fifty. — เขาเลือกอันที่ถูกกว่า และฟ้าทวนราคาเดิมอีกครั้งตอนรับเงิน',
+  },
+  {
+    id: 'lis-hotel-lobby-toilet-atm',
+    level: 3,
+    lines: [
+      { speaker: 'Sarah', en: 'Excuse me. Where is the toilet?', reading: 'เอ็กซ์-คิวส์ มี แวร์ อิส เดอะ ทอย-เล็ต', th: 'ขอโทษค่ะ ห้องน้ำอยู่ที่ไหนคะ' },
+      { speaker: 'Bank', en: 'Hello! The toilet? It is here.', reading: 'เฮล-โล เดอะ ทอย-เล็ต อิต อิส เฮียร์', th: 'สวัสดีครับ ห้องน้ำเหรอครับ อยู่ตรงนี้ครับ' },
+      { speaker: 'Sarah', en: 'Thank you. And where is the ATM?', reading: 'แธงค์ ยู อันด์ แวร์ อิส เดอะ เอ-ที-เอ็ม', th: 'ขอบคุณค่ะ แล้วตู้เอทีเอ็มอยู่ที่ไหนคะ' },
+      { speaker: 'Bank', en: 'The ATM is here.', reading: 'เดอะ เอ-ที-เอ็ม อิส เฮียร์', th: 'ตู้เอทีเอ็มอยู่ตรงนี้ครับ' },
+      { speaker: 'Sarah', en: 'Okay. Toilet, and the ATM. Thank you!', reading: 'โอ-เค ทอย-เล็ต อันด์ เดอะ เอ-ที-เอ็ม แธงค์ ยู', th: 'โอเค ไปห้องน้ำก่อน แล้วค่อยไปตู้เอทีเอ็ม ขอบคุณค่ะ!' },
+      { speaker: 'Bank', en: 'Okay. And a taxi?', reading: 'โอ-เค อันด์ อะ แทก-ซี่', th: 'ครับ แล้วแท็กซี่ล่ะครับ ต้องการไหม' },
+      { speaker: 'Sarah', en: 'Yes! One taxi, please.', reading: 'เย็ส วัน แทก-ซี่ พลีส', th: 'ค่ะ! ขอแท็กซี่หนึ่งคันค่ะ' },
+      { speaker: 'Bank', en: 'Okay. One taxi. Thank you!', reading: 'โอ-เค วัน แทก-ซี่ แธงค์ ยู', th: 'ได้ครับ แท็กซี่หนึ่งคัน ขอบคุณครับ!' },
+    ],
+    question: 'หลังจากเข้าห้องน้ำแล้ว ซาร่าจะไปที่ไหนต่อ?',
+    choices: [
+      'ไปกดเงินที่ตู้เอทีเอ็ม',
+      'ไปขึ้นแท็กซี่ทันที',
+      'กลับไปที่ห้องพักก่อน',
+      'ไปซื้อกาแฟที่ร้านข้างโรงแรม',
+    ],
+    answer: 0,
+    explanation:
+      'ซาร่าถามตามลำดับ: Where is the toilet? แล้วค่อย And where is the ATM? และสรุปแผนเองว่า Toilet, and the ATM. — ห้องน้ำก่อน แล้วตู้เอทีเอ็ม ส่วนแท็กซี่เป็นสิ่งที่แบงค์เสนอทีหลัง (And a taxi?) จึงมาท้ายสุด',
+  },
+  {
+    id: 'lis-beach-bar-beers',
+    level: 3,
+    lines: [
+      { speaker: 'Jack', en: 'Hello! Can I have two beers, please?', reading: 'เฮล-โล แค็น ไอ แฮ็ฟ ทู เบียร์ส พลีส', th: 'สวัสดีครับ ขอเบียร์สองขวดครับ' },
+      { speaker: 'Nut', en: 'Two beers. Okay.', reading: 'ทู เบียร์ส โอ-เค', th: 'เบียร์สองขวด ได้ครับ' },
+      { speaker: 'Jack', en: 'Sorry, three beers, please. Three.', reading: 'ซอ-รี่ ธรี เบียร์ส พลีส ธรี', th: 'ขอโทษครับ เอาสามขวดครับ สาม' },
+      { speaker: 'Nut', en: 'Three beers? Okay. Three.', reading: 'ธรี เบียร์ส โอ-เค ธรี', th: 'สามขวดเหรอครับ ได้ครับ สาม' },
+      { speaker: 'Jack', en: 'Yes. How much is it?', reading: 'เย็ส ฮาว มัช อิส อิต', th: 'ครับ เท่าไหร่ครับ' },
+      { speaker: 'Nut', en: 'Three beers. Two hundred forty baht.', reading: 'ธรี เบียร์ส ทู ฮัน-เดร็ด ฟอร์-ตี้ บาท', th: 'เบียร์สามขวด สองร้อยสี่สิบบาทครับ' },
+      { speaker: 'Jack', en: 'Two hundred forty. Okay. Here.', reading: 'ทู ฮัน-เดร็ด ฟอร์-ตี้ โอ-เค เฮียร์', th: 'สองร้อยสี่สิบ โอเค นี่ครับ' },
+      { speaker: 'Nut', en: 'Thank you!', reading: 'แธงค์ ยู', th: 'ขอบคุณครับ!' },
+    ],
+    question: 'สุดท้ายแจ็คสั่งเบียร์กี่ขวด?',
+    choices: [
+      'สองขวด',
+      'สามขวด',
+      'สี่ขวด',
+      'หนึ่งขวด',
+    ],
+    answer: 1,
+    explanation:
+      'แจ็คสั่งครั้งแรกว่า Can I have two beers, please? แล้วแก้ทันทีว่า Sorry, three beers, please. Three. นัทจึงทวนว่า Three beers? Okay. และคิดราคาเบียร์สามขวดเป็น Two hundred forty baht — จำนวนสุดท้ายคือสามขวด',
+  },
 ]
