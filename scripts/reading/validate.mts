@@ -68,7 +68,7 @@ const TABLE: [string, string][] = [
   ['buses', 'บัส-เซส'], ['wishes', 'วิช-เชส'], ['places', 'เพล-เซส'], ['level', 'เล-เวล'],
   ['woman', 'วุม-มัน'], ['Boston', 'บอส-ตัน'], ['budget', 'บัด-เจ็ต'], ['college', 'คอล-เลจ'],
   // 2. V never geminates
-  ['seven', 'เซ-เว็น'], ['eleven', 'อิ-เล-เว็น'], ['never', 'เน-เวอร์'], ['river', 'ริ-เวอร์'],
+  ['seven', 'เซ-เว็น'], ['cover', 'คัฟ-เวอร์'], ['lover', 'ลัฟ-เวอร์'], ['eleven', 'อิ-เล-เว็น'], ['never', 'เน-เวอร์'], ['river', 'ริ-เวอร์'],
   // 3. no ็ before an L coda
   ['hotel', 'โฮ-เทล'], ['bell', 'เบล'], ['well', 'เวล'], ['tell', 'เทล'], ['sell', 'เซล'], ['pal', 'แพล'],
   // 4. word-final -ow
@@ -94,6 +94,9 @@ const TABLE: [string, string][] = [
   ['expert', 'เอ็กซ์-เพิร์ต'], ['sometimes', 'ซัม-ไทมส์'], ['airport', 'แอร์-พอร์ต'], ['contain', 'คัน-เทน'],
   // the dialogue cast and fixed Thai spellings (exceptions)
   ['Mr. Lee', 'มิส-เตอร์ ลี'], ['okay', 'โอ-เค'], ['OK', 'โอ-เค'], ['Emma', 'เอ็ม-ม่า'], ['Thai', 'ไท'], ['Jack', 'แจ็ค'],
+  // silent -ed / -es belong to the stem; secondary stress is not a reduced syllable
+  ['finished', 'ฟิน-นิชต์'], ['noticed', 'โน-ทัสต์'], ['happened', 'แฮป-เป็นด์'], ['visited', 'วิซ-ซิ-เท็ด'],
+  ['minutes', 'มิน-นัตส์'], ['watches', 'วอท-เชส'], ['girlfriend', 'เกิร์ล-เฟรนด์'], ['welcome', 'เวล-คัม'],
 ]
 
 let fail = 0

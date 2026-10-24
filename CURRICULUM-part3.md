@@ -1,0 +1,1 @@
+# ChaiEnglish — Curriculum plan, part 3 (levels 25–35). Continues `CURRICULUM.md` (header rules, Global allocation, Fixed cast, L1–12) and `CURRICULUM-part2.md` (L13–24); every block below has the shape of Level 12, ids from L1–24 are reused never re-minted, and each allocation-table form is taught at the level in its row.

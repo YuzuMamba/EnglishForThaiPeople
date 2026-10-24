@@ -98,7 +98,9 @@ export function syllabify(phones: string[]): Syllable[] {
     if (stressedLax && between.length === 1) {
       const c = between[0]
       if (c === 'NG') { here.coda = [c]; continue }
-      if (NO_GEMINATION.has(c)) { next.onset = [c]; continue }
+      // V doubles only after AH1 (cover คัฟ-เวอร์, lover ลัฟ-เวอร์): everywhere else
+      // Thai writes it single (seven เซ-เว็น, heavy เฮ-วี่, river ริ-เวอร์).
+      if (NO_GEMINATION.has(c) && !(c === 'V' && here.nucleus === 'AH')) { next.onset = [c]; continue }
       here.coda = [c]
       next.onset = [c]
       next.geminateOnset = true

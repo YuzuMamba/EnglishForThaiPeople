@@ -70,6 +70,7 @@ export const EXCEPTIONS: Record<string, Exception> = {
   "what's": { reading: 'วอตส์' },        // as above
   of: { reading: 'ออฟ' },                // AH1 V → อัฟ; Thai writes ออฟ
   from: { reading: 'ฟรอม' },             // F R AH1 M → ฟรัม; Thai writes ฟรอม (the phonics course agrees)
+  welcome: { reading: 'เวล-คัม' },       // W EH1 L K AH0 M → เวล-กัม by the unaspirated-after-coda rule; เวลคัม is on every sign in Thailand
   the: { reading: 'เดอะ' },              // DH AH0 → ดะ; เดอะ is universal in Thai
   today: { reading: 'ทู-เดย์' },         // T AH0 D EY1 → ทะ-เดย์; Thai keeps "to" as ทู
   tonight: { reading: 'ทู-ไนต์' },       // as above

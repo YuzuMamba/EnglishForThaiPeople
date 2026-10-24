@@ -1,1 +1,431 @@
 # ChaiEnglish — Curriculum plan, part 2 (levels 13–24). Continues `CURRICULUM.md`: same header rules, same Global allocation table (binding), same fixed cast; ids from L1–12 are reused, never re-minted.
+
+## Level 13 — Directions · ถามทาง บอกทาง
+- icon: 🗺️
+- subtitle (Thai, ≤ 60 chars): เลี้ยวซ้าย ตรงไป จอดตรงนี้ — ถามทางและบอกทางให้ชาวต่างชาติ
+- theme: Asking for and giving directions — the lost tourist at the soi mouth, the taxi passenger, the hotel guest asking for a 7-Eleven. The learner is sometimes the one who is lost (abroad) and sometimes the one who knows the way. Reading checkpoint 3 sits here, so items are short and concrete.
+- grammar focus:
+  - imperatives with no subject: `Turn left`, `Go straight`, `Stop here` — the one place English drops the subject like Thai does. Adding `please` keeps it polite with a driver.
+  - `How do I get to the …`: wh- word, then `do I`, then the base verb; `get to` = arrive at (Thai ไปยังไง has no verb change). `get` is taught here in this sense only; `get` = become waits for L35.
+  - position prepositions as a set: `near`, `next to`, `behind`, `in front of`, `around` — each sits **before** the landmark (`behind the hotel`), where Thai puts ข้างหลัง before the noun too, so the order is the easy part; the trap is that English needs `is` (`It is behind the hotel`, never `It behind the hotel`).
+  - `far` vs `near`: `Is it far?` / `It is near` — adjectives after `is`, same as L6.
+- canDo (Thai):
+  - ถามทางไปที่ต่างๆ ด้วย How do I get to … และ Is it far?
+  - บอกทางให้ชาวต่างชาติได้: เลี้ยวซ้าย เลี้ยวขวา ตรงไป จอดตรงนี้
+  - บอกตำแหน่งของสถานที่ว่าอยู่ใกล้ ข้างๆ ข้างหลัง หรือข้างหน้าอะไร
+  - ถามว่าแถวนี้มีร้านอาหาร ตลาด ห้องน้ำไหม ด้วย Is there a … near here
+  - บอกได้ว่าหลงทางและขอให้ชี้ทางบนแผนที่ (I am lost / Can you show me)
+- items (22):
+  - get — ไป(ถึง) / ได้รับ — คำกริยา — core-verb (`get to` = ไปถึง; sense "become" is L35)
+  - turn — เลี้ยว — คำกริยา — core-verb
+  - left — ซ้าย — คำวิเศษณ์ — direction
+  - right — ขวา — คำวิเศษณ์ — direction (id `right-side`; the L10 id `right` is ถูกต้อง — a different sense, kept apart)
+  - straight — ตรงไป — คำวิเศษณ์ — direction (`go straight` composes)
+  - stop — หยุด / จอด — คำกริยา — core-verb (`stop here please` to a driver; L14 recycles for bus stops)
+  - near — ใกล้ — คำบุพบท — prep (adjective use `It is near` noted, same id)
+  - far — ไกล — คำคุณศัพท์ — adj (`far from` composes with L4 `from`)
+  - next to — ข้างๆ / ติดกับ — คำบุพบท — prep (phrase)
+  - behind — ข้างหลัง — คำบุพบท — prep
+  - in front of — ข้างหน้า — คำบุพบท — prep (phrase)
+  - around — รอบๆ / แถวๆ — คำบุพบท — prep (`around here` = แถวนี้)
+  - over there — ตรงโน้น / ตรงนั้น — วลี — place (phrase; word `over` is L27, as `been to` precedes `been`)
+  - way — ทาง / วิธี — คำนาม — noun (`this way`, `the way to the hotel`; `no way` L10 is a separate phrase id)
+  - soi — ซอย — คำนาม — place (loan word foreigners in Thailand use; note says `street` for anywhere else)
+  - street — ถนน — คำนาม — place (altEn road)
+  - walk — เดิน — คำกริยา — core-verb
+  - find — หา / เจอ — คำกริยา — core-verb
+  - show — แสดง / ชี้ให้ดู — คำกริยา — core-verb (`show me` with L8 `me`)
+  - lost — หลงทาง — คำคุณศัพท์ — state (`I am lost`; past-tense sense noted at L21)
+  - market — ตลาด — คำนาม — place
+  - restaurant — ร้านอาหาร — คำนาม — place
+- patterns (3):
+  - `Is there a … near here` → `Is there a {place} near here` → แถวนี้มี{place}ไหม → place: market, restaurant (L13), toilet, hotel, taxi (L3), phone (L7), problem (L9) (ATM still excluded: `an`) → The L9 existence question with `near here` on the end: Thai แถวนี้ goes first, English puts the place phrase last. Answer `Yes, over there` / `No, it is far`. → Is there a market near here · Is there a restaurant near here · Is there a toilet near here
+  - `How do I get to the` → `How do I get to the {place}` → ฉันจะไป{place}ยังไง → place: market, restaurant, street (L13), hotel, toilet, ATM, taxi (L3), airport is L14 (added then) → Wh- word first, then `do I`, then `get to` — the same machinery as `When do you …` (L9) with `I` as subject. Thai ไปยังไง puts ยังไง last. Reply with imperatives: `Go straight`, `Turn left`, `Walk`. → How do I get to the market · How do I get to the hotel · How do I get to the ATM
+  - `It is … the …` → `It is {position} the {landmark}` → มันอยู่{position}{landmark} → position: near, next to, behind, in front of (L13); landmark: market, restaurant, street, soi (L13), hotel, toilet, ATM, taxi (L3) → Position word before the landmark, `is` before everything: Thai มันอยู่ข้างหลังโรงแรม and English `It is behind the hotel` line up word for word once `is` is in. `around the corner` style phrases stay in notes. → It is next to the hotel · It is behind the market · It is near the ATM
+- dialogues (2):
+  - Soi mouth, tourist with a phone map · Nam (passer-by) & Jack (lost) · `Excuse me, how do I get to the market?` / `Go straight, turn left at the hotel. It is next to the ATM` / `Is it far?` / `No, five minutes. Walk` — question tests where the market is in relation to the ATM, not whether it is far.
+  - Bank lost abroad asks a local · Bank (tourist) & Sarah (local) · `Sorry, I am lost. Is there a restaurant near here?` / `Yes, over there, behind the big hotel. Can you see it?` / `I can't see it. Can you show me?` / `Sure, this way` — question tests what Bank asks Sarah to do after he cannot see the restaurant.
+- recycles: `Is there a {thing} here` (L9) extended with `near`; `Excuse me` (L3); `I am {state}` (L1) with `lost`; `Can you {verb} me please` (L8) with `show`; `the` (L3) before every landmark; `at` (L7) in `turn left at the hotel`; `can / can't` + `see` (L5/L7); `big` (L6) on the landmark; `first` (L12) composes `the first soi on the left` in notes.
+
+## Level 14 — Transport · การเดินทาง
+- icon: 🚕
+- subtitle (Thai, ≤ 60 chars): แท็กซี่ บีทีเอส เรือ มอเตอร์ไซค์ — ขึ้นลงตรงไหน ใช้เวลานานแค่ไหน
+- theme: Getting from A to B in Bangkok and abroad — the taxi meter, the BTS, the river boat, the motorbike at the soi mouth, the airport run. First phrasal verbs; `how long` and `it takes` for durations.
+- grammar focus:
+  - `How long does it take …`: Thai นานแค่ไหน sits at the end; English puts `How long` first, uses dummy `it` as subject and `take` = ใช้เวลา. `take` the vehicle (นั่ง) and `takes` the time (ใช้เวลา) are two senses — two ids, both taught here.
+  - phrasal verbs as units: `get on / get off` (bus, train, boat, motorbike — you climb onto it; a taxi or car is `get in / get out`, noted), `pick up` with the object in the middle (`pick me up`). Thai ขึ้น / ลง / มารับ are single verbs; the English chunk is two words that must stay together in the learner's head.
+  - `will` for the kerb decision (`I will take a taxi` — decided now, L5 contrast) and `late` with the L1 frame (`I am late`); `about` (L10) before a number = ประมาณ.
+  - no `by taxi` yet: `by` is allocated to L16, so this level says `take a taxi`, never `go by taxi`.
+- canDo (Thai):
+  - ถามได้ว่าไป…ใช้เวลานานแค่ไหน และเข้าใจคำตอบเป็นนาที
+  - บอกคนขับแท็กซี่ให้ไปสนามบิน ใช้มิเตอร์ และจอดตรงนี้
+  - บอกได้ว่าจะนั่งแท็กซี่ รถเมล์ รถไฟ เรือ หรือมอเตอร์ไซค์
+  - ใช้ get on / get off บอกว่าขึ้นลงรถที่ป้ายไหน
+  - บอกว่ามาสาย รถติด และขอให้มารับด้วย pick me up
+- items (22):
+  - ticket — ตั๋ว — คำนาม — noun (singular of L3 `tickets`)
+  - bus — รถเมล์ / รถบัส — คำนาม — transport
+  - train — รถไฟ — คำนาม — transport
+  - BTS — รถไฟฟ้าบีทีเอส — คำนาม — transport (altEn skytrain; always `the BTS`)
+  - boat — เรือ — คำนาม — transport
+  - motorbike — มอเตอร์ไซค์ — คำนาม — transport (altEn motorcycle, bike)
+  - car — รถ / รถยนต์ — คำนาม — transport
+  - airport — สนามบิน — คำนาม — place
+  - take — นั่ง (รถ) / เอา / หยิบ — คำกริยา — core-verb (`take a taxi`, `take the BTS`; `take medicine` recycled L15)
+  - takes — ใช้เวลา (it takes …) — คำกริยา (รูป -s) — 3sg (dummy `it` subject; note cross-links to `take`)
+  - how long — นานแค่ไหน — คำถาม — question (phrase)
+  - long — นาน / ยาว — คำคุณศัพท์ — adj (`a long time` composes with L5 `time`)
+  - minutes — นาที (หลายนาที) — คำนาม (พหูพจน์) — plural (singular `minute` is L24)
+  - wait — รอ — คำกริยา — core-verb (base of L11 `waiting`; `wait for me` composes with L9 `for`)
+  - leave — ออก / ออกเดินทาง — คำกริยา — core-verb (`the bus leaves` noted; 3sg form not minted)
+  - drive — ขับ (รถ) — คำกริยา — core-verb
+  - get on — ขึ้น (รถ) — วลี — phrasal (phrase)
+  - get off — ลง (รถ) — วลี — phrasal (phrase)
+  - pick up — ไปรับ / มารับ — วลี — phrasal (phrase; `pick me up` splits around the object)
+  - meter — มิเตอร์ — คำนาม — noun (`Meter please` is the whole request; `turn on` waits for the L27 place sense of `on`)
+  - late — สาย / ช้า — คำคุณศัพท์ — state (`I am late`, `the bus is late`)
+  - traffic — รถติด / การจราจร — คำนาม — noun (`Traffic is bad` composes; mass noun, no article)
+- patterns (3):
+  - `How long does it take to get to the` → `How long does it take to get to the {place}` → ไป{place}ใช้เวลานานแค่ไหน → place: airport (L14), market, restaurant (L13), hotel, ATM (L3) → `How long` opens, `does it take` is a fixed chunk with dummy `it`, then the L13 `get to the …`. Long but every word is already known; the reply is the next frame. → How long does it take to get to the airport · How long does it take to get to the market · How long does it take to get to the hotel
+  - `It takes … minutes` → `It takes {number} minutes` → ใช้เวลา{number}นาที → number: five, ten, fifteen, twenty, thirty, forty, fifty (L3) (`one` excluded: `minutes` is plural) → `takes` keeps its -s because the subject is `it`; Thai ใช้เวลา has no subject at all. `about` (L10) in front makes it ประมาณ. → It takes twenty minutes · It takes ten minutes · It takes forty minutes
+  - `I will take a` → `I will take a {vehicle}` → ฉันจะนั่ง{vehicle} → vehicle: taxi (L3), bus, train, boat, motorbike (L14) (BTS and car excluded: `the BTS`, `drive a car`) → `will` because the decision is made on the spot (L5); `take` + `a` + vehicle, where Thai says นั่ง with no article. `Can we take a taxi` recycles the L5 frame. → I will take a taxi · I will take a boat · I will take a bus
+- dialogues (2):
+  - Taxi to the airport · Tee (driver) & Emma (passenger) · `Airport please. Meter please` / `Okay. Traffic is bad today` / `How long does it take?` / `About forty minutes` / `I am late. Can we go now please?` / `Sure` — question tests how long the trip takes **and** why (traffic), not where Emma is going.
+  - Fah on a train abroad · Fah (traveller) & Tom (local) · `Excuse me, does this train go to the airport?` / `No. Get off at the next stop and take the bus` / `How long does it take?` / `About twenty minutes. The bus is cheaper than a taxi` / `Thank you. I will take the bus` — question tests what Fah will take **after** she gets off the train.
+- recycles: taxi, tickets (L3) beside the new singular `ticket`; `stop` (L13) as the noun in `the next stop`; `Can we {verb} {time}` (L5) as `Can we go now`; `{a} is {comparative} than {b}` (L6) with `cheaper`; `How much is {thing}` (L3) with `a ticket` in notes; `waiting` (L11) now has its base `wait`; `next` (L12); `about` (L10) before numbers; `I am {state}` (L1) with `late`; `does` (L7) in `does this train go`.
+
+## Level 15 — Body & Health · ร่างกายและสุขภาพ
+- icon: 🩺
+- subtitle (Thai, ≤ 60 chars): ไม่สบาย ปวดหัว แพ้ยา ไปร้านขายยา — บอกอาการและให้คำแนะนำด้วย should
+- theme: Saying what hurts, what you feel and what someone should do — the pharmacy counter with a foreign customer, and the learner sick in a hotel abroad. `should` and `need to` arrive here because advice is what the situation needs.
+- grammar focus:
+  - `have` + symptom: Thai เป็นไข้ / ปวดหัว use เป็น or the bare verb; English says `I have a fever`, `I have a headache` — `have`, never `am`. `I am sick` is the general state.
+  - `feel` + adjective with nothing in between (`I feel sick`, `I feel better`) — same order as Thai รู้สึก, so the only trap is remembering the subject.
+  - `hurts` vs `hurt`: `My head hurts` (one thing, -s) but `My eyes hurt` (plural, no -s) — the L7 agreement rule on a new verb; `It hurts` when pointing.
+  - `should` (advice, ควร) · `need to` (necessity, จำเป็นต้อง) · `have to` (L11, obligation from outside): all three take the base verb, all three are what Thai ต้อง / ควร do. Negative `should not` composes from L2 `not`.
+  - `allergic to` with L5 `to`; `What is wrong` composes from items; `be careful` uses the L11 base `be`.
+- canDo (Thai):
+  - บอกอาการได้ว่าไม่สบาย เป็นไข้ ปวดหัว ปวดท้อง เจ็บตรงไหน
+  - บอกความรู้สึกด้วย I feel … และถามว่าเป็นอะไรด้วย What is wrong
+  - บอกว่าแพ้อะไร (I am allergic to …) ที่ร้านอาหารหรือร้านขายยา
+  - ให้คำแนะนำลูกค้าต่างชาติด้วย You should … / You need to …
+  - ถามหาร้านขายยา หมอ หรือโรงพยาบาลเมื่ออยู่ต่างประเทศ
+- items (21):
+  - should — ควร (+กริยา) — คำช่วยกริยา — modal
+  - need to — จำเป็นต้อง (+กริยา) — คำช่วยกริยา — modal (phrase; L2 `need` + noun stays separate)
+  - feel — รู้สึก — คำกริยา — core-verb
+  - hurt — เจ็บ / ปวด — คำกริยา — core-verb (`My eyes hurt`, `Does it hurt`)
+  - hurts — เจ็บ / ปวด (he/she/it) — คำกริยา (รูป -s) — 3sg
+  - sick — ป่วย / ไม่สบาย — คำคุณศัพท์ — state (altEn ill)
+  - fever — ไข้ — คำนาม — health (`have a fever`)
+  - headache — ปวดหัว (อาการ) — คำนาม — health (`have a headache`)
+  - head — หัว — คำนาม — body
+  - stomach — ท้อง — คำนาม — body (altEn tummy)
+  - leg — ขา — คำนาม — body
+  - hand — มือ — คำนาม — body
+  - eyes — ตา (ทั้งสองข้าง) — คำนาม (พหูพจน์) — plural (singular `eye` not minted)
+  - allergic — แพ้ (อาหาร ยา) — คำคุณศัพท์ — health (`allergic to`)
+  - medicine — ยา — คำนาม — health (mass noun: `take medicine`)
+  - pharmacy — ร้านขายยา — คำนาม — place (altEn drugstore)
+  - doctor — หมอ — คำนาม — people (`see a doctor`)
+  - hospital — โรงพยาบาล — คำนาม — place
+  - rest — พักผ่อน — คำกริยา — core-verb
+  - wrong — ผิด / เป็นอะไร — คำคุณศัพท์ — state (`What is wrong` = เป็นอะไร; `something wrong` composes at L23)
+  - careful — ระวัง — คำคุณศัพท์ — state (`Be careful` with L11 `be`)
+- patterns (3):
+  - `I feel` → `I feel {state}` → ฉันรู้สึก{state} → state: sick (L15), tired, hungry, sad (L4), bad, hot, cold, better (L6), fine, good, happy, okay (L1) → `feel` + adjective, nothing in between: no `like`, no `is`. `I feel better` is the reply after rest. → I feel sick · I feel better · I feel so tired
+  - `My … hurts` → `My {part} hurts` → ฉันปวด{part} → part: head, stomach, leg, hand (L15) → The body part is the subject, so `hurts` carries -s; Thai makes ฉัน the subject (ฉันปวดหัว). For `eyes` the verb loses the -s: `My eyes hurt` (dialogue). → My head hurts · My stomach hurts · My leg hurts
+  - `You should / I need to` → `{person} {modal} {verb} {thing}` → {person}{modal}{verb}{thing} → person: I, you (L1); modal: should, need to (L15), have to (L11); verb: rest (L15), sleep, go (L5), drink, eat (L2), take (L14), call (L7); thing: water (L2), medicine (L15), home (L5), it (L3), me (L8); `compat`: rest → no object; go → home; take → medicine / it; drink → water; call → me → Extends `I {can/can't} {verb} {thing}` (L7) with the advice modals; all take the base verb. `should` is softer than `need to`; neither needs ควรจะ-style particles. → You should rest · I need to go home · You should take medicine
+- dialogues (2):
+  - Pharmacy counter · Fah (pharmacist) & Tom (customer) · `I feel sick. I have a headache and a fever` / `Are you allergic to this medicine?` / `No` / `Okay. Take this. You should rest and drink water. Don't drink beer` / `Thank you. Is there a hospital near here? I might need a doctor` / `Yes, next to the market` — question tests what Fah tells Tom **not** to do, not what he has.
+  - Sick in a hotel abroad · Bank (guest) & Sarah (reception) · `What is wrong?` / `My stomach hurts. I can't eat` / `You need to see a doctor. There is a hospital near here, behind the market` / `Is it far?` / `No, five minutes. I will call a taxi` / `Thank you` — question tests where the hospital is (behind the market), the foreigner's answer carrying the information.
+- recycles: `I am {state}` (L1) with `sick`; `I {can/can't} {verb}` (L7) extended by the modal frame; `have to` (L11) in the modal pool; `Is there a {place} near here` and `It is {position} the {landmark}` (L13) in both dialogues; `take` (L14) as `take medicine`; `might` (L11); `don't` (L4) for the imperative `Don't drink beer`; `water`, `beer` (L2); `better` (L6) under `feel`; `to` (L5) in `allergic to`.
+
+## Level 16 — Colours & Shopping · สีและการช้อปปิ้ง
+- icon: 🛍️
+- subtitle (Thai, ≤ 60 chars): สีไหน ไซส์ไหน ลองได้ไหม จ่ายบัตรได้ไหม — ขายของและซื้อของเป็นภาษาอังกฤษ
+- theme: The clothes shop and the market from both sides of the counter — the learner as shop staff (`May I help you?`) and as the customer abroad. Colours, sizes, `these / those`, paying `by card`.
+- grammar focus:
+  - `which` vs `what`: Thai อะไร covers both; English uses `which` when choosing from a set you can see (`Which color?`, `Which one do you like?`). `which one` is the pronoun chunk; `which` + noun otherwise.
+  - `these / those` are the plurals of `this / that`, and the verb becomes `are`: `How much are these?` — Thai keeps อันนี้ singular and never changes the verb.
+  - colour before the noun (`a blue shirt`); Thai เสื้อสีฟ้า reverses. `in` + colour for stock (`Do you have this in red?`).
+  - `by` + payment with no article (`pay by card`); `may` = polite permission, the shop-staff register above `can` (`May I help you?`, `May I try this on?`).
+- canDo (Thai):
+  - บอกสีของของและถามว่ามีสีอื่นหรือไซส์อื่นไหม
+  - ถามราคาของหลายชิ้นด้วย How much are these / those
+  - ขอลองใส่และบอกได้ว่าใหญ่ไป เล็กไป พอดี
+  - ถามว่าจ่ายด้วยบัตรได้ไหม หรือบอกว่าต้องจ่ายเงินสด
+  - ต้อนรับลูกค้าต่างชาติด้วย May I help you และถามว่าชอบอันไหน
+- items (22):
+  - which — ไหน / อันไหน (เลือกจากชุดที่เห็น) — คำถาม — question
+  - which one — อันไหน — วลี — question (phrase; sits beside L2 `this one`)
+  - these — เหล่านี้ / พวกนี้ — คำสรรพนาม — determiner
+  - those — เหล่านั้น / พวกนั้น — คำสรรพนาม — determiner
+  - by — โดย / ด้วย (pay by card) — คำบุพบท — prep (`by myself` sense is L30, same id)
+  - may — ขออนุญาต… (May I …) — คำช่วยกริยา — modal
+  - color — สี — คำนาม — noun (altEn colour)
+  - red — แดง — คำคุณศัพท์ — color
+  - blue — น้ำเงิน / ฟ้า — คำคุณศัพท์ — color
+  - green — เขียว — คำคุณศัพท์ — color
+  - black — ดำ — คำคุณศัพท์ — color
+  - white — ขาว — คำคุณศัพท์ — color
+  - buy — ซื้อ — คำกริยา — core-verb (past `bought` is L21)
+  - pay — จ่าย — คำกริยา — core-verb
+  - look — ดู / มอง — คำกริยา — core-verb (`Look!`, `look at` with L7 `at`; `just looking` waits for L28 `just`)
+  - try on — ลองใส่ — วลี — phrasal (phrase; `try it on` splits around the object; base `try` is L19, pp `tried` L11)
+  - size — ไซส์ / ขนาด — คำนาม — noun (`a bigger size` with L6 `bigger`)
+  - shirt — เสื้อ — คำนาม — clothes
+  - shoes — รองเท้า (คู่) — คำนาม (พหูพจน์) — plural (always plural in shops)
+  - card — บัตร (เครดิต/เดบิต) — คำนาม — money
+  - cash — เงินสด — คำนาม — money
+  - money — เงิน — คำนาม — money (mass noun: `I don't have money`)
+- patterns (3):
+  - `Do you have this in` → `Do you have this in {color}` → มีอันนี้สี{color}ไหม → color: red, blue, green, black, white (L16) → The L4 `Do you have …` question with `in` + colour on the end — the stock question in any shop. Answer `Yes, here` / `No, sorry, only black` (`only` is L25; dialogue says `No, sorry. Black`). → Do you have this in blue · Do you have this in black · Do you have this in red
+  - `How much are` → `How much are {plural}` → {plural}ราคาเท่าไหร่ → plural: these, those, shoes (L16), tickets, beers, coffees (L3) → The L3 price question with `are` because the thing is plural; Thai changes nothing. Pulled forward from the hand-off's L25 suggestion because `these / those` land here. → How much are these · How much are those · How much are the shoes
+  - `Which one do you` → `Which one do you {verb}` → คุณ{verb}อันไหน → verb: like, want, need, love (L2/L4), mean (L8) → `Which one` opens, then `do you` + base verb — the L9 wh- machinery with a choice word. Thai อันไหน goes last. Answer `This one` / `The red one` is noted, not patterned (pronoun `one` is a phrase, not a word, until L20 `the one`). → Which one do you like · Which one do you want · Which one do you mean
+- dialogues (2):
+  - Clothes shop, Thai staff · Ploy (shop staff) & Emma (customer) · `May I help you?` / `Yes. Do you have this shirt in blue?` / `Yes. Which size?` / `Small please. Can I try it on?` / `Sure` / `It is nice. How much is it?` / `Five hundred baht. Card or cash?` / `Card please` — question tests how Emma pays, not which colour she chose.
+  - Market, Thai friend minding a stall · Nut (vendor) & Jack (customer) · `How much are these shoes?` / `Three hundred baht. Which one do you want?` / `The black shoes. Can I pay by card?` / `Sorry, cash. The market is cash` / `I don't have cash. Is there an ATM near here?` / `Yes, next to the market` — question tests **why** Jack needs an ATM (no cash and no cards here).
+- recycles: `Do you {verb} {thing}` (L4) and `How much is {thing}` (L3) both extended; `this one` (L2) beside `which one`; `too` (L6) with big / small (`It is too big`); `bigger` (L6) in `a bigger size`; `in` (L7) for colour; `Is there a {place} near here` / `next to` (L13); `I will take` (L14) as `I will take this one` (เอา sense); `baht` and hundreds (L3); `card or cash` with `or` (L8); `I don't have` (L4) with `money`.
+
+## Level 17 — Work & Study · งานและการเรียน
+- icon: 💼
+- subtitle (Thai, ≤ 60 chars): ทำงานอะไร ทำงานที่ไหน มีประชุม ส่งอีเมล — คุยเรื่องงานกับเพื่อนร่วมงานต่างชาติ
+- theme: The office, the school and the language class — introducing your job, saying where you work, having meetings and deadlines, reading and writing email with a foreign boss or teacher. Reading checkpoint 4 sits here.
+- grammar focus:
+  - `What do you do?` = คุณทำงานอะไร: the first `do` is the question helper, the second is the real verb ทำ. The answer needs the article: `I am a teacher` — Thai ฉันเป็นครู has none.
+  - workplace prepositions: `at` + place (`at a hotel`, `at work`, L7 recycled), `in` + city (L7), `for` + company (`I work for a company`, noted), `from home` (`work from home`, composes from L4 `from` + L5 `home`).
+  - `start / finish` + noun (`finish work`, `start lunch`); clock times wait for L24. `early` is the opposite of L14 `late`, both in the L1 `I am …` frame.
+  - 3rd-person -s continues on a new verb: `works` (`My boss works in Chiang Mai`); `works` is its own id, as `likes / speaks / has` were at L7.
+- canDo (Thai):
+  - ถามและตอบว่าทำงานอะไร ทำงานที่ไหน ด้วย What do you do / I work at …
+  - บอกว่ามีประชุม มีงาน มีคำถาม วันนี้ พรุ่งนี้ หรือทีหลัง
+  - ถามว่าเริ่มงาน เลิกงาน หรือพักเที่ยงเมื่อไหร่
+  - ขอให้เพื่อนร่วมงานส่งอีเมล และบอกว่าอ่าน เขียน หรือใช้คอมพิวเตอร์ได้แค่ไหน
+  - แนะนำตัวว่าเป็นนักเรียน ครู หรือพนักงานบริษัท และพูดถึงเจ้านาย
+- items (22):
+  - job — งาน (อาชีพ) — คำนาม — work (countable: `a job`; L7 `work` is the activity)
+  - office — ออฟฟิศ / สำนักงาน — คำนาม — place (takes `an`)
+  - boss — เจ้านาย / หัวหน้า — คำนาม — people
+  - meeting — ประชุม — คำนาม — work (`have a meeting`; never the -ing of `meet` in this course)
+  - company — บริษัท — คำนาม — work
+  - school — โรงเรียน — คำนาม — place
+  - student — นักเรียน / นักศึกษา — คำนาม — people
+  - teacher — ครู — คำนาม — people
+  - start — เริ่ม — คำกริยา — core-verb
+  - finish — เสร็จ / เลิก — คำกริยา — core-verb (`finish work` = เลิกงาน)
+  - use — ใช้ — คำกริยา — core-verb
+  - read — อ่าน — คำกริยา — core-verb (present; past `read` /red/ noted at L21, not minted)
+  - write — เขียน — คำกริยา — core-verb
+  - send — ส่ง — คำกริยา — core-verb (`send me` with L8 `me`)
+  - ask — ถาม — คำกริยา — core-verb (`ask a question`, `ask me`)
+  - email — อีเมล — คำนาม — work (altEn e-mail; mass or count, note covers `an email`)
+  - computer — คอมพิวเตอร์ — คำนาม — noun
+  - early — เช้า / ก่อนเวลา — คำคุณศัพท์ — time (opposite of L14 `late`)
+  - works — ทำงาน (he/she/it) — คำกริยา (รูป -s) — 3sg
+  - lunch — ข้าวเที่ยง / อาหารกลางวัน — คำนาม — food (`have lunch`, no article)
+  - break — พัก (ช่วงพัก) — คำนาม — work (`take a break` with L14 `take`)
+  - question — คำถาม — คำนาม — noun (`I have a question`)
+- patterns (3):
+  - `I work at a` → `I work at a {place}` → ฉันทำงานที่{place} → place: school, company (L17), hotel (L3), restaurant, market (L13), hospital (L15) (office excluded: `an office`, dialogue only) → The L7 `I {verb} in {place}` frame with `at a` for a workplace: `in` is the city, `at` is the building. `I work from home` and `I work for a company` are noted as the two other prepositions. → I work at a hotel · I work at a school · I work at a company
+  - `I have a … (time)` → `I have a {event} {time}` → ฉันมี{event}{time} → event: meeting, job, question, break (L17), day off, holiday, birthday (L12), problem (L9); time: today, tomorrow, tonight, later, now (L5), optional → `have` + `a` + the event; Thai มีประชุม needs no article. The excuse frame beside L11 `I have to work`. → I have a meeting tomorrow · I have a question · I have a day off today
+  - `When do you … (thing)` → `When do you {verb} {thing}` → คุณ{verb}{thing}เมื่อไหร่ → verb: start, finish, use, read, send (L17), have (L2), go (L5); thing: work (L7, noun), lunch (L17), home (L5), it (L3); `compat`: start / finish → work / it; have → lunch; go → home; use / read / send → it → The L9 `When do you {verb}` frame with an object; `What time do you …` (L24) replaces `When` once clock times exist. → When do you finish work · When do you have lunch · When do you start work
+- dialogues (2):
+  - Office, boss and colleague · Nut (colleague) & Mr. Lee (boss) · `Can you send me the email today?` / `Yes. When do you need it?` / `Today. The meeting is tomorrow morning` / `Okay. I will send it now` / `Thank you. Are you busy today?` / `Yes, very. I have a lot of work` — question tests **when the meeting is** (tomorrow morning), distinct from when the email is sent.
+  - Language class, student and teacher · Ploy (student) & Sarah (teacher) · `What do you do?` / `I am a teacher. I teach English at a school in Bangkok. And you?` / `I am a student. I study English, and I work at a hotel` / `Do you use English at work?` / `Yes, a little. I read email in English but I can't write it` — question tests what Ploy **can't** do, not where she works.
+- recycles: `I {verb} in {place}` (L7) and `When do you {verb}` (L9) both extended; `Can you {verb} me please` (L8) as `Can you send me the email`; `busy` (L5), `work`, `study` (L7), `teach` (L8); `a lot of` (L9); `I am a` with the L2 article; `day off`, `holiday` (L12) in the event pool; `late` (L14) against `early`; `have to work` (L11); `and you` (L10); `a little` (L8).
+
+## Level 18 — Home & Hobbies · บ้านและงานอดิเรก
+- icon: 🏠
+- subtitle (Thai, ≤ 60 chars): ทำอะไรบ่อยแค่ไหน ว่ายน้ำเป็นไหม ไม่เคยลอง — บ้าน ห้อง และงานอดิเรก
+- theme: Showing someone your condo, saying what you do on weekends and how often, asking about skills — the small talk that turns a customer into a friend. The frequency adverbs land here as a set.
+- grammar focus:
+  - frequency adverbs go **before** the main verb: `I always cook`, `I never play football` — Thai puts เสมอ / บ่อยๆ / บางครั้ง at the end. After `am` they go after: `I am always late` (noted, not patterned).
+  - `never` is already negative: `I never cook`, no `don't`; `I have never tried …` is the negative answer to L11 `Have you ever …`, with the same participles.
+  - `every` + singular noun with no -s: `every day`, `every Sunday`, `every week` — Thai ทุกวัน, same order, so only the missing -s is new.
+  - `can` covers Thai เป็น (learned skill) as well as ได้: `Can you swim?` / `Can you cook?` — the L7 frame turned into a question.
+  - `house` is the building, `home` (L5) is where you live and takes no preposition (`go home`); `condo` is the Thai-English norm.
+- canDo (Thai):
+  - บอกได้ว่าทำอะไรบ่อยแค่ไหน ด้วย always / usually / often / sometimes / never
+  - พูดถึงงานอดิเรก เล่นฟุตบอล ว่ายน้ำ ทำอาหาร ดูทีวี ร้องเพลง
+  - ถามและตอบว่าทำ…เป็นไหม ด้วย Can you swim / cook / drive
+  - บอกว่าไม่เคยทำหรือไม่เคยลองอะไร ด้วย I have never …
+  - พาชมบ้านหรือคอนโด และบอกชื่อห้องต่างๆ ได้
+- items (22):
+  - every — ทุก (every day) — คำวิเศษณ์ — determiner (`every day` composes with L12 `day`)
+  - never — ไม่เคย — คำวิเศษณ์ — frequency
+  - always — เสมอ / ตลอด — คำวิเศษณ์ — frequency
+  - usually — ปกติ / มักจะ — คำวิเศษณ์ — frequency
+  - often — บ่อย — คำวิเศษณ์ — frequency (note: the t is usually silent)
+  - sometimes — บางครั้ง — คำวิเศษณ์ — frequency
+  - play — เล่น — คำกริยา — core-verb (`play football`, `play games`; no article)
+  - listen — ฟัง — คำกริยา — core-verb (`listen to music` with L5 `to`)
+  - stay — พัก / อยู่ (ค้าง) — คำกริยา — core-verb (`stay home`, `stay at a hotel`)
+  - run — วิ่ง — คำกริยา — core-verb
+  - cook — ทำอาหาร — คำกริยา — core-verb
+  - swim — ว่ายน้ำ — คำกริยา — core-verb (-ing `swimming` is L20)
+  - sing — ร้องเพลง — คำกริยา — core-verb
+  - room — ห้อง — คำนาม — home
+  - house — บ้าน (ตัวอาคาร) — คำนาม — home (contrast L5 `home`)
+  - kitchen — ห้องครัว — คำนาม — home
+  - bedroom — ห้องนอน — คำนาม — home
+  - condo — คอนโด — คำนาม — home (altEn apartment, condominium)
+  - football — ฟุตบอล — คำนาม — hobby (altEn soccer)
+  - games — เกม (หลายเกม) — คำนาม (พหูพจน์) — plural (`play games`; singular not minted)
+  - TV — ทีวี — คำนาม — hobby (`watch TV`, no article; altEn television)
+  - lives — อาศัยอยู่ (he/she/it) — คำกริยา (รูป -s) — 3sg
+- patterns (3):
+  - `I always / never …` → `I {frequency} {verb} {thing}` → ฉัน{verb}{thing}{frequency} → frequency: always, usually, often, sometimes, never (L18); verb: cook, swim, run, play, stay (L18), eat, drink (L2), watch, work, study (L7), sleep (L5); thing: football, games, TV (L18), rice, chicken, coffee, beer, tea (L2), durian (L11), home (L5), optional; `compat`: play → football / games; watch → TV; stay → home; eat → rice / chicken / durian; drink → coffee / beer / tea → The adverb sits between `I` and the verb — the reverse of Thai, where บ่อย / เสมอ close the sentence. `never` needs no `don't`. → I usually play football · I never drink beer · I always stay home
+  - `Can you …?` → `Can you {verb} {thing}` → คุณ{verb}{thing}เป็นไหม → verb: swim, cook, sing, play (L18), drive (L14), speak (L7); thing: football, games (L18), English, Thai (L7/L1), optional; `compat`: play → football / games; speak → English / Thai; swim / cook / sing / drive → no object → The L7 `I can …` frame flipped into a question; one `can` for both Thai ได้ and เป็น. Answer `Yes, I can` / `No, I can't` / `A little`. → Can you swim · Can you cook · Can you play football
+  - `I have never …` → `I have never {pp} {thing}` → ฉันไม่เคย{pp}{thing} → pp: tried, eaten, seen, been to (L11); thing: durian (L11), chicken, rice (L2), it, this (L2/L3), that (L6), Bangkok, Thailand (L4), Chiang Mai (L7); `compat` as L11 → The statement form of `Have you ever …`: `have` + `never` + participle, where Thai ไม่เคย + plain verb. Pairs with the L11 answer `No, never`. → I have never tried durian · I have never been to Chiang Mai · I have never seen it
+- dialogues (2):
+  - Weekend small talk · Nam & Jack · `What do you do on the weekend?` / `I usually play football. And you?` / `I never play football. I sometimes swim, and I always cook on Sunday` / `Can you cook Thai food?` / `Yes! We can eat at my house on Sunday` / `Sounds great` — question tests what Nam does **every Sunday** (cook), not what Jack does.
+  - Showing the condo · Tee (host) & Anna (guest) · `This is my condo. This is the kitchen, and that is the bedroom` / `Nice! Do you cook?` / `Never. I always eat at the market. Do you cook?` / `Sometimes, but I have never tried Thai food at home` / `Really? We can go to the market tonight` / `Sounds fun` — question tests who cooks and how often (Anna sometimes, Tee never).
+- recycles: `Have you ever {pp} {thing}` (L11) answered in the negative; `I {can/can't} {verb} {thing}` (L7) as a question; `What do you do on the weekend` composes from L4 + L12; `watch` (L7) with `TV`; `on Sunday` (L12); `home` (L5) against `house`; `at the market` (L13); `Sounds {adj}` (L10); `drive` (L14) in the skill pool; `every day` from L18 + L12; `lives` extends the L7 -s set (`My sister lives in a condo`).
+
+## Level 19 — Food Talk with Foreigners · อธิบายอาหารไทย
+- icon: 🍲
+- subtitle (Thai, ≤ 60 chars): ผัดไทยทำจากอะไร เผ็ดไปไหม รับอีกจานไหม — อธิบายอาหารไทยให้ชาวต่างชาติ
+- theme: Explaining Thai dishes to a foreign guest or customer — what is in it, how it tastes, offering more, handling allergies and vegetarians. `would`, `another` and `enough` arrive because the table talk needs them.
+- grammar focus:
+  - `Would you like …?` is the polite offer (Thai รับ…ไหม / เอา…ไหม); `would` softens `want` the way `I'd like` (L2) softened `I want`. `Would you like to {verb}` is noted; the pattern stays with nouns.
+  - `is made with` + ingredients: `made` is the participle of `make`, the same form as the past tense that L21 will recycle. Thai ทำจาก / ใส่ needs no `is`.
+  - `too` goes **before** the adjective, `enough` goes **after**: `too spicy` but `spicy enough` — Thai puts เกินไป and พอ both after. `That is enough` = พอแล้ว.
+  - `another` = one more of the same, singular, with the article built in (`another beer`, never `a another`); `more` (L2) is for mass nouns (`more rice`).
+  - mass vs count on the plate: `rice`, `pork`, `fish`, `chili` go bare; `an egg`, `a dish`, `noodles` plural.
+- canDo (Thai):
+  - อธิบายอาหารไทยให้ชาวต่างชาติว่าทำจากอะไรและรสชาติเป็นอย่างไร
+  - เสนออาหารหรือเครื่องดื่มอย่างสุภาพด้วย Would you like …
+  - บอกว่าเผ็ดไป หวานไป หรือพอแล้ว ด้วย too และ enough
+  - ขอเมนู สั่งอาหาร และขอเพิ่มอีกจานอีกแก้วด้วย another
+  - บอกว่ากินมังสวิรัติ แพ้กุ้ง หรือไม่ใส่พริก ได้ทั้งฝั่งคนขายและคนซื้อ
+- items (22):
+  - would — จะ (รูปสุภาพ: Would you like …) — คำช่วยกริยา — modal (altEn 'd; pairs with L2 `I'd like`)
+  - another — อีกอัน / อีกหนึ่ง — คำวิเศษณ์ — determiner (`another beer please`; pronoun use `another` alone noted)
+  - enough — พอ — คำวิเศษณ์ — degree (after the adjective; `That is enough`)
+  - make — ทำ (อาหาร) / สร้าง — คำกริยา — core-verb (`cook` L18 is the kitchen act; `make` the dish)
+  - made — ทำ (รูป participle: is made with …) — คำกริยา (รูป pp) — pp (also the past tense, recycled L21)
+  - bring — เอามา / นำมา — คำกริยา — core-verb (`bring me the menu` with L8 `me`)
+  - order — สั่ง (อาหาร) — คำกริยา — core-verb (`Can I order` with L3 `can`)
+  - try — ลอง — คำกริยา — core-verb (base of L11 `tried`; `try on` L16 is the clothes sense)
+  - delicious — อร่อย — คำคุณศัพท์ — food-adj (altEn tasty, yummy)
+  - sweet — หวาน — คำคุณศัพท์ — food-adj
+  - sour — เปรี้ยว — คำคุณศัพท์ — food-adj
+  - salty — เค็ม — คำคุณศัพท์ — food-adj
+  - vegetarian — มังสวิรัติ / กินเจ — คำคุณศัพท์ — food (`I am vegetarian`; `vegan` noted as stricter)
+  - noodles — เส้น / ก๋วยเตี๋ยว — คำนาม (พหูพจน์) — plural (always plural on the menu)
+  - shrimp — กุ้ง — คำนาม — food (same form for plural; altEn prawn)
+  - pork — หมู (เนื้อ) — คำนาม — food
+  - fish — ปลา — คำนาม — food
+  - egg — ไข่ — คำนาม — food (`an egg`, `fried egg` noted)
+  - chili — พริก — คำนาม — food (altEn chilli; `no chili` = ไม่ใส่พริก)
+  - pad thai — ผัดไทย — คำนาม — dish (loan; capitalisation free)
+  - tom yum — ต้มยำ — คำนาม — dish (loan)
+  - menu — เมนู — คำนาม — food (`the menu please`)
+- patterns (3):
+  - `Would you like` → `Would you like {thing}` → รับ{thing}ไหม → thing: pad thai, tom yum, noodles, fish (L19), rice, water, coffee, tea, beer, this one (L2), another, more (L19/L2) → The offer form of L4 `Do you want …`: `would` makes it polite enough for a customer, and `another` / `more` fit the slot alone (`Would you like another`). Reply `Yes please` / `No thank you` / `I'd like …`. → Would you like pad thai · Would you like another · Would you like more rice
+  - `… is made with` → `{dish} is made with {ingredient}` → {dish}ทำจาก{ingredient} → dish: pad thai, tom yum (L19), it, this, this one (L2/L3), that (L6); ingredient: noodles, shrimp, pork, fish, egg, chili (L19), rice, chicken, sugar (L2) → `is` + `made` + `with`: the participle after `is` describes the dish; Thai ทำจาก has no be-verb. List ingredients with `and` (L2). → Pad thai is made with noodles · Tom yum is made with shrimp · It is made with egg
+  - `It is too … for me` → `It is too {taste} for me` → มัน{taste}เกินไปสำหรับฉัน → taste: spicy (L2), sweet, sour, salty (L19), hot, cold, big, expensive (L6) → The L6 `It is {degree} {adj}` frame fixed on `too` and extended with `for me` (L9 `for` + L8 `me`), the polite way to send a dish back. `enough` is its mirror image and goes after the adjective (`not spicy enough`, dialogue). → It is too spicy for me · It is too sweet for me · It is too salty for me
+- dialogues (2):
+  - Restaurant, Thai waitress explains the menu · Ploy (waitress) & Tom (customer) · `Would you like pad thai?` / `What is pad thai?` / `It is made with noodles, egg and shrimp. A little sweet` / `Is it spicy?` / `A little. Do you want chili?` / `No chili please. And I am allergic to shrimp` / `Okay. Pad thai with chicken, no chili` — question tests what replaces the shrimp in Tom's order (chicken), not whether he wants chili.
+  - Home dinner, Nut cooks tom yum · Nut (host) & Sarah (guest) · `Have you ever tried tom yum?` / `No. What is it?` / `It is made with shrimp, chili and a little sugar. Try it` / `It is too spicy for me, sorry` / `No problem. Would you like another dish? I can make it not spicy` / `Yes please. And no sugar, I don't like sweet` — question tests what Sarah wants left **out** of the second dish (chili and sugar).
+- recycles: `I'd like` (L2) answered by `Would you like`; `Can I have {thing} please` (L2) with `another beer` / `the menu`; `Can you {verb} me please` (L8) with `bring`; `It is {degree} {adj}` (L6) fixed on `too`; `Have you ever tried` (L11) with the new dishes; `allergic to` (L15); `a little` (L8); `spicy`, `sugar`, `chicken`, `rice` (L2); `with`, `me` (L8); `cook` (L18) against `make`; `no problem` (L8); `Can I order` from L3 `can`.
+
+## Level 20 — Connect It · เชื่อมประโยค
+- icon: 🔗
+- subtitle (Thai, ≤ 60 chars): ก่อนอื่น แล้วก็ หลังจากนั้น — ไปกันเถอะ ทำ…ดีไหม และ so กับ because
+- theme: Stringing sentences into plans and reasons — ordering a day with `first / then / after that`, proposing with `Let's` and `How about -ing`, linking cause and result with `so` and `because`. The connective kit before the past tense arrives.
+- grammar focus:
+  - `let's` = `let us`: a suggestion that includes the speaker, Thai …กันเถอะ; `us` is the object form of `we` (`Come with us`, `Tell us`).
+  - `so` (result) vs `because` (reason): `I am tired, so I go home` / `I go home because I am tired` — the two sentences point opposite ways; Thai ก็เลย / เพราะว่า do the same. Degree `so` (L4) is a different id (`so-conj` here).
+  - `How about` + verb-ing (never the base verb): Thai …ดีไหม after a plain verb. `What about` (L10) takes nouns; this course keeps `How about` for -ing.
+  - `first / then / after that` open a sentence; `before / after` take a noun (`before lunch`, `after work`) or -ing (`after eating`). No change to the verb, no tense.
+  - `that` as a conjunction keeps its L6 id: `the one that is cheaper`, `I hope that …` (optional, usually dropped in speech). `also` goes before the verb, like the L18 frequency adverbs.
+- canDo (Thai):
+  - ชวนทำอะไรด้วยกันด้วย Let's … และ How about …ing
+  - เล่าลำดับแผนหรือเหตุการณ์ด้วย first / then / after that
+  - บอกเหตุและผลด้วย so และ because ได้ถูกทิศทาง
+  - บอกว่าจำได้ ลืม หวัง หรือไม่ได้ยิน และถามว่าพร้อมไหม
+  - ชวนคนอื่นมาร่วมด้วย join us / together และใช้ before / after กับงานหรือมื้ออาหาร
+- items (22):
+  - so — ดังนั้น / ก็เลย — คำสันธาน — glue (id `so-conj`; degree `so` is the L4 id)
+  - let's — …กันเถอะ — วลี — modal (phrase; altEn let us)
+  - us — เรา / พวกเรา (กรรม) — คำสรรพนาม — pronoun
+  - also — ด้วย / เช่นกัน — คำวิเศษณ์ — adverb (before the verb; `too` L6 goes at the end)
+  - before — ก่อน — คำบุพบท — prep (also conjunction, same id, noted)
+  - after — หลัง / หลังจาก — คำบุพบท — prep (also conjunction, same id)
+  - after that — หลังจากนั้น — วลี — glue (phrase; composes but is taught as the sequencer chunk)
+  - the one — อันที่ / คนที่ — วลี — pronoun (phrase; `the one that is cheaper`; pronoun `one` alone is never minted — `this one` L2, `which one` L16, `the one` L20)
+  - remember — จำได้ — คำกริยา — core-verb
+  - forget — ลืม — คำกริยา — core-verb (`Don't forget` with L4 `don't`)
+  - hope — หวัง — คำกริยา — core-verb (`I hope so` noted; `so` there is a pro-form, no new id)
+  - hear — ได้ยิน — คำกริยา — core-verb (`I can't hear you` on the phone)
+  - together — ด้วยกัน — คำวิเศษณ์ — adverb
+  - join — ร่วม / ไปด้วย — คำกริยา — core-verb (`Can I join?`, `join us`)
+  - ready — พร้อม — คำคุณศัพท์ — state (`Are you ready` in the L1 frame)
+  - back — กลับ (come back / go back) — คำวิเศษณ์ — adverb (`call you back`; body sense not taught)
+  - idea — ความคิด / ไอเดีย — คำนาม — noun (`Good idea` is the reply to `Let's`)
+  - plan — แผน — คำนาม — noun (`What is the plan` composes)
+  - trying — กำลังลอง — คำกริยา (รูป -ing) — ing
+  - talking — กำลังคุย — คำกริยา (รูป -ing) — ing
+  - cooking — กำลังทำอาหาร — คำกริยา (รูป -ing) — ing
+  - swimming — กำลังว่ายน้ำ — คำกริยา (รูป -ing) — ing (note the doubled m)
+- patterns (3):
+  - `Let's …` → `Let's {verb} {thing}` → {verb}{thing}กันเถอะ → verb: go, eat, meet (L5), try, order, make (L19), cook, swim, play (L18), watch (L7), talk (L8), walk (L13); thing: pad thai, tom yum (L19), football, games, TV (L18), home (L5), together (L20), later (L5), it (L3), optional; `compat`: go → home / together / back (L20); eat → pad thai / tom yum / together; play → football / games; watch → TV; talk → later; swim / walk → together → `Let's` + base verb, no `to`, no `we`: Thai …กันเถอะ sits at the end, English's chunk sits at the front. Reply `Good idea` / `Sounds good` / `Sorry, I can't`. → Let's eat pad thai · Let's go home · Let's swim together
+  - `How about -ing` → `How about {verb-ing} {thing}` → {verb}{thing}ดีไหม → verb-ing: eating, going, waiting (L11), trying, cooking, swimming, talking (L20); thing: pad thai, tom yum, this one (L19/L2), home, later, tomorrow, tonight (L5), together (L20), optional; `compat`: eating / trying / cooking → pad thai / tom yum / this one; going → home / together / tomorrow; swimming → together / tomorrow; waiting / talking → later → The L10 `What about {thing}` frame with an action instead of a noun: the verb must wear -ing. Thai puts a plain verb before ดีไหม. → How about eating tom yum · How about going tomorrow · How about swimming together
+  - `First / Then / After that we …` → `{sequencer} we {verb} {thing}` → {sequencer}เรา{verb}{thing} → sequencer: first (L12), then (L11), after that (L20); verb: go, eat, meet (L5), swim, cook, play (L18), watch (L7), walk (L13), take (L14); thing: as `Let's` plus the BTS is excluded (`the`); `compat` as above → Three sequencers, one shape: the connector first, then a full clause with its subject — Thai drops เรา in the second and third sentence, English never does. `before / after` + noun (`after lunch`) are the compact version. → First we eat pad thai · Then we swim · After that we go home
+- dialogues (2):
+  - Planning a day out · Fah & Emma · `What is the plan for tomorrow?` / `First we take the boat to the market. Then we eat, and after that we swim` / `How about swimming first? It is so hot in the afternoon` / `Good idea. So first we swim, then the market` / `Can Tom join us?` / `Sure. Let's meet at the hotel tomorrow morning. Don't forget!` — question tests the **final order** of the plan (swim, then market, then eat), not who joins.
+  - Last drink, early meeting · Bank & Anna · `It is late, so let's go home` / `Already? How about talking a little more?` / `Sorry, I have to work tomorrow. I have a meeting in the morning` / `Okay. Let's take a taxi together, I also live near the market` / `Good idea. I hope the traffic is okay` / `Me too. Are you ready?` — question tests **why** Bank wants to leave (the morning meeting), carried by `so` and `have to`.
+- recycles: `What about {thing}` (L10) → `How about -ing`; `Can we {verb} {time}` (L5) now beside `Let's`; the L11 -ing set reused; `It is {adj}` (L6) with `late` (L14) in `It is late, so …`; `have to` (L11) and `meeting` (L17) as the reason; `Sounds good`, `me too` (L10); `near the market` (L13); `boat`, `taxi`, `traffic` (L14); `first` (L12) and `then` (L11) as sequencers; `don't` (L4) for `Don't forget`; `Are you {state}` (L1) with `ready`.
+
+## Level 21 — Yesterday & Stories · เมื่อวานและเรื่องเล่า
+- icon: 📖
+- subtitle (Thai, ≤ 60 chars): เมื่อวานไปไหน กินอะไร เกิดอะไรขึ้น — กริยาช่อง 2 และ Did you …?
+- theme: The past tense as a block — telling what you did on the weekend, what happened, how the trip was. Thai marks time with a word and keeps the verb; English changes the verb, so this level is deliberately larger (26 ids) and paced by the daily budget like L3. Reading checkpoint 5 sits here.
+- grammar focus:
+  - Thai says เมื่อวานไป; English says `Yesterday I went` — the time word is optional, the verb change is not. Regular past is `-ed` with three sounds: `worked` /t/, `stayed` /d/, `wanted` /ɪd/. Irregular pasts are their own ids; the eleven most frequent are here.
+  - `did` carries the past in questions and negatives, and the main verb goes back to base: `Did you go` (never `Did you went`), `I didn't go`. The L4 do-support rule with one time change.
+  - `was / were` are the past of am / is / are: `was` for I, he, she, it; `were` for you, we, they. `How was …?` is the universal follow-up; `had` is the past of `have` and `has`.
+  - time: `yesterday`, `last night / last week` (L12 `last`, no preposition), length of time + `ago` (`two days ago`) — `ago` goes **after** the number, where Thai ที่แล้ว also follows.
+- canDo (Thai):
+  - เล่าว่าเมื่อวานหรือสุดสัปดาห์ที่แล้วทำอะไร ไปไหน กินอะไร ซื้ออะไร
+  - ถามว่าอีกฝ่ายทำ…หรือเปล่าด้วย Did you … และตอบ Yes, I did / No, I didn't
+  - ถามว่าเป็นยังไงบ้างด้วย How was … และตอบด้วย It was …
+  - ถามว่าเกิดอะไรขึ้น (What happened?) และเล่าเหตุการณ์สั้นๆ ตามลำดับ
+  - บอกเวลาในอดีตด้วย yesterday, last night, two days ago
+- items (26):
+  - was — เป็น / อยู่ (อดีต: I, he, she, it) — คำกริยา (อดีต) — past
+  - were — เป็น / อยู่ (อดีต: you, we, they) — คำกริยา (อดีต) — past
+  - did — ทำ (อดีต) / ตัวช่วยคำถามอดีต — คำช่วยกริยา — past
+  - didn't — ไม่ได้ (ปฏิเสธอดีต) — คำช่วยกริยา — past (phrase; altEn did not)
+  - had — มี (อดีต) — คำกริยา (อดีต) — past
+  - yesterday — เมื่อวาน — คำวิเศษณ์ — time
+  - ago — ที่แล้ว / ก่อน (two days ago) — คำวิเศษณ์ — time
+  - days — วัน (หลายวัน) — คำนาม (พหูพจน์) — plural (`two days ago`; singular `day` L12)
+  - went — ไป (อดีต) — คำกริยา (อดีต) — past
+  - came — มา (อดีต) — คำกริยา (อดีต) — past
+  - saw — เห็น / เจอ (อดีต) — คำกริยา (อดีต) — past
+  - ate — กิน (อดีต) — คำกริยา (อดีต) — past
+  - got — ได้ / ได้รับ / ไปถึง (อดีต) — คำกริยา (อดีต) — past
+  - took — นั่ง (รถ) / เอา (อดีต) — คำกริยา (อดีต) — past
+  - said — พูด (อดีต) — คำกริยา (อดีต) — past (note: rhymes with `red`)
+  - told — บอก (อดีต) — คำกริยา (อดีต) — past (`told me` with L8 `me`)
+  - bought — ซื้อ (อดีต) — คำกริยา (อดีต) — past
+  - thought — คิด (อดีต) — คำกริยา (อดีต) — past (`I thought so` noted)
+  - knew — รู้ (อดีต) — คำกริยา (อดีต) — past (silent k, L7 phonics)
+  - happened — เกิดขึ้น (อดีต) — คำกริยา (อดีต) — past (`What happened` composes; base `happen` not minted)
+  - worked — ทำงาน (อดีต, -ed อ่าน /t/) — คำกริยา (อดีต) — past
+  - stayed — พัก / อยู่ (อดีต, -ed อ่าน /d/) — คำกริยา (อดีต) — past
+  - wanted — อยาก (อดีต, -ed อ่าน /ɪd/) — คำกริยา (อดีต) — past
+  - story — เรื่อง / เรื่องเล่า — คำนาม — noun (`a long story` with L14 `long`)
+  - trip — ทริป / การเดินทาง — คำนาม — noun (`How was your trip`)
+  - party — ปาร์ตี้ / งานเลี้ยง — คำนาม — event
+- patterns (3):
+  - `Did you …` → `Did you {verb} {thing} {time}` → คุณ{verb}{thing}{time}หรือเปล่า → verb: go, eat, see, sleep (L5/L2), buy (L16), take (L14), like, have (L4/L2), work, watch (L7), try (L19), stay (L18); thing: it, this (L2/L3), that (L6), pad thai, tom yum (L19), durian (L11), home (L5), TV (L18), optional; time: yesterday (L21), today (L5), optional; `compat`: go / stay → home; eat / try → pad thai / tom yum / durian; buy → it / this; see → it / that; watch → TV → The L4 `Do you …` question moved into the past: only `do` changes, the verb stays base. Answer `Yes, I did` / `No, I didn't` / `Not yet`. → Did you eat pad thai yesterday · Did you go home · Did you buy it
+  - `I went / ate / bought …` → `I {past} {thing} {time}` → ฉัน{past}{thing}{time} → past: went, came, ate, saw, got, took, bought, worked, stayed (L21), made (L19); thing: home (L5), pad thai, tom yum (L19), durian (L11), it, this (L2/L3), that (L6), optional; time: yesterday (L21), today (L5), optional; `compat`: went / came / stayed → home; ate / made → pad thai / tom yum / durian; saw / got / bought / took → it / this / that → Statement form: the verb carries the past on its own, with no `did`. Thai keeps กิน and adds เมื่อวาน; English changes กิน to `ate` and may drop the time word. → I went home yesterday · I ate pad thai · I bought it yesterday
+  - `It was …` → `It was {degree} {adj}` → มัน{adj}{degree} (ในอดีต) → degree: very, so (L4), too (L6), optional; adj: good, okay (L1), great, fun, cool (L10), bad, expensive, cheap, beautiful, hot, cold, easy, difficult (L6), spicy (L2), delicious (L19), long, late (L14) → The L6 `It is {degree} {adj}` frame with `was`: the only change for the past is the be-verb. Reply to `How was the trip / the party / the food`. → It was so good · It was too expensive · It was very long
+- dialogues (2):
+  - Monday morning at work · Nam & Tom · `How was your weekend?` / `Great. I went to Chiang Mai with friends. We ate a lot, and I bought a shirt. And you?` / `I stayed home. I was sick` / `Really? Are you okay now?` / `Yes, I feel better. What did you eat in Chiang Mai?` / `Noodles, every day. It was so good` — question tests **why** Nam stayed home (she was sick), not where Tom went.
+  - Lost phone at hotel reception · Bank (reception) & Sarah (guest) · `What happened?` / `I can't find my phone. I had it yesterday` / `Where did you go yesterday?` / `I took a taxi to the market, then I ate at a restaurant near the hotel` / `Did you call the restaurant?` / `Not yet` / `Okay, I will call the restaurant now` — question tests where Sarah went **last** (the restaurant), the place the phone most likely is.
+- recycles: `Do you {verb} {thing}` (L4) → `Did you`; `It is {degree} {adj}` (L6) → `It was`; `made` (L19) joins the past pool; `last` (L12) in `last night / last week`; `years` (L9) and `days` with `ago`; `find` (L13), `feel better` (L15), `weekend` (L12); `take a taxi` (L14) → `took`; `with friends` (L8/L9); `not yet` (L5) answering `Did you`; `then` (L11) and `after that` (L20) to sequence the story; `lost` (L13) re-read as the past of lose in notes; `every day` (L18).

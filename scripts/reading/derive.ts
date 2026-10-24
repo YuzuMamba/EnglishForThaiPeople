@@ -82,14 +82,23 @@ export interface Spelling {
   has: (part: string) => boolean
 }
 
-export function analyseSpelling(word: string): Spelling {
+/**
+ * Spelling cues for one word. `clusterEnding` is true when the last syllable
+ * closes with two or more consonants — then a final -ed / -es is a silent
+ * ending stuck onto a closed stem (finished, noticed, minutes) rather than a
+ * syllable of its own (wanted, hundred, places), and its e does not count.
+ */
+export function analyseSpelling(word: string, clusterEnding = false): Spelling {
   const letters = word.toLowerCase().replace(/[^a-z]/g, '')
+  // A syllabic -le (apple, apples, settled) has no vowel letter of its own: not an e-spelled syllable.
+  // (-lled is a stem's e + -ed: travelled, cancelled.)
+  const syllabicLe = /[^aeiouyl]le[sd]?$/.test(letters)
   let s = letters
+  if (clusterEnding && s.endsWith('ed')) s = s.slice(0, -2)
+  else if (clusterEnding && s.endsWith('es')) s = s.slice(0, -1)
   // A silent final e (consonant + e, with a vowel letter before it) is not the last syllable's vowel.
   if (/[^aeiouy]e$/.test(s) && /[aeiouy]/.test(s.slice(0, -1))) s = s.slice(0, -1)
   const lastVowel = /([aeiouy])[^aeiouy]+$/.exec(s)?.[1]
-  // A syllabic -le (apple, apples, settled) has no vowel letter of its own: not an e-spelled syllable.
-  const syllabicLe = /[^aeiouy]le[sd]?$/.test(letters)
   return {
     letters,
     finalE: !word.includes("'") && !syllabicLe && lastVowel === 'e',
@@ -302,7 +311,7 @@ function vowelTemplate(s: ThaiSyl, i: number, all: ThaiSyl[], sp: Spelling): Pic
   if (s.coda[0] === 'R') return pick(forms.r ?? forms.closed, false, true)
 
   // A reduced last syllable whose spelling has e: ticket ทิก-เก็ต, places เพล-เซส, level เล-เวล.
-  if (isFinal && sp.finalE && s.stress !== 1 && (s.nucleus === 'AH' || s.nucleus === 'IH' || s.nucleus === 'EH')) {
+  if (isFinal && sp.finalE && s.stress === 0 && (s.nucleus === 'AH' || s.nucleus === 'IH' || s.nucleus === 'EH')) {
     return pick(SPELLED_E_PLAIN_CODAS.has(s.coda[0]) ? SPELLED_E_PLAIN : SPELLED_E_SHORT, glide)
   }
   if (s.nucleus === 'AH' && s.stress === 0) {
@@ -352,8 +361,8 @@ function renderSyllable(s: ThaiSyl, i: number, all: ThaiSyl[], sp: Spelling): st
 
 /** Thai reading of a phone list: syllables joined with hyphens. `spelling` enables the spelling-sensitive forms. */
 export function readingOf(phones: string[], spelling = ''): string {
-  const sp = analyseSpelling(spelling)
   const syls = mergeForThai(syllabify(phones))
+  const sp = analyseSpelling(spelling, syls[syls.length - 1].coda.length >= 2)
   applyExPrefix(syls, sp)
   applyX(syls, sp)
   return syls.map((s, i) => renderSyllable(s, i, syls, sp)).join('-')
