@@ -19,7 +19,7 @@
   - get — ไป(ถึง) / ได้รับ — คำกริยา — core-verb (`get to` = ไปถึง; sense "become" is L35)
   - turn — เลี้ยว — คำกริยา — core-verb
   - left — ซ้าย — คำวิเศษณ์ — direction
-  - right — ขวา — คำวิเศษณ์ — direction (id `right-side`; the L10 id `right` is ถูกต้อง — a different sense, kept apart)
+  - right — ขวา — คำวิเศษณ์ — direction (id `right-side`; the L10 id `right` is ถูกต้อง — a different sense, kept apart) — ⚠ already taught at L10: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
   - straight — ตรงไป — คำวิเศษณ์ — direction (`go straight` composes)
   - stop — หยุด / จอด — คำกริยา — core-verb (`stop here please` to a driver; L14 recycles for bus stops)
   - near — ใกล้ — คำบุพบท — prep (adjective use `It is near` noted, same id)
@@ -348,7 +348,7 @@
   - บอกว่าจำได้ ลืม หวัง หรือไม่ได้ยิน และถามว่าพร้อมไหม
   - ชวนคนอื่นมาร่วมด้วย join us / together และใช้ before / after กับงานหรือมื้ออาหาร
 - items (22):
-  - so — ดังนั้น / ก็เลย — คำสันธาน — glue (id `so-conj`; degree `so` is the L4 id)
+  - so — ดังนั้น / ก็เลย — คำสันธาน — glue (id `so-conj`; degree `so` is the L4 id) — ⚠ already taught at L4: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
   - let's — …กันเถอะ — วลี — modal (phrase; altEn let us)
   - us — เรา / พวกเรา (กรรม) — คำสรรพนาม — pronoun
   - also — ด้วย / เช่นกัน — คำวิเศษณ์ — adverb (before the verb; `too` L6 goes at the end)
@@ -553,7 +553,7 @@
   - February — กุมภาพันธ์ — คำนาม — month (note: first r often silent)
   - March — มีนาคม — คำนาม — month
   - April — เมษายน — คำนาม — month
-  - May — พฤษภาคม — คำนาม — month (id `may-month`; the modal `may` is L16)
+  - May — พฤษภาคม — คำนาม — month (id `may-month`; the modal `may` is L16) — ⚠ already taught at L16: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
   - June — มิถุนายน — คำนาม — month
   - July — กรกฎาคม — คำนาม — month (stress on -ly)
   - August — สิงหาคม — คำนาม — month

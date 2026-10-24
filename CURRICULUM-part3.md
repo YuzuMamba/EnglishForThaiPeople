@@ -1,1 +1,520 @@
 # ChaiEnglish — Curriculum plan, part 3 (levels 25–35). Continues `CURRICULUM.md` (header rules, Global allocation, Fixed cast, L1–12) and `CURRICULUM-part2.md` (L13–24); every block below has the shape of Level 12, ids from L1–24 are reused never re-minted, and each allocation-table form is taught at the level in its row.
+
+## Level 25 — How Much, How Many · เท่าไหร่ กี่อัน
+- icon: 🧺
+- subtitle (Thai, ≤ 60 chars): นับ ชั่ง เทียบราคา — มาก น้อย ทั้งคู่ อันละ เหมือนกัน ต่างกัน
+- theme: Quantities at the market and at the table: the price of plurals, asking for a little more or less, `each / both / none / only / most`, and saying two things are the same or different. The level where Thai มาก / น้อย / ทั้งคู่ / อันละ get their English counterparts.
+- grammar focus:
+  - `much` vs `many` (L9): Thai มาก / เยอะ is one word; English splits by countability — `much water`, `much time` (mass, mostly in questions and negatives), `many eggs` (count). `a lot of` (L9 `a lot` + `of`) fits both and is the safe spoken default.
+  - `few / little / less`: `a few eggs` (นับได้) vs `a little sugar` (นับไม่ได้; `a little` is the L8 phrase). Without `a`, `few / little` mean "not enough". `less` is the comparative of `little` (`less ice`); `fewer` is the formal count partner, but spoken English says `less` for both and the course accepts it.
+  - `each / both / none / only / most` work before a noun and as one-word answers: `fifty baht each` (อันละห้าสิบ — `each` goes **after** the price), `both please`, `none`, `only one`, `most people`. `the same as` / `different from` compare without `-er`; `as` enters the course here.
+  - plural subject takes `are`: `How much are the mangoes` extends the L3 `How much is {thing}`; `the` because the fruit is on the table in front of you.
+- canDo (Thai):
+  - ถามราคาของที่เป็นพหูพจน์ (How much are the …) และเข้าใจคำตอบแบบ "อันละ … บาท"
+  - ขอเพิ่ม ขอลด ขอนิดหน่อย ด้วย more / less / a little / a few
+  - บอกได้ว่าเอาทั้งคู่ เอาอันละหนึ่ง ไม่เอาเลย หรือเอาแค่อันเดียว (both / each / none / only)
+  - บอกว่าสองอย่างเหมือนกันหรือต่างกัน (the same as / different from)
+  - ใช้ much / many / a lot of ให้ถูกกับนามนับได้และนับไม่ได้
+- items (22):
+  - much — มาก / เยอะ (นามนับไม่ได้ ใช้ในคำถามและปฏิเสธ) — คำวิเศษณ์ — quantity (`how much` L3 is a separate unit id; `too much` composes)
+  - few — น้อย / ไม่กี่ (นับได้; `a few` = สองสามอัน) — คำวิเศษณ์ — quantity
+  - little — น้อย / เล็ก (นับไม่ได้; `a little` is the L8 phrase) — คำคุณศัพท์ — quantity
+  - less — น้อยลง / น้อยกว่า — คำวิเศษณ์ — quantity (comparative of little; spoken English uses it for count nouns too)
+  - most — ส่วนใหญ่ / มากที่สุด — คำวิเศษณ์ — quantity (`most people`; the superlative partner of `best` L22, `the most expensive` composes)
+  - only — แค่ / เท่านั้น — คำวิเศษณ์ — quantity (`cash only` L29)
+  - each — แต่ละ / อันละ — คำวิเศษณ์ — determiner (`fifty baht each`)
+  - both — ทั้งคู่ / ทั้งสอง — คำวิเศษณ์ — determiner
+  - none — ไม่มีเลย / ไม่เอาเลย — คำสรรพนาม — negation (`none of them`)
+  - same — เหมือนกัน — คำคุณศัพท์ — adj (always `the same`; `the same as`) — ⚠ already taught at L22: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - different — ต่างกัน / แตกต่าง — คำคุณศัพท์ — adj (`different from`) — ⚠ already taught at L22: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - as — เท่ากับ / อย่างที่ (the same as) — คำบุพบท — grammar
+  - price — ราคา — คำนาม — money
+  - kilo — กิโล (กรัม) — คำนาม — unit (altEn kilogram, kg)
+  - bottle — ขวด — คำนาม — unit (`a bottle of water` composes with `of` L9)
+  - bottles — ขวด (หลายขวด) — คำนาม (พหูพจน์) — plural
+  - mango — มะม่วง — คำนาม — food
+  - mangoes — มะม่วง (หลายลูก) — คำนาม (พหูพจน์) — plural (note: -es spelling, same sound as -s)
+  - egg — ไข่ — คำนาม — food — ⚠ already taught at L19: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - eggs — ไข่ (หลายฟอง) — คำนาม (พหูพจน์) — plural
+  - banana — กล้วย — คำนาม — food
+  - bananas — กล้วย (หลายลูก) — คำนาม (พหูพจน์) — plural
+- patterns (3):
+  - `How much are the` → `How much are the {plural}` → {plural}ราคาเท่าไหร่ → plural: mangoes, eggs, bananas, bottles (L25), beers, coffees, tickets (L3) → The L3 price question with a plural subject: `is` becomes `are`, and `the` points at the ones in front of you. Answer `{number} baht each` (อันละ) or `{number} baht for {number}` (สามลูกห้าสิบ). → How much are the mangoes · How much are the eggs · How much are the tickets
+  - `Can I have … please` (quantity) → `Can I have {quant} {thing} please` → ขอ{thing}{quant}หน่อยได้ไหม → quant: more (L2), some (L9), a little (L8), less (L25); thing: water, rice, sugar, ice, coffee, tea (L2) → Quantity word first, noun second, as in Thai. All four fit mass nouns; for count nouns swap in `a few` (`a few eggs`) or a number (L3). `less` is the polite way to say "not so much" without a `don't`. → Can I have less ice please · Can I have a little sugar please · Can I have more rice please
+  - `… is the same as …` → `{a} is the same as {b}` → {a}เหมือนกับ{b} → a / b: this, this one (L2), it (L3), that (L6), mine, yours (L23), coffee, tea (L2) → Thai เหมือนกัน stands alone; English `the same` must be followed by `as` + the second thing, the way a comparative needs `than` (L6). The opposite is `different from` (L4 `from`). → This is the same as that · This one is the same as mine · It is the same as yours
+- dialogues (2):
+  - Fruit stall, weighing mangoes · Fah (vendor) & Tom · `How much are the mangoes?` / `Forty baht each, or a hundred for three` / `Is this one the same as that one?` / `No, it is different, it is bigger` / `I only want a few. Three, please` / `Both bags?` / `No, none of those` — question tests how many mangoes Tom buys and what he pays (three for a hundred), not the per-piece price.
+  - Café, adjusting a drink · Nut (barista) & Sarah · `Can I have less ice please? And a little sugar` / `How much sugar?` / `Not much. A little` / `The same as last time?` / `Yes, the same. Most people like it sweet, I don't` — question tests what Sarah wants **less** of (ice, not sugar).
+- recycles: `How much is {thing}` (L3) becomes the plural frame; `Can I have {thing} please` (L2) takes a quantity slot; `a little` (L8) now sits beside `a few`; `a lot` + `of` (L9) in dialogue (`a lot of people`); `me too` (L10) returns as the answer to `I want both`; beers, coffees, tickets (L3) in the plural pool; mine, yours (L23) as the second term of `the same as`; numbers (L3) with `each` in answers (`fifty baht each`); `the other one` (L23) beside `both`.
+
+## Level 26 — Talk About Talking · คุยเรื่องการพูด
+- icon: 💬
+- subtitle (Thai, ≤ 60 chars): Could you …? ขอให้พูดซ้ำ ถามความหมาย ถามยืนยันท้ายประโยค และ "เขาบอกว่า…"
+- theme: The L8 repair kit grown up: `could` as the polite softener, `would you mind`, asking what a word means and how to spell it, tag questions, and passing on what someone said. The level that lets a Thai adult steer a conversation they only half follow — at the counter, on the phone, in a chat.
+- grammar focus:
+  - `could` = `can` with a softer tone: `Could you say that again please` extends L8 `Can you {verb} me please`; `Could I have …` extends L2 `Can I have …`. Same word order, no new grammar — the politeness is the modal choice. Thai has no exact match (closest is ช่วย…หน่อยได้ไหมคะ/ครับ), and `could` is also "was able to" in the past, noted not drilled.
+  - tag questions: Thai ends everything with ใช่ไหม; English builds the tail from the verb — `It is hot, isn't it`, `You are Thai, aren't you`, `You like it, don't you`. Positive statement → negative tail. The universal spoken tail is `…, right?` (L10 `right`).
+  - reported speech lite: `She said that she is busy` — `said` (L21) + `that` (conjunction sense, L20) + a full clause. Casual English keeps the present tense while it is still true, so no backshift is taught. `I heard that …` takes the same clause.
+  - `would you mind` + verb-ing (L11 forms): `Would you mind waiting`. The answer that means "go ahead" is `No, not at all` / `Sure, go ahead` — a Thai-L1 trap, since ไม่ว่า sounds like a refusal.
+- canDo (Thai):
+  - ขอให้พูดซ้ำ สะกดคำ หรืออธิบายอย่างสุภาพด้วย Could you … please
+  - ถามความหมายของคำ และถามว่าคำนี้พูดเป็นอังกฤษว่าอย่างไร
+  - ถามยืนยันท้ายประโยคด้วย …, isn't it? / …, right?
+  - เล่าต่อว่าใครพูดอะไรด้วย She said that … / I heard that …
+  - บอกว่าถูกหรือผิด และแก้คำพูดตัวเองด้วย I mean …
+- items (20):
+  - could — ช่วย…ได้ไหม / …ได้ (can แบบสุภาพ) — คำช่วยกริยา — modal
+  - would you mind — จะว่าอะไรไหมถ้า… (+กริยา -ing) — วลี — polite (phrase)
+  - never mind — ไม่เป็นไร / ช่างมันเถอะ — วลี — reaction (phrase)
+  - mind — ว่าอะไร / รังเกียจ (do you mind, I don't mind) — คำกริยา — core-verb
+  - repeat — พูดซ้ำ — คำกริยา — core-verb
+  - spell — สะกด — คำกริยา — core-verb
+  - explain — อธิบาย — คำกริยา — core-verb
+  - heard — ได้ยิน (รูปอดีตของ hear; `I heard that …`) — คำกริยา (รูปอดีต) — past
+  - talking — กำลังคุย / กำลังพูด — คำกริยา (รูป -ing) — ing (`What are you talking about`) — ⚠ already taught at L20: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - word — คำ / คำศัพท์ — คำนาม — language
+  - words — คำ (หลายคำ) — คำนาม (พหูพจน์) — plural
+  - question — คำถาม — คำนาม — language — ⚠ already taught at L17: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - answer — คำตอบ / ตอบ — คำนาม — language (noun and verb, one id, note)
+  - language — ภาษา — คำนาม — language
+  - message — ข้อความ — คำนาม — chat (`send a message` with L17 `send`)
+  - correct — ถูกต้อง — คำคุณศัพท์ — adj
+  - wrong — ผิด — คำคุณศัพท์ — adj (`What is wrong` = เป็นอะไร) — ⚠ already taught at L15: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - exactly — ใช่เลย / เป๊ะ — คำวิเศษณ์ — reaction
+  - catch — ได้ยินทัน / จับใจความ (I didn't catch that) — คำกริยา — core-verb (altTh จับ)
+  - pardon — อะไรนะคะ/ครับ (ขอให้พูดอีกที) — คำอุทาน — repair (altEn sorry?)
+- patterns (3):
+  - `Could you … please` → `Could you {verb} {obj} please` → ช่วย{verb}{obj}หน่อยได้ไหม → verb: say, tell, help, teach (L8), call (L7), show (L13), repeat, spell, explain (L26); obj: this (L2), it (L3), that (L6), me (L8); `compat`: say / repeat / spell / explain → this / it / that; tell / help / teach / call → me; show → me / this / it / that → The L8 request frame with `could` in place of `can`: nothing else moves, and the sentence gets a notch more polite — the version for a customer or a boss. Add `again` before `please` to ask for a repeat (`Could you say that again please`). → Could you repeat that please · Could you spell it please · Could you help me please
+  - `It is …, isn't it` → `It is {adj} isn't it` → มัน{adj}ใช่ไหม → adj: good (L1), spicy (L2), hot, cold, expensive, cheap, beautiful, nice, big, small, easy, difficult (L6), great, fun, cool (L10), different (L25), correct, wrong (L26) → A tag question: the statement stays, and a short negative question is hung on the end with the same verb flipped (`is` → `isn't it`). Thai uses ใช่ไหม for every sentence; English changes the tail with the verb (`aren't you`, `don't you`), and `…, right?` is the lazy tail that fits them all. Falling voice = you are sure, rising = you are asking. → It is hot isn't it · It is expensive isn't it · It is correct isn't it
+  - `She said that …` → `{person} said that {person} is {state}` → {person}บอกว่า{person}{state} → person (first): he, she (L4); person (second): he, she (L4; `compat` he → he, she → she); state: fine, okay, happy, sorry (L1), tired, hungry, sad (L4), free, busy, home (L5), here (L3), wrong, correct (L26) → Passing on someone's words: `said` + `that` + a whole sentence with its own verb — Thai บอกว่า + ประโยค works the same way, and casual English keeps `is` while it is still true. `I heard that …`, `I think that …` (L20) and `She told me that …` (L21) take the same clause. → She said that she is busy · He said that he is sorry · She said that she is home
+- dialogues (2):
+  - Phone call, bad line · Ploy (hotel reception) & Mr. Lee · `Sorry, I didn't catch that. Could you repeat that please?` / `Could you spell your name?` / `L-E-E` / `Lee, right?` / `Exactly` / `You want Friday, right?` / `Yes` — question tests what Ploy asks Mr. Lee to do (spell the name), not what the booking is.
+  - Office, passing on a message · Bank & Emma · `Is Sarah here?` / `No. She said that she is busy today. I heard that she is in Chiang Mai` / `Chiang Mai? Are you sure?` / `I think so. You can call her, right?` / `Would you mind calling her? I can't speak Thai` / `Never mind, I will call her and send her a message` — question tests where Bank **heard** Sarah is (Chiang Mai), distinguishing what she said from what he heard.
+- recycles: `Can you {verb} me please` (L8) → `Could you …`; `Can I have {thing} please` (L2) → `Could I have …` in dialogue; how do you say (L8) + in + English (L7) compose `How do you say … in English`; what + does + it + mean (L2/L7/L8) compose `What does it mean`; right (L10) as the universal tag; isn't, aren't (L23) in tags; said, told (L21) with `that` (L20 conjunction use); I mean, you know, I see (L10) as the self-repair and reaction set; slowly, again, understand (L8) in `Could you speak slowly`; -ing forms (L11) after `would you mind` (`Would you mind waiting`); send (L17) + message.
+
+## Level 27 — Where Things Are · ของอยู่ตรงไหน
+- icon: 📦
+- subtitle (Thai, ≤ 60 chars): บน ใต้ ข้างใน ระหว่าง ผ่าน — วาง เปิด ปิด เก็บ นั่ง ยืน และ "เอาไปไว้ไหน"
+- theme: Position words for things, not streets (L13 did directions): `on / in / under / between / inside / outside / over / through`, the handling verbs `put / open / close / keep / sit / stand`, the particles `up / down / out`, and `whose` / `its`. The hotel room, the office desk, the lost wallet.
+- grammar focus:
+  - place `on` (L12 taught the day sense): `on the table` — contact with a surface; `in` (L7) inside a container, `under` beneath, `between` two things, `over` above or across, `through` in one side and out the other. Thai บน / ใน / ใต้ / ระหว่าง / ข้าม / ผ่าน map one-to-one, which makes this the easy half of English prepositions. `inside / outside` are prepositions (`inside the bag`) and adverbs (`wait outside`).
+  - `up / down / out` as the second half of a phrasal verb: `sit down`, `stand up`, `go out`, `put it down`, `pick it up` (L14 `pick up`) — the small word carries the direction, and a pronoun object goes **between** (`pick it up`, never `pick up it`). Thai ลุกขึ้น / นั่งลง / ออกไป has the same two-part shape.
+  - `whose` asks ownership (ของใคร) in front of the noun: `Whose bag is this`; `its` is the possessive of `it` with no apostrophe (`its door` — `it's` is `it is`). Thai ของมัน is rare; English uses `its` for places, things and animals.
+  - `Where did you put …` recycles L21 `did` + base verb; `put` keeps the same form in the past, so only `did` carries the tense.
+- canDo (Thai):
+  - บอกได้ว่าของอยู่บน ใน ใต้ ข้างใน ข้างนอก หรือระหว่างอะไร
+  - ถามว่าของใคร และตอบว่าของฉัน ของเขา (Whose … is this)
+  - ถามว่าเอาของไปไว้ที่ไหน และบอกตำแหน่งกลับได้ (Where did you put …)
+  - ขอให้เปิด ปิด เก็บ นั่ง ยืน ด้วย please และ up / down / out
+  - แยก its กับ it's และใช้ได้ถูก
+- items (22):
+  - its — ของมัน (ของสิ่งของ สถานที่ สัตว์) — คำสรรพนาม — pronoun (note: no apostrophe; `it's` = it is)
+  - whose — ของใคร — คำถาม — question
+  - between — ระหว่าง — คำบุพบท — prep (`between the door and the table`)
+  - under — ใต้ — คำบุพบท — prep
+  - over — เหนือ / ข้าม / เกิน (over the table, over there, over 100 baht) — คำบุพบท — prep
+  - through — ผ่าน / ทะลุ — คำบุพบท — prep (`through the door`; note: silent -gh)
+  - inside — ข้างใน — คำบุพบท — prep (also adverb)
+  - outside — ข้างนอก — คำบุพบท — prep (also adverb)
+  - up — ขึ้น — คำวิเศษณ์ — adverb (stand up, pick up L14, wake up)
+  - down — ลง — คำวิเศษณ์ — adverb (sit down, put it down, calm down L30)
+  - out — ออก / ข้างนอก — คำวิเศษณ์ — adverb (go out, eat out, get out)
+  - put — วาง / ใส่ / เอาไปไว้ — คำกริยา — core-verb (same form in the past)
+  - open — เปิด — คำกริยา — core-verb (adjective sense `it is open` in note)
+  - close — ปิด — คำกริยา — core-verb (note: verb ends in /z/; the adjective `close` = ใกล้ with /s/ is a different word, not taught)
+  - keep — เก็บ / เก็บไว้ — คำกริยา — core-verb (`keep the change` L29)
+  - sit — นั่ง — คำกริยา — core-verb (`sit down`)
+  - stand — ยืน — คำกริยา — core-verb (`stand up`)
+  - keys — กุญแจ (พวงกุญแจ / หลายดอก) — คำนาม (พหูพจน์) — plural (singular `key` composes in notes; plural first because that is what people lose) — ⚠ already taught at L23: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - bag — กระเป๋า — คำนาม — thing — ⚠ already taught at L23: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - wallet — กระเป๋าสตางค์ — คำนาม — thing — ⚠ already taught at L23: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - door — ประตู — คำนาม — thing
+  - table — โต๊ะ — คำนาม — thing (`a table for two` with L9 `for`) — ⚠ already taught at L23: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+- patterns (3):
+  - `Where did you put` → `Where did you put {det} {thing}` → คุณเอา{thing}{det}ไปไว้ไหน → det: my, your (L1), the (L3); thing: keys, bag, wallet (L27), phone (L7), ticket (L14), tickets (L3) → The L21 past question with a wh- word in front: `Where` + `did` + `you` + base verb. `put` looks the same in present and past, so `did` alone tells you it already happened; Thai เอา…ไปไว้ไหน has no tense marker at all. → Where did you put the keys · Where did you put my wallet · Where did you put your phone
+  - `It is … the …` → `It is {prep} the {thing}` → มันอยู่{prep}{thing} → prep: on (L12), in (L7), under, inside, over (L27), behind, next to, in front of, near (L13); thing: table, door, bag, wallet (L27), hotel, toilet (L3), phone (L7) → The answer to `Where is the …` (L3) and to the frame above: `it is` + position word + `the` + landmark. `on` is contact from above (บน), `in` is inside (ใน), `under` is ใต้ — Thai and English agree, so the only trap is keeping `is` and `the`. `between` needs two landmarks (`between the door and the table`), so it lives in the dialogue. → It is on the table · It is under the bag · It is inside the wallet
+  - `Whose … is this` → `Whose {thing} is this` → {thing}นี้ของใคร → thing: bag, wallet (L27), phone (L7), coffee, beer, tea (L2), ticket (L14) → `whose` goes in front of the noun and the question flips `is`, like every wh- question since L3. Answer `It is mine / yours` (L23), `It is his / hers`, or `It is Nam's` — the apostrophe-s on a name is the Thai ของ. → Whose bag is this · Whose phone is this · Whose coffee is this
+- dialogues (2):
+  - Hotel room, lost key card · Nam (housekeeping) & Tom · `Where did you put the keys?` / `I think they are on the table. No, under the bag` / `Are they inside the bag?` / `Yes! Thank you. This room is nice but its door doesn't close` / `Sorry, I will open it and look` — question tests where the keys finally are (inside the bag), not where Tom first thinks they are.
+  - Office, whose wallet · Tee & Sarah · `Whose wallet is this? It was under the table` / `Not mine. Is it Jack's?` / `His wallet is big, this one is small` / `Then it is Tom's. He went out` / `Keep it in your bag. He is outside, sit down and wait` — question tests whose wallet it is (Tom's, by elimination: not Sarah's, not Jack's).
+- recycles: `Where is the {place}` (L3) gets its answer frame; `Is there a {thing} here` (L9) with `inside / outside` in dialogue; `on` (L12) in its place sense; in, at (L7); behind, next to, in front of, near, around (L13) join the position pool and `over there` composes; `pick up` (L14) with `it` between (`pick it up`); did, went (L21) in the past lines; mine, yours (L23) as answers to `whose`; `Can you {verb} me please` (L8) → `Can you open the door please` in dialogue; phone (L7), ticket (L14), tickets (L3) as things; `doesn't` (L7) + close.
+
+## Level 28 — Just Did, About To · เพิ่งทำ กำลังจะทำ
+- icon: ⏳
+- subtitle (Thai, ≤ 60 chars): I have just … / I'm about to … / I'm done — เพิ่งเสร็จ กำลังจะไป เดี๋ยวกลับมา และ "อย่า…"
+- theme: The minute before and the minute after: `I have just eaten`, `I'm about to leave`, `I'm done`, `be back soon`, `almost ready`, and the small warnings `don't …` / `you shouldn't …`. Timing talk for a shared kitchen, a shop counter, a chat window.
+- grammar focus:
+  - `have just` + past participle (L11 participles plus new ones): Thai เพิ่ง + กริยา; English puts `just` between `have` and the participle, and `I've just` is the spoken form. Same frame as `Have you ever {pp}` (L11), different adverb.
+  - `about to` + base verb: the plan that is seconds away, next to `going to` (L5) which is any plan; Thai กำลังจะ covers both, so the note contrasts them with `now` / `right now`.
+  - `done / been / gone` as words: `I'm done` (เสร็จแล้ว, an adjective in speech), `Where have you been` (`been` is the participle of `be`; L11 taught the chunk `been to`), `She has gone home` (gone = went and is still away). `back` (กลับ) after `be / come / go`: `I'll be back soon`.
+  - negative imperative and advice: `Don't worry` (L4 `don't` + base verb, no subject) and `You shouldn't eat that` (`shouldn't` = should not, L15 `should`); Thai อย่า vs ไม่ควร. `still / yet` (L11) recycled: `still waiting`, `not ready yet`, `Have you finished yet`.
+- canDo (Thai):
+  - บอกว่าเพิ่งทำอะไรเสร็จด้วย I have just … และบอกว่าเสร็จแล้วด้วย I'm done
+  - บอกว่ากำลังจะทำอะไรในอีกไม่กี่นาทีด้วย I'm about to …
+  - บอกว่าเดี๋ยวกลับมา เกือบเสร็จแล้ว รีบหน่อย (be back soon / almost / hurry)
+  - ห้ามและเตือนอย่างสุภาพด้วย Don't … / You shouldn't …
+  - ถามว่าหายไปไหนมา และตอบได้ (Where have you been?)
+- items (21):
+  - just — เพิ่ง / แค่ — คำวิเศษณ์ — time (`I have just …`; `just a minute` with L24)
+  - done — เสร็จแล้ว (I'm done; have you done it) — คำกริยา (รูป pp) — pp
+  - been — เป็น / อยู่ (รูป pp ของ be; Where have you been) — คำกริยา (รูป pp) — pp (the chunk `been to` is L11)
+  - gone — ไปแล้ว (รูป pp ของ go; ยังไม่กลับ) — คำกริยา (รูป pp) — pp
+  - about to — กำลังจะ (อีกเดี๋ยวเดียว) — คำช่วยกริยา — modal (phrase)
+  - soon — เร็วๆ นี้ / อีกไม่นาน — คำวิเศษณ์ — time
+  - back — กลับ (come back, be back; also the body part หลัง, recycled L35) — คำวิเศษณ์ — adverb — ⚠ already taught at L20: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - shouldn't — ไม่ควร — คำช่วยกริยา — modal (phrase; altEn should not)
+  - worry — กังวล / ห่วง (don't worry) — คำกริยา — core-verb
+  - ready — พร้อม — คำคุณศัพท์ — state — ⚠ already taught at L20: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - almost — เกือบ — คำวิเศษณ์ — degree
+  - hurry — รีบ (hurry up) — คำกริยา — core-verb
+  - moment — สักครู่ (one moment please) — คำนาม — time
+  - careful — ระวัง (be careful) — คำคุณศัพท์ — state — ⚠ already taught at L15: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - arrive — มาถึง — คำกริยา — core-verb (`arrive at`, `arrive in Bangkok`, never `arrive to`)
+  - arrived — มาถึงแล้ว (รูป pp / อดีต) — คำกริยา (รูป pp) — pp
+  - finished — เสร็จ (รูป pp ของ finish) — คำกริยา (รูป pp) — pp
+  - started — เริ่ม (รูป pp ของ start) — คำกริยา (รูป pp) — pp
+  - forgot — ลืม (รูปอดีตของ forget) — คำกริยา (รูปอดีต) — past
+  - coming — กำลังมา — คำกริยา (รูป -ing) — ing
+  - leaving — กำลังจะไป / กำลังออก — คำกริยา (รูป -ing) — ing
+- patterns (3):
+  - `I have just` → `I have just {pp} {thing}` → ฉันเพิ่ง{pp}{thing} → pp: eaten, tried, seen (L11), bought (L21), finished, started, done (L28); thing: it (L3), this (L2), that (L6), work (L7, noun sense), durian (L11), coffee, rice, chicken (L2); `compat`: seen / done → it / this / that; finished / started → work / it / this; eaten / tried → durian / rice / chicken / this; bought → it / this / that / coffee → The L11 experience frame with `just` instead of `ever`: `have` + `just` + participle says it happened a moment ago (เพิ่ง). `I've just` in speech; the answer to `Are you hungry` is `No, I have just eaten`. → I have just finished work · I have just bought it · I have just tried durian
+  - `I am about to` → `I am about to {verb} {thing}` → ฉันกำลังจะ{verb}{thing} → verb: go, eat, drink (L2/L5), call (L7), leave (L14), start, finish (L17), order (L19); thing: home (L5), work (L7), it (L3), this (L2), coffee, rice (L2), her (L7), him (L22); `compat`: go → home / out (L27); leave → home / work; start / finish → work / it / this; eat → rice / this / it; drink → coffee / it; call → her / him; order → coffee / rice / it → `about to` is `going to` (L5) with the clock running: the next thing you do, not a plan for later. Thai กำลังจะ serves both, so keep `about to` for the next minute and `going to` for anything further off. `I'm about to` in speech. → I am about to go home · I am about to start work · I am about to call her
+  - `You shouldn't` → `You shouldn't {verb} {thing}` → คุณไม่ควร{verb}{thing} → verb: eat, drink (L2), do (L4), watch (L7), say (L8), buy (L16); thing: this (L2), it (L3), that (L6), durian (L11), beer, coffee, sugar (L2); `compat`: say / do / watch → this / it / that; eat → durian / this / that / sugar; drink → beer / coffee / this; buy → this / it / that → Advice in the negative: `shouldn't` + base verb, the mirror of `should` (L15); Thai ไม่ควร + กริยา is the same order. Softer than `don't` (L4), which is an order. → You shouldn't eat that · You shouldn't say that · You shouldn't buy it
+- dialogues (2):
+  - Shared office kitchen · Fah & Jack · `Are you hungry? I am about to order` / `No thanks, I have just eaten` / `Where have you been? You were not here` / `I was outside with Nam. I am done for today` / `Okay. I will be back soon, I have to pick up the food` / `Don't hurry` — question tests why Jack does not order (he has just eaten), not where he was.
+  - Hotel checkout rush · Nut (front desk) & Anna · `Are you ready? The taxi is here` / `Almost. One moment, I forgot my phone` / `Hurry, it is leaving soon` / `Don't worry, I am done. I am about to come down` / `Be careful, the door is open` — question tests what Anna forgot (her phone), not how long the taxi waits.
+- recycles: `Have you ever {pp} {thing}` (L11) becomes `I have just {pp}`; `I am going to {verb} {time}` (L5) sits beside `I am about to`; `I {should/need to} {verb}` (L15) gets its negative; `don't` (L4) in bare imperatives (`Don't worry`, `Don't forget`); still, yet, already, not yet (L5/L11) as answers (`Not yet`, `Still waiting`); `been to` (L11) is now explained by `been`; will + be (L5/L11) + back + soon compose `I will be back soon`; was, were (L21) in `You were not here`; pick up, leave (L14), start, finish (L17), order (L19), bought (L21) fill the slots; down, out, open, door (L27) in `come down` and the hotel scene.
+
+## Level 29 — Describe It, Buy It · บรรยายของ ซื้อของ
+- icon: 🛍️
+- subtitle (Thai, ≤ 60 chars): ยาว สั้น หนัก สะอาด — ขออันใหญ่กว่า ขอส่วนลด จ่ายสด/บัตร/โอน ขอใบเสร็จ
+- theme: The shopping conversation from both sides of the counter: describing what you want, asking for a bigger, cheaper or different one, discounts, paying by cash / card / transfer, change and receipts. The mall, the market, 7-Eleven, the chat with an online seller.
+- grammar focus:
+  - `one` as a stand-in noun (อัน / ตัว): `a bigger one`, `this one` (L2), `the other one` (L23) — Thai repeats the classifier, English repeats nothing and says `one`. The id is the L3 number `one`; this is its pronoun job, explained in the pattern.
+  - `Do you have a {adj} one` extends L4 `Do you {verb} {thing}`; comparatives (L6) and plain adjectives both fit; `an` before a vowel (`an old one`) is noted, not pooled.
+  - `too {adj} for me` (เกินไปสำหรับฉัน) extends L6 `It is {degree} {adj}` with `for` (L9) + `me` (L8) — the polite way to decline without saying `bad`.
+  - `pay by {method}` with `by` (L16): `by card / by transfer / by phone`; cash takes `in cash` or just `pay cash`. `change` the verb (เปลี่ยน) and the noun (เงินทอน) share one id and the note covers both. `sell` is what the shop does, `buy` (L16) is what you do.
+- canDo (Thai):
+  - บรรยายของว่ายาว สั้น หนัก สะอาด สกปรก หรือเสีย และบอกไซส์กับสี
+  - ขออันที่ใหญ่กว่า เล็กกว่า ถูกกว่า หรือแบบอื่น (Do you have a … one)
+  - ต่อรองราคาและขอส่วนลดอย่างสุภาพ
+  - ถามว่าจ่ายด้วยบัตร โอน หรือเงินสดได้ไหม และขอใบเสร็จ
+  - บอกว่าของชิ้นนี้ไม่เหมาะกับตัวเองด้วย It is too … for me
+- items (20):
+  - long — ยาว — คำคุณศัพท์ — adj (time sense `a long time` in note) — ⚠ already taught at L14: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - short — สั้น / เตี้ย — คำคุณศัพท์ — adj
+  - heavy — หนัก — คำคุณศัพท์ — adj
+  - clean — สะอาด — คำคุณศัพท์ — adj (verb sense ทำความสะอาด in note)
+  - dirty — สกปรก — คำคุณศัพท์ — adj
+  - broken — เสีย / พัง / แตก — คำคุณศัพท์ — adj (participle of break; `it doesn't work` = ใช้ไม่ได้ in note)
+  - smaller — เล็กกว่า — คำคุณศัพท์ (ขั้นกว่า) — comparative
+  - size — ไซส์ / ขนาด — คำนาม — shop — ⚠ already taught at L16: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - color — สี — คำนาม — shop (altEn colour) — ⚠ already taught at L16: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - shirt — เสื้อ — คำนาม — shop — ⚠ already taught at L16: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - shoes — รองเท้า — คำนาม (พหูพจน์) — plural (note: always plural; `a pair of shoes`) — ⚠ already taught at L16: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - fit — พอดี (ใส่ได้) — คำกริยา — core-verb (`it doesn't fit`)
+  - sell — ขาย — คำกริยา — core-verb
+  - change — เปลี่ยน / แลก — คำกริยา — core-verb (altTh เงินทอน; `keep the change` in note)
+  - discount — ส่วนลด — คำนาม — money
+  - money — เงิน — คำนาม — money — ⚠ already taught at L16: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - cash — เงินสด — คำนาม — money — ⚠ already taught at L16: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - card — บัตร (เครดิต / เดบิต) — คำนาม — money — ⚠ already taught at L16: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - transfer — โอน / การโอนเงิน — คำนาม — money (noun and verb, one id)
+  - receipt — ใบเสร็จ — คำนาม — money (note: silent p)
+- patterns (3):
+  - `Do you have a … one` → `Do you have a {adj} one` → มีอันที่{adj}ไหม → adj: big, small, cheap, new, bigger, cheaper, better (L6), different (L25), long, short, clean, smaller (L29) → `one` stands for the thing you are both looking at (อัน / ตัว), so the noun is never repeated. The L4 question frame with an article: `a` + adjective + `one`; before a vowel sound it is `an` (`an old one`), so `old` and `expensive` are left out of the pool and shown in the note. → Do you have a bigger one · Do you have a cheaper one · Do you have a different one
+  - `Can I pay by` → `Can I pay by {method}` → จ่ายด้วย{method}ได้ไหม → method: phone (L7), card, transfer (L29) → `pay by` + the method, with `by` (L16) doing the job of Thai ด้วย. Cash is the odd one out: `pay in cash` or `pay cash`. Answer `Sure` / `Cash only` (L25). → Can I pay by card · Can I pay by transfer · Can I pay by phone
+  - `It is too … for me` → `It is too {adj} for me` → มัน{adj}เกินไปสำหรับฉัน → adj: spicy (L2), big, small, expensive, hot, old, difficult (L6), long, short, heavy (L29) → The L6 `too` frame with `for me` on the end: it turns a complaint into a question of personal fit (ไม่เหมาะกับฉัน), which is how you refuse a size, a dish or a price without insulting the shop. → It is too big for me · It is too expensive for me · It is too heavy for me
+- dialogues (2):
+  - Clothes shop · Ploy (shop) & Emma · `Do you have a smaller one? This shirt is too long for me` / `Yes. The same color?` / `A different color, please` / `How much is it?` / `Five hundred` / `Can you give me a discount?` / `Four hundred fifty, cash only` / `Okay. Can I have a receipt?` — question tests what Emma finally asks for (a smaller one in a different color) and how she pays.
+  - Market stall, broken item · Tee (stall) & Jack · `This is broken. Can I change it?` / `Sure. Do you have the receipt?` / `Yes, here` / `This one is clean and new, the same size` / `Can I pay by card for this one? It is more expensive` / `Sorry, cash or transfer only` / `Cash then. Keep the change` — question tests why Jack came back (the item is broken) and how he pays in the end.
+- recycles: `Do you {verb} {thing}` (L4) → `Do you have a … one`; `It is {degree} {adj}` (L6) → `too … for me`; `How much is {thing}` (L3) and `How much are the {plural}` (L25) with shoes; `the other one` (L23), `this one` (L2) and `another` (L19) beside `a … one`; buy, pay, by, look, try, give, wear (L16) in dialogue (`Can I try it on` composes with `on` L12); new, old, cheap, cheaper, bigger, expensive (L6) in pools; price, only (L25) in `cash only`; keep (L27) in `keep the change`; more (L2) + expensive composes the long comparative.
+
+## Level 30 — Life & People · ชีวิตและผู้คน
+- icon: 🌱
+- subtitle (Thai, ≤ 60 chars): เกิดที่ไหน โตที่ไหน เคยทำอะไร อยู่คนเดียวไหม — เล่าชีวิตด้วย was born / grew up / used to
+- theme: The life-story turn in any real conversation: where you were born and grew up, what you used to do, how old you are, living alone or together, `man / woman / boy / girl / kid`, and the two reflexives `myself / yourself`. Dates, interviews, long taxi rides.
+- grammar focus:
+  - `used to` + base verb: a past habit that has stopped (เคย…แต่ตอนนี้ไม่แล้ว). Thai เคย also means "have ever" — English separates them: `Have you ever` (L11) is experience, `used to` is a former habit. One chunk, pronounced `use-to`.
+  - life verbs in the past: `was born` (always passive, always `was / were`), `grew up` (past of `grow up`), `lived / studied / worked` (regular -ed, L21 rule) — all take `in` + place (L7). `move` takes `to` (`move to Bangkok`).
+  - reflexives: `by myself` = คนเดียว (alone, no help), `yourself` in `Take care of yourself` and `Did you do it yourself`. Thai ตัวเอง is one word; English matches the subject (`myself / yourself`; `himself / herself / ourselves` are noted, not drilled).
+  - `during` + noun (ระหว่าง, in time): `during the day`, `during Songkran`; `while` + clause waits for L33. Age: `How old are you` (L9) → `I am thirty` — no `years old` needed in speech.
+- canDo (Thai):
+  - บอกว่าเกิดที่ไหน โตที่ไหน เคยเรียนหรือทำงานที่ไหน
+  - เล่านิสัยในอดีตที่เลิกไปแล้วด้วย I used to …
+  - บอกว่าทำอะไรด้วยตัวเองหรืออยู่คนเดียวด้วย by myself
+  - ถามอายุและตอบอย่างเป็นธรรมชาติ และเรียกคนว่าผู้ชาย ผู้หญิง เด็ก ได้ถูก
+  - ปลอบและอวยพรด้วย calm down / take care
+- items (22):
+  - myself — ตัวฉันเอง (by myself = คนเดียว) — คำสรรพนาม — pronoun
+  - yourself — ตัวคุณเอง — คำสรรพนาม — pronoun
+  - during — ระหว่าง (ช่วงเวลา) — คำบุพบท — prep
+  - used to — เคย… (นิสัยในอดีตที่เลิกแล้ว) — คำช่วยกริยา — modal (phrase)
+  - was born — เกิด — วลี — life (phrase; always `was / were born`, tagged past)
+  - grow up — โตขึ้น / เติบโต — วลี — life (phrase; phrasal verb)
+  - grew up — โต (รูปอดีตของ grow up) — วลี (รูปอดีต) — past
+  - lived — อาศัยอยู่ (รูปอดีต) — คำกริยา (รูปอดีต) — past
+  - studied — เรียน (รูปอดีต) — คำกริยา (รูปอดีต) — past (note: -y → -ied)
+  - worked — ทำงาน (รูปอดีต) — คำกริยา (รูปอดีต) — past (note: -ed said /t/) — ⚠ already taught at L21: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - move — ย้าย — คำกริยา — core-verb (`move to Bangkok`; `move it to` L34)
+  - become — กลายเป็น / มาเป็น — คำกริยา — core-verb (`become a teacher`)
+  - man — ผู้ชาย — คำนาม — people (plural `men` noted)
+  - woman — ผู้หญิง — คำนาม — people (plural `women` noted)
+  - boy — เด็กผู้ชาย — คำนาม — people
+  - girl — เด็กผู้หญิง / สาว — คำนาม — people
+  - kid — เด็ก / ลูก (หนึ่งคน) — คำนาม — people (plural `kids` is L9; `when I was a kid`)
+  - life — ชีวิต — คำนาม — life
+  - together — ด้วยกัน — คำวิเศษณ์ — state — ⚠ already taught at L20: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - calm — ใจเย็น / สงบ (calm down) — คำคุณศัพท์ — state
+  - care — ห่วงใย / ดูแล (take care; I don't care) — คำกริยา — core-verb
+  - Phuket — ภูเก็ต — คำนาม — place
+- patterns (3):
+  - `I was born in` → `I {origin} in {place}` → ฉัน{origin}ที่{place} → origin: was born, grew up, lived, studied, worked (L30); place: Bangkok, Thailand (L4), Chiang Mai (L7), Phuket (L30) → The life sentence: a past verb + `in` + place (L7). `was born` always keeps `was` (Thai เกิด has no helper); `grew up` is the past of `grow up`; `lived / studied / worked` add -ed (L21). Tell the story in order: born → grew up → studied → worked → `I live in` (L7) for now. → I was born in Bangkok · I grew up in Phuket · I worked in Chiang Mai
+  - `I used to` → `I used to {verb} {thing}` → ฉันเคย{verb}{thing} (ตอนนี้ไม่แล้ว) → verb: eat, drink, have (L2), like (L4), watch, study, work (L7), play (L18); thing: beer, coffee, chicken, sugar (L2), it, this (L2/L3), that (L6), here (L3), there (L9), music, English (L7), durian (L11); `compat`: play → music; study → English / Thai (L1); work → here / there; eat → chicken / durian / sugar / it; drink → beer / coffee; watch → it / this / that; like / have → any → `used to` + base verb: a habit you had and dropped. Thai เคย does double duty; `Have you ever eaten durian` (L11) asks about once in a lifetime, `I used to eat durian` means every season, not any more. Said as one chunk, `use-to`. → I used to drink beer · I used to study English · I used to work here
+  - `… by myself` → `I {verb} {thing} by myself` → ฉัน{verb}{thing}คนเดียว → verb: eat (L2), live, work, study (L7), cook (L18), came, did (L21); thing: here (L3), there (L9), it (L3), this (L2), that (L6), English (L7), rice (L2), food (L4); `compat`: live / work / came → here / there; did → it / this / that; study → English / Thai; cook / eat → rice / food → `by myself` ends the sentence and means no one else was involved (คนเดียว / ด้วยตัวเอง). The pronoun follows the subject: `by yourself`, `by himself`, `by herself`. `alone` is the one-word version. → I live here by myself · I did it by myself · I study English by myself
+- dialogues (2):
+  - Long taxi ride · Bank (driver) & Sarah · `Are you from Bangkok?` / `No, I was born in Phuket. I grew up there, then I came to Bangkok for work` / `Do you live with your family?` / `No, I live here by myself. My mom and dad are in Phuket` / `I used to live by myself too. Now I live with a friend` — question tests where Bank was born (Phuket) versus where he lives now (Bangkok), not where Sarah lives.
+  - Friend having a bad day · Nam & Anna · `Calm down. What is wrong?` / `My work is so difficult. I used to like it` / `You shouldn't worry. Take care of yourself` / `Thanks. I will go home and sleep` / `Good. Do you want to eat together first?` / `Yes, please` — question tests what Anna used to like (her work) and what Nam suggests (eating together first).
+- recycles: `I live in {place}` (L7) is the present-tense end of the life story; `Have you ever {pp}` (L11) contrasted with `used to`; how old (L9) + are + you compose the age question and numbers (L3) answer it; `I am {state}` (L1) with ready (L28), calm; was, ago, came, did (L21) in `ten years ago I was a kid`; take (L14) + care + of (L9) + yourself compose `Take care of yourself`; calm + down (L27) compose `Calm down`; `You shouldn't {verb}` + worry (L28); friend, family, mom, dad (L4), kids (L9) as people words; by (L16) in `by myself`; wrong (L26) in `What is wrong`.
+
+## Level 31 — Family & Introductions · ครอบครัวและการแนะนำตัว
+- icon: 👨‍👩‍👧
+- subtitle (Thai, ≤ 60 chars): สามี ภรรยา ลูกชาย ลูกสาว แต่งงานแล้ว — "นี่คือ…ของเรา" และคุณมาจากประเทศไหน
+- theme: Introducing the people in your life and placing people by nationality: `our / their`, `husband / wife / son / daughter`, `married / single`, `parents`, nationalities, nicknames and the welcome line. The wedding, the office visit, the first meeting with a partner's family.
+- grammar focus:
+  - `our / their` complete the possessive set (my / your L1, his / her L7, its L27): one word before the noun, no ของ. `their` is also what spoken English uses for one person of unknown gender (`someone left their bag`), noted.
+  - plural subject keeps the base verb: `My parents live in Phuket` — no -s (contrast L7 `she likes`); `parents` and `kids` are always plural, and Thai พ่อแม่ / ลูก carry no number.
+  - nationality adjectives after `am / is / are` (`He is Japanese`), several double as language names (`speak Japanese`); country names take `from` (`from Japan`), noted on each item. Capital letters on all of them.
+  - `married` as a state: `Are you married` / `I am married` (L1 frame) — Thai แต่งงานแล้ว is a completed action; English treats it as an adjective, with `to` not `with` (`married to a Thai`). `nice to meet you` (L1) and `This is my …` (L4) remain the introduction frames; `nickname` because every Thai has one and every foreigner asks.
+- canDo (Thai):
+  - แนะนำสามี ภรรยา ลูก พ่อแม่ ของเราและของเขาได้
+  - ถามและบอกว่าแต่งงานแล้วหรือโสด มีลูกไหม
+  - ถามว่ามาจากประเทศไหน และบอกสัญชาติของตัวเองและคนอื่น
+  - บอกชื่อเล่นและบอกว่าให้เรียกว่าอะไร
+  - ต้อนรับแขกด้วย Welcome to … และแนะนำทุกคนในห้อง
+- items (22):
+  - our — ของเรา — คำสรรพนาม — pronoun
+  - their — ของพวกเขา — คำสรรพนาม — pronoun
+  - husband — สามี — คำนาม — family
+  - wife — ภรรยา — คำนาม — family
+  - son — ลูกชาย — คำนาม — family
+  - daughter — ลูกสาว — คำนาม — family (note: silent -gh-, said "daw-ter")
+  - parents — พ่อแม่ — คำนาม (พหูพจน์) — plural
+  - boyfriend — แฟน (ผู้ชาย) — คำนาม — people
+  - girlfriend — แฟน (ผู้หญิง) — คำนาม — people
+  - married — แต่งงานแล้ว — คำคุณศัพท์ — state (`married to`, never `with`)
+  - single — โสด — คำคุณศัพท์ — state
+  - nickname — ชื่อเล่น — คำนาม — intro
+  - introduce — แนะนำ (ให้รู้จัก) — คำกริยา — core-verb (`Let me introduce …` with L20 `let`)
+  - welcome — ยินดีต้อนรับ — คำอุทาน — greeting (`welcome to Thailand`; `you're welcome` is the L10 phrase)
+  - everyone — ทุกคน — คำสรรพนาม — pronoun (altEn everybody; takes `is`, noted) — ⚠ already taught at L23: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - country — ประเทศ — คำนาม — place
+  - American — อเมริกัน / คนอเมริกัน — คำคุณศัพท์ — nationality (country `America` / `the US` in note)
+  - British — อังกฤษ (คน) — คำคุณศัพท์ — nationality (country `the UK` / `England`; the language is `English` L7)
+  - Chinese — จีน / คนจีน / ภาษาจีน — คำคุณศัพท์ — nationality
+  - Japanese — ญี่ปุ่น / คนญี่ปุ่น / ภาษาญี่ปุ่น — คำคุณศัพท์ — nationality
+  - Korean — เกาหลี / คนเกาหลี / ภาษาเกาหลี — คำคุณศัพท์ — nationality
+  - Australian — ออสเตรเลีย (คน) — คำคุณศัพท์ — nationality
+- patterns (3):
+  - `This is our …` → `This is {poss} {person}` → นี่คือ{person}ของ{poss} → poss: my (L1), his, her (L7), our, their (L31); person: mom, dad, sister, brother, friend (L4), husband, wife, son, daughter, boyfriend, girlfriend (L31) → The L4 introduction line with the whole possessive set: one word before the noun and nothing after it (Thai puts ของ + เจ้าของ after the noun). `our` = of us, `their` = of them. Say the name next: `This is my wife, Nam`. → This is my husband · This is our son · This is their daughter
+  - `My husband is American` → `{poss} {person} is {nationality}` → {person}ของ{poss}เป็นคน{nationality} → poss: my, your (L1), his, her (L7), our, their (L31); person: mom, dad, friend (L4), husband, wife, son, daughter, boyfriend, girlfriend (L31); nationality: Thai (L1), American, British, Chinese, Japanese, Korean, Australian (L31) → One person → `is` (L2), and the nationality is an adjective with no article (`is American`, not `is an American` in casual speech). To give the country instead: `is from Japan` (L4 `from`). Capital letter every time. → My husband is American · Her boyfriend is British · Their son is Thai
+  - `My parents live in …` → `{poss} {plural-people} {verb} in {place}` → {people}ของ{poss}{verb}ที่{place} → poss: my, your (L1), his, her (L7), our, their (L31); plural-people: kids, friends, brothers, sisters (L9), parents (L31); verb: live, work, study (L7); place: Bangkok, Thailand (L4), Chiang Mai (L7), Phuket (L30) → A plural subject keeps the base verb: `my parents live`, `her kids study` — the -s of L7 (`she likes`) belongs to one person only. Thai never marks either, so the trap runs both ways; `parents` and `kids` are plural even when Thai says พ่อแม่ / ลูก. → My parents live in Phuket · Our kids study in Bangkok · Their friends work in Chiang Mai
+- dialogues (2):
+  - Wedding party, meeting the family · Nam & Jack · `Welcome! This is my husband, Tee, and these are our parents` / `Nice to meet you. Are you from Bangkok?` / `No, our parents live in Phuket. And this is Fah, my sister` / `Is she married?` / `Not yet. Her boyfriend is Korean, he is coming later` — question tests where Nam's parents live and whether Fah is married (not yet, she has a boyfriend).
+  - Office visit from head office · Nut & Mr. Lee · `Everyone, this is Mr. Lee. He is Korean` / `Hello everyone` / `My name is Nut. My nickname is Nut too, you can call me Nut` / `Are you married, Nut?` / `Yes, my wife is Japanese. We have a daughter` / `My daughter is in Japan too` — question tests Nut's wife's nationality (Japanese) against Mr. Lee's (Korean).
+- recycles: `This is my …` (L4 dialogue frame) grows the possessive set; `I am {state}` / `Are you {state}` (L1) take married, single and every nationality (`Are you Japanese`); nice to meet you, name (L1); where + are + you + from (L3/L4) and `I am from Thailand` (L4) compose; family, mom, dad, sister, brother, friend (L4), kids, brothers, sisters, friends, people (L9), man, woman, boy, girl, kid (L30) as the people pool; `{person} {verb-s} {thing}` (L7) with `my husband likes` and `speaks` extended to `speaks Japanese`; these (L16) in `these are our parents`; `How many {plural} do you have` (L9) with kids; call + me (L7/L8) for nicknames; welcome + to (L5) + Thailand (L4); coming, later (L28/L5).
+
+## Level 32 — Food Depth · อาหารแบบเจาะลึก
+- icon: 🍲
+- subtitle (Thai, ≤ 60 chars): ก๋วยเตี๋ยว ต้มยำ ผัด ย่าง ต้ม — อธิบายอาหารไทยให้ฝรั่ง ไม่ใส่พริก กินยังไง กลับบ้านหรือกินที่นี่
+- theme: Explaining Thai food to a foreigner, the one topic every Thai adult is asked about: noodles and soup, fried / grilled / boiled, the ingredients that need naming (lemongrass, lime, fish sauce, chili), `a bit spicy`, `without chili`, `how do you eat it`, and `take away / for here`.
+- grammar focus:
+  - cooking participles as adjectives before the noun: `fried rice`, `grilled chicken`, `boiled eggs` — adjective first, as with every English adjective (L6), the reverse of ข้าวผัด / ไก่ย่าง / ไข่ต้ม.
+  - `with / without` + ingredient: `without` (ไม่ใส่) is new, `with` is L8. Both go after the dish: `noodles without chili`, `coffee with sugar`. `Can I have {food} without {ingredient} please` extends L2.
+  - `a bit` = `a little` (L8) before an adjective: `a bit spicy`, `a bit expensive`; it softens any warning or complaint, `too` (L6) is the hard version.
+  - `How do you {verb} {thing}` extends L9 `When do you {verb}` with `how`: the manner question Thai puts at the end (กินยังไง). Answer `with a spoon`, `like this`, or show. `take away / for here` are the counter's fixed pair; American `to go` is the altEn.
+- canDo (Thai):
+  - อธิบายอาหารไทยให้ชาวต่างชาติได้ว่ามีอะไรบ้าง ผัด ย่าง หรือต้ม
+  - บอกรสชาติว่าเผ็ด หวาน เปรี้ยว เค็ม และบอกว่า "เผ็ดนิดหน่อย"
+  - สั่งหรือรับออเดอร์แบบไม่ใส่พริก ไม่ใส่หมู ด้วย without
+  - ถามและบอกวิธีกินอาหารแต่ละอย่าง (How do you eat it?)
+  - ถามและตอบว่ากินที่นี่หรือกลับบ้าน (for here / take away)
+- items (22):
+  - noodles — ก๋วยเตี๋ยว / เส้น — คำนาม (พหูพจน์) — food (note: always plural in English) — ⚠ already taught at L19: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - soup — ซุป / ต้ม (น้ำแกง) — คำนาม — food
+  - fried — ผัด / ทอด — คำคุณศัพท์ — cooking (participle of fry; `fried rice`)
+  - grilled — ย่าง / ปิ้ง — คำคุณศัพท์ — cooking
+  - boiled — ต้ม (สุก) — คำคุณศัพท์ — cooking
+  - pork — หมู (เนื้อ) — คำนาม — food — ⚠ already taught at L19: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - beef — เนื้อวัว — คำนาม — food
+  - shrimp — กุ้ง — คำนาม — food (altEn prawn; same form for plural) — ⚠ already taught at L19: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - fish — ปลา — คำนาม — food (same form for plural) — ⚠ already taught at L19: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - sauce — ซอส / น้ำจิ้ม — คำนาม — food (`fish sauce` composes)
+  - chili — พริก — คำนาม — food (altEn chilli) — ⚠ already taught at L19: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - lime — มะนาว — คำนาม — food (note: Thai มะนาว is lime, not lemon)
+  - lemongrass — ตะไคร้ — คำนาม — food
+  - sweet — หวาน — คำคุณศัพท์ — taste — ⚠ already taught at L19: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - sour — เปรี้ยว — คำคุณศัพท์ — taste — ⚠ already taught at L19: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - salty — เค็ม — คำคุณศัพท์ — taste — ⚠ already taught at L19: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - delicious — อร่อย — คำคุณศัพท์ — taste (altEn tasty, yummy) — ⚠ already taught at L19: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - a bit — นิดหน่อย (หน้าคำคุณศัพท์) — วลี — degree (phrase; altEn a little bit)
+  - without — ไม่ใส่ / โดยไม่มี — คำบุพบท — prep
+  - take away — กลับบ้าน / ห่อกลับ — วลี — counter (phrase; altEn to go, takeaway)
+  - for here — กินที่นี่ — วลี — counter (phrase)
+  - vegetarian — มังสวิรัติ / กินเจ — คำคุณศัพท์ — food (`I am vegetarian`) — ⚠ already taught at L19: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+- patterns (3):
+  - `It is a bit …` → `It is a bit {adj}` → มัน{adj}นิดหน่อย → adj: spicy (L2), hot, cold, expensive, big, small, old, difficult (L6), different (L25), heavy, dirty (L29), sweet, sour, salty (L32) → `a bit` is the gentle degree word: it goes where `very / so / too` go (L6), and it is how you warn a foreigner (`it is a bit spicy`) or complain without complaining. `a bit` and `a little` (L8) are interchangeable here. → It is a bit spicy · It is a bit sweet · It is a bit expensive
+  - `… without … please` → `Can I have {food} without {ingredient} please` → ขอ{food}ไม่ใส่{ingredient}หน่อย → food: rice, chicken, coffee, tea (L2), eggs (L25), noodles, soup (L32); ingredient: sugar, ice (L2), egg (L25), chili, lime, lemongrass, pork, shrimp, fish, sauce (L32); `compat`: coffee / tea → sugar / ice; noodles / soup / rice / chicken → chili / lime / lemongrass / pork / shrimp / fish / sauce / egg; eggs → chili / sauce → The L2 ordering frame with a condition on the end: `without` + the thing to leave out (ไม่ใส่). Swap in `with` (L8) to add something (`with egg`). The dish stays first and the condition last — the same order as Thai. → Can I have noodles without chili please · Can I have soup without lemongrass please · Can I have coffee without sugar please
+  - `How do you eat it` → `How do you {verb} {thing}` → คุณ{verb}{thing}ยังไง → verb: eat (L2), use (L17), cook (L18), make (L19), spell (L26), open (L27); thing: this (L2), it (L3), that (L6), rice, chicken (L2), eggs (L25), noodles, soup (L32); `compat`: spell / open → it / this / that; cook / make / eat → rice / chicken / eggs / noodles / soup / it / this → `how` + `do you` + base verb: the L9 question machine with a new wh- word in front. Thai ยังไง goes at the end, English `how` goes first. Answer `with a spoon`, `like this`, or just show. → How do you eat it · How do you cook this · How do you make soup
+- dialogues (2):
+  - Street stall, foreign customer · Fah (vendor) & Tom · `What is this?` / `Fried noodles with shrimp. It is a bit spicy` / `Can I have it without chili?` / `Sure. For here or take away?` / `For here. How do you eat it?` / `With this. Try the sauce, it is sweet and sour` — question tests what Tom leaves out (chili) and where he eats (here).
+  - Explaining tom yum in a chat · Ploy & Emma · `What is in tom yum?` / `Shrimp, lemongrass, lime, chili and fish sauce. It is sour, salty and a bit spicy` / `Is it a soup?` / `Yes, a hot soup. It is delicious` / `Is there a vegetarian one?` / `Yes, without shrimp and without fish sauce` — question tests which two ingredients the vegetarian version leaves out.
+- recycles: `Can I have {thing} please` (L2) gets `without`; `It is {degree} {adj}` (L6) gets `a bit`; `When do you {verb}` (L9) → `How do you …`; spicy, rice, chicken, sugar, ice, eat, drink (L2) and eggs, mango (L25) in the pools; with (L8), try (L16), cook (L18), make, order, taste (L19) in dialogue; `Have you ever tried {food}` (L11) with noodles, soup; `Would you like …` (L19) at the counter; `too {adj} for me` (L29) with spicy; fish + sauce compose `fish sauce`, fried + rice compose `fried rice`; `Do you have a {adj} one` (L29) → `a vegetarian one`.
+
+## Level 33 — Linking Clauses · เชื่อมประโยค
+- icon: 🔗
+- subtitle (Thai, ≤ 60 chars): if … I will / although / unless / while / instead of — พูดยาวขึ้นด้วยประโยคซ้อน
+- theme: Two ideas in one sentence: condition (`if … I will`), concession (`although / though / even though`), exception (`unless`), simultaneity (`while`), alternative (`instead of` + -ing), purpose (`to` + verb, `so … that`), and the gerund `being`. The A2 line: a learner leaves this level able to explain, not just state.
+- grammar focus:
+  - real conditional: `If you are free, I will call you` — `if` (L11) + present tense, result with `will` (L5). Thai ถ้า…ก็จะ keeps the same order and the same tense in both halves, so the trap is putting `will` inside the if-clause (`if you will be free` ✗). The if-clause can come second with no comma: `I will call you if you are free`.
+  - concession: `although / though / even though` = แม้ว่า, all three take a full clause and the main clause never adds `but` (Thai แต่ก็ tempts you to). `though` also sits at the end of a sentence as a spoken afterthought (`It is expensive, though`). `even` on its own = แม้แต่ / ยิ่ง (`not even one`, `even better`).
+  - `unless` = `if … not` (เว้นแต่ / ถ้าไม่): the clause after it is positive — `unless you help me`, never `unless you don't help me`.
+  - `while` + clause for two things at once (ขณะที่); `during` (L30) takes a noun, `while` takes a sentence. `instead of` + -ing (L11 forms, `being`), `since` + start point (ตั้งแต่) next to `for` (L9) + length, `anyway` to close a digression, `to` (L5) + verb for purpose (`to get a better job`), `so … that` (L4 + L6) for cause.
+- canDo (Thai):
+  - บอกเงื่อนไขและผลด้วย If … , I will …
+  - บอกว่า "ถึงแม้ว่า…ก็…" ด้วย although / even though / …, though
+  - บอกข้อยกเว้นด้วย unless (ถ้าไม่…ก็ไม่…)
+  - บอกว่าทำสองอย่างพร้อมกันด้วย while และเลือกทำอีกอย่างแทนด้วย instead of
+  - บอกเหตุผลและจุดประสงค์ด้วย because / to / so … that และกลับเข้าเรื่องด้วย anyway
+- items (20):
+  - while — ขณะที่ / ระหว่างที่ (+ประโยค) — คำสันธาน — glue
+  - although — แม้ว่า / ถึงแม้ — คำสันธาน — glue
+  - though — แม้ว่า / …ก็เถอะ (ท้ายประโยค) — คำสันธาน — glue
+  - unless — เว้นแต่ / ถ้าไม่ — คำสันธาน — glue
+  - even — แม้แต่ / ยิ่ง (even though, not even, even better) — คำวิเศษณ์ — glue
+  - instead — แทน (instead of + -ing) — คำวิเศษณ์ — glue
+  - since — ตั้งแต่ / ในเมื่อ — คำบุพบท — glue (preposition and conjunction, one id)
+  - anyway — ยังไงก็ตาม / เอาเถอะ — คำวิเศษณ์ — filler
+  - else — อื่น / อีก (something else, anything else, what else) — คำวิเศษณ์ — glue — ⚠ already taught at L23: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - rather — มากกว่า / ดีกว่า (I would rather …) — คำวิเศษณ์ — glue (`I'd rather` composes with L19 `would`)
+  - being — การเป็น / ที่เป็น (รูป -ing ของ be) — คำกริยา (รูป -ing) — ing (`thank you for being here`, `stop being …`)
+  - depends — แล้วแต่ (it depends) — คำกริยา (รูป -s) — 3sg
+  - prefer — ชอบมากกว่า — คำกริยา — core-verb (`prefer tea to coffee`)
+  - agree — เห็นด้วย — คำกริยา — core-verb — ⚠ already taught at L22: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - decide — ตัดสินใจ — คำกริยา — core-verb
+  - enjoy — สนุกกับ / เพลิดเพลิน (+ -ing) — คำกริยา — core-verb
+  - save — เก็บ (เงิน) / ประหยัด / ช่วยชีวิต — คำกริยา — core-verb
+  - lose — ทำหาย / แพ้ / ลด (น้ำหนัก) — คำกริยา — core-verb
+  - job — งาน (ตำแหน่ง อาชีพ) — คำนาม — work (`work` L7 is the activity) — ⚠ already taught at L17: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - idea — ความคิด / ไอเดีย (good idea) — คำนาม — chat — ⚠ already taught at L20: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+- patterns (3):
+  - `If you are …, I will …` → `If you are {state} I will {verb} you` → ถ้าคุณ{state} ฉันจะ{verb}คุณ → state: here (L3), tired, hungry (L4), free, busy, home (L5), ready (L28); verb: see, meet (L5), call (L7), help, teach (L8) → The real conditional: `if` + present (`you are free`), then the result with `will` (L5). Thai ถ้า…ก็จะ has the same order, so the one rule to hold is: no `will` after `if`. Comma in writing when the `if` half comes first; the halves can swap (`I will call you if you are free`). → If you are free I will call you · If you are tired I will help you · If you are here I will meet you
+  - `Although it is …, I … it` → `Although it is {adj} I {verb} it` → ถึงแม้ว่ามันจะ{adj} ฉันก็{verb}มัน → adj: spicy (L2), expensive, old, small, difficult, hot, cold (L6), long, heavy, dirty (L29), sweet, sour, salty (L32); verb: want, need, eat (L2), like, love (L4), use (L17), bought (L21), keep (L27); `compat`: eat → spicy / hot / cold / sweet / sour / salty; use / keep → old / heavy / dirty / long / small; like / love / want / need / bought → any → `although` puts the obstacle first and the main clause says what you do anyway (ถึงแม้…ก็…). English never adds `but` after an `although` clause. `though` and `even though` fit the same slot; `…, though` can also hang on the end. → Although it is expensive I like it · Although it is spicy I eat it · Although it is old I use it
+  - `I can't … unless you …` → `I can't {verb} unless you {verb} me` → ฉัน{verb}ไม่ได้ เว้นแต่คุณจะ{verb}ฉัน → verb (first): eat (L2), go, come, sleep (L5), work, study (L7), start, finish (L17); verb (second): call (L7), help, tell, teach (L8), show (L13), pay (L16) → `unless` = `if … not`, and the clause after it stays positive (`unless you help me`, not `unless you don't`). Thai เว้นแต่ and ถ้า…ไม่ both work; the English trap is doubling the negative. → I can't finish unless you help me · I can't study unless you teach me · I can't work unless you pay me
+- dialogues (2):
+  - Deciding on a weekend trip · Fah & Sarah · `Are you coming to Chiang Mai?` / `It depends. If I am free, I will come` / `Even though it is expensive?` / `Yes. I can't go unless I finish work, though` / `Then let's go on Saturday instead of Friday` / `Good idea. I agree` — question tests the condition for Sarah to come (finishing work), not the day they pick.
+  - Why learn English · Bank & Tom · `Why do you study English?` / `To get a better job. I want to work in a hotel` / `Do you enjoy it?` / `Although it is difficult, I like it. I study while I wait for the taxi` / `Since when?` / `Since last year. Anyway, thank you for being here and talking with me` — question tests why Bank studies English (a better job in a hotel) and how long he has studied (since last year).
+- recycles: `if` (L11) now carries the full conditional; `I have to {verb}` (L11), `I think that` (L20), because, but, or (L8), so-conj, after, before, also (L20), when (L9 conjunction sense), during (L30) join the clause-linking set; -ing forms (L11) and talking (L26) after `instead of`, `enjoy`, `for`; let's (L20) in `let's go instead`; to (L5) + verb for purpose with get (L13) + better (L6) + job; so (L4) + that (L6) compose `so … that` in a dialogue line; `It is {adj}` (L6) inside the `although` clause; can't (L7) in the `unless` frame; depends extends `sounds` (L10) as the second subject-less -s verb; something, anything (L23) + else compose `something else`; would (L19) + rather compose `I'd rather`.
+
+## Level 34 — Changing Plans · เปลี่ยนแผน
+- icon: 🔁
+- subtitle (Thai, ≤ 60 chars): won't / until — เลื่อนนัด ยกเลิก มาสาย รถติด "มีธุระด่วน" และ "เดี๋ยวบอกนะ"
+- theme: Renegotiating a time without losing face: `Can we move it to …`, `I won't know until …`, cancel / reschedule, running late, stuck in traffic, `something came up`, `sorry for …`, `next time`, `I'll let you know`. The Line chat ten minutes before the meeting.
+- grammar focus:
+  - `won't` = `will not`: the negative of L5 `will`; Thai จะไม่. Said /woʊnt/, not like `want` — a minimal pair worth the note.
+  - `until` (จนกว่า / จนถึง) as preposition (`until Friday`) and conjunction (`until I arrive`), one id; with a negative it marks the start, not the end: `I won't know until tomorrow` = พรุ่งนี้ถึงจะรู้ — the Thai-L1 trap.
+  - `move it to {time}` / `reschedule` / `cancel` / `change` as the plan verbs; `it` = the meeting you both know; `Can we …` (L5) is still the softest opener, `I have to …` (L11) the face-saving one for bad news.
+  - `sorry for` + noun / -ing (`sorry for the wait`, `sorry for being late` with L33 `being`), `late / early` as states after `am` (L1 frame), `running late` with the -ing of run (L18). `something came up` (L23 + L21 + L27) and `I'll let you know` (L5 + L20 + L8) are composed but idiomatic, so they are phrase items.
+- canDo (Thai):
+  - ขอเลื่อนนัดไปวันหรือเวลาอื่นอย่างสุภาพ (Can we move it to …)
+  - บอกว่าจะยังไม่รู้ / ยังไม่เสร็จจนกว่าจะถึงเมื่อไหร่ด้วย won't … until
+  - ยกเลิกหรือเลื่อนนัดพร้อมเหตุผล (something came up / stuck in traffic)
+  - ขอโทษที่มาสายและบอกว่าจะถึงในอีกกี่นาที
+  - ปิดบทสนทนาด้วย next time / I'll let you know / no problem
+- items (20):
+  - won't — จะไม่ (will + not) — คำช่วยกริยา — modal (phrase; altEn will not)
+  - until — จนกว่า / จนถึง — คำบุพบท — prep (preposition and conjunction, one id)
+  - reschedule — เลื่อนนัด — คำกริยา — core-verb
+  - cancel — ยกเลิก — คำกริยา — core-verb
+  - plan — แผน / วางแผน — คำนาม — event (noun and verb, one id) — ⚠ already taught at L20: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - meeting — การประชุม / นัดประชุม — คำนาม — event — ⚠ already taught at L17: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - appointment — นัด (หมอ / ร้าน / ธุระ) — คำนาม — event
+  - late — สาย / ดึก — คำคุณศัพท์ — time — ⚠ already taught at L14: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - early — เช้า / ก่อนเวลา — คำคุณศัพท์ — time — ⚠ already taught at L17: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - running — กำลังวิ่ง (running late = กำลังจะสาย) — คำกริยา (รูป -ing) — ing
+  - traffic — รถติด / การจราจร — คำนาม — city (`stuck in traffic`) — ⚠ already taught at L14: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - stuck — ติด (ขยับไม่ได้) — คำคุณศัพท์ — state
+  - minutes — นาที (หลายนาที) — คำนาม (พหูพจน์) — plural (singular `minute` L24) — ⚠ already taught at L14: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - way — ทาง / วิธี (on my way, by the way; `no way` is the L10 phrase) — คำนาม — glue — ⚠ already taught at L13: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - on time — ตรงเวลา — วลี — time (phrase)
+  - make it — ไปได้ / มาทัน (I can't make it) — วลี — event (phrase)
+  - something came up — มีธุระด่วน / มีเรื่องกะทันหัน — วลี — excuse (phrase)
+  - I'll let you know — เดี๋ยวบอกนะ / แล้วจะแจ้ง — วลี — closing (phrase; altEn I will let you know)
+  - text — ส่งข้อความ (ทางมือถือ) — คำกริยา — chat (`text me`)
+  - promise — สัญญา — คำกริยา — core-verb (`I promise`)
+- patterns (3):
+  - `Can we move it to` → `Can we move it to {time}` → เลื่อนไป{time}ได้ไหม → time: tomorrow, tonight (L5), Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday (L12) → `move … to` is the spoken เลื่อน; `it` is the meeting you both know about, and `Can we` (L5) keeps it a request, not an announcement. `reschedule` says the same thing in one formal word; `postpone` is the dictionary word nobody says. → Can we move it to tomorrow · Can we move it to Friday · Can we move it to tonight
+  - `I won't … until …` → `I won't {verb} until {time}` → ฉันจะไม่{verb}จนกว่าจะ{time} ({time}ถึงจะ{verb}) → verb: come, go (L5), know (L8), leave (L14), start, finish (L17), arrive (L28); time: tomorrow, tonight, later (L5), then (L11), Monday … Sunday (L12) → `won't` + verb + `until` + the moment things change: English says the not-yet half, Thai says the finally half (พรุ่งนี้ถึงจะรู้). Read it as "no … before …". `until` also takes a clause (`until I arrive`) and `until then` closes a chat. → I won't know until tomorrow · I won't finish until Friday · I won't arrive until tonight
+  - `I have to cancel the …` → `I have to {verb} the {event}` → ฉันต้อง{verb}{event} → verb: change (L29), move (L30), cancel, reschedule (L34); event: time (L5), day (L12), ticket (L14), order (L19, noun sense), meeting, appointment, plan (L34) → `have to` (L11) makes it a necessity, not a wish — the face-saving frame for bad news: `Sorry, I have to cancel the meeting. Something came up`. `cancel` kills it; `reschedule / move / change` keep it alive — say which. → I have to cancel the meeting · I have to change the time · I have to reschedule the appointment
+- dialogues (2):
+  - Line chat before a meeting · Tee & Anna · `Sorry, I am running late. I am stuck in traffic` / `No problem. How long?` / `Twenty minutes. I won't arrive until ten` / `Can we move it to eleven? I have another appointment at ten thirty` / `Sure. Sorry for the wait, I am on my way` / `See you at eleven` — question tests the new meeting time (eleven), not how late Tee is.
+  - Cancelling a dinner · Ploy & Jack · `Are we still eating together tonight?` / `Sorry, I can't make it. Something came up at work` / `Oh. Can we move it to Friday?` / `Maybe. I won't know until tomorrow. I'll let you know` / `Okay, text me. Next time I will cook` / `I promise I will be on time` — question tests whether dinner is cancelled or moved (not decided until tomorrow) and who will tell whom.
+- recycles: `Can we {verb} {time}` (L5) → `Can we move it to`; will (L5) gets its negative `won't`; `I have to {verb} {time}` (L11) → `I have to {verb} the {event}`; `I am {state} on {day}` (L12) with late, early, busy; `See you at {clock}` (L24) as the close; hour, minute, half, o'clock (L24) + minutes for durations, numbers (L3) for clock times; `I am about to {verb}`, soon, almost, hurry, worry, arrive (L28) for the last-minute texts; sorry (L1) + for (L9) + being (L33) + late compose `sorry for being late`; something (L23), came (L21), up (L27) explain `something came up`; let (L20) + you + know (L8) explain `I'll let you know`; change (L29), move (L30) as plan verbs; on (L12) + my (L1) + way composes `on my way`; next (L12) + time (L5) composes `next time`; together (L30).
+
+## Level 35 — Weather & Body · อากาศและร่างกาย
+- icon: 🌧️
+- subtitle (Thai, ≤ 60 chars): ฝนตก แดดออก ร้อนชื้น น้ำท่วม — ปวดหัว เจ็บคอ มีไข้ เป็นมากี่วันแล้ว หายไวๆ
+- theme: The two topics that open and close every Thai small talk: the weather (rain, sun, humidity, floods, umbrellas) and the body (parts that hurt, coughs, fevers, how long it has been going on, `get better soon`). The A2 close: duration with `for … days`, and `get` in its "become" sense.
+- grammar focus:
+  - weather sentences need a dummy `it`: Thai ฝนตก has the rain as its subject; English says `It is raining` (L11 -ing frame), `It is hot / humid / sunny` (L6 frame). `rain` is the noun (ฝน) and the verb; `raining` is its own id.
+  - `My {part} hurts`: the body part is the subject and it is one thing → `hurts` with -s (L7 rule); Thai ปวด / เจ็บ + part starts with the person. Plural parts drop the -s (`my eyes hurt`), noted. `I have a {symptom}` for cough / fever / headache / sore throat / cold (L6 `cold` as a noun).
+  - duration with the present perfect: `How long have you had a cough` (L14 `how long` + `have you` + `had` L21 as participle) and `I have been sick for three days` (`been` L28 + `for` L9 + number + `days`); `since` (L33) + start point replaces `for` + length. Thai มา…วันแล้ว says the length with no verb change.
+  - `get` = become (L13 `get` recycled): `get better`, `get wet`, `get sick`; `I hope you get better soon` (L20 `hope`, L28 `soon`).
+- canDo (Thai):
+  - คุยเรื่องอากาศได้ ฝนตก แดดแรง ร้อนชื้น น้ำท่วม และถามว่าอากาศเป็นยังไง
+  - บอกว่าปวดหรือเจ็บตรงไหนด้วย My … hurts และบอกอาการ ไอ มีไข้ เจ็บคอ
+  - ถามและบอกว่าเป็นมานานแค่ไหนแล้วด้วย How long … / for three days
+  - ชวนพกร่มและเตือนเรื่องฝนกับน้ำท่วมได้
+  - อวยพรให้หายไวๆ และบอกว่าดีขึ้นแล้วด้วย get better
+- items (22):
+  - weather — อากาศ (สภาพอากาศ) — คำนาม — weather (`How is the weather`)
+  - rain — ฝน / ฝนตก — คำนาม — weather (noun and verb, one id)
+  - raining — กำลังตก (ฝน) — คำกริยา (รูป -ing) — ing (`It is raining`)
+  - sunny — แดดออก / แดดจ้า — คำคุณศัพท์ — weather
+  - humid — ชื้น / ร้อนชื้น — คำคุณศัพท์ — weather
+  - flood — น้ำท่วม — คำนาม — weather
+  - umbrella — ร่ม — คำนาม — thing (note: `an umbrella`)
+  - head — หัว / ศีรษะ — คำนาม — body — ⚠ already taught at L15: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - eye — ตา — คำนาม — body (plural `eyes` noted)
+  - ear — หู — คำนาม — body
+  - throat — คอ (ข้างใน) — คำนาม — body (`neck` is the outside, noted)
+  - arm — แขน — คำนาม — body
+  - hand — มือ — คำนาม — body — ⚠ already taught at L15: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - leg — ขา — คำนาม — body — ⚠ already taught at L15: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - stomach — ท้อง / กระเพาะ — คำนาม — body (altEn tummy, belly; note: -ch said /k/) — ⚠ already taught at L15: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - hurts — ปวด / เจ็บ (he/she/it) — คำกริยา (รูป -s) — 3sg (base `hurt` L15) — ⚠ already taught at L15: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - sick — ป่วย / ไม่สบาย — คำคุณศัพท์ — health (altEn ill) — ⚠ already taught at L15: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - cough — ไอ — คำนาม — health (noun and verb, one id; note: -gh said /f/)
+  - fever — ไข้ — คำนาม — health (`have a fever`) — ⚠ already taught at L15: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - headache — ปวดหัว — คำนาม — health (`have a headache`) — ⚠ already taught at L15: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+  - sore throat — เจ็บคอ — วลี — health (phrase)
+  - days — วัน (หลายวัน) — คำนาม (พหูพจน์) — plural (singular `day` L12) — ⚠ already taught at L21: RECYCLE (use the existing id), do not re-mint; replace this slot in the count with a new word from the theme or the unplaced top-300 list
+- patterns (3):
+  - `My … hurts` → `My {part} hurts` → ฉันปวด{part} → part: back (L28), head, eye, ear, throat, arm, hand, leg, stomach (L35) → The body part is the subject and it is a single thing, so the verb takes -s (L7). Thai starts with the person (ฉันปวดหัว); English starts with the part (`My head hurts`). Two of something drops the -s: `My eyes hurt`. → My head hurts · My stomach hurts · My back hurts
+  - `How long have you had a …` → `How long have you had a {symptom}` → คุณ{symptom}มานานแค่ไหนแล้ว → symptom: cold (L6, noun sense), problem (L9), cough, fever, headache, sore throat (L35) → `how long` (L14) + `have you had` asks how long something that is still true has been going on; `had` (L21) is the participle here. Thai มานานแค่ไหนแล้ว puts the length question last and never changes the verb. The answer is the next frame. → How long have you had a cough · How long have you had a fever · How long have you had a sore throat
+  - `I have been … for … days` → `I have been {state} for {number} days` → ฉัน{state}มา{number}วันแล้ว → state: here (L3), tired (L4), free, busy, home (L5), sick (L35); number: two, three, four, five, six, seven, eight, nine, ten (L3; `one` is left out — `for one day`) → `have been` + state + `for` + a length of time: it started then and is still going. Thai มา…แล้ว does the job with no verb change. Swap `for` + length for `since` (L33) + a start point: `since Monday`. → I have been sick for three days · I have been here for two days · I have been busy for five days
+- dialogues (2):
+  - Rainy-season small talk at a café · Nam (barista) & Tom · `It is raining again. Do you have an umbrella?` / `No. Is it always raining in October?` / `Yes, and it is so humid. Last week there was a flood near my home` / `Really? I hope it is sunny tomorrow` / `Me too. Be careful on the way home` — question tests what happened near Nam's home last week (a flood), not today's weather.
+  - Pharmacy abroad, the Thai speaker is the patient · Fah & Anna (pharmacist) · `My throat hurts and I have a cough` / `How long have you had it?` / `For three days. I think I have a fever too` / `Take this in the morning and at night. Don't drink cold water` / `Thank you. Will I get better soon?` / `Yes, if you rest` — question tests how long Fah has been sick (three days) and which symptoms she names (throat, cough, maybe fever).
+- recycles: `It is {degree} {adj}` (L6) with hot, cold, humid, sunny; `I am -ing` (L11) → `It is raining`; `Is there a {thing} here` (L9) → `Is there a flood`; have + a + cough / fever / cold (L2/L6) compose `I have a cold`; how long (L14), `I have just`, been, careful, soon (L28); should, need to, feel, hurt, rest (L15) and the part-2 health nouns in dialogue; get (L13) + better (L6) + soon compose `get better soon`; hope (L20); since (L33) beside `for`; `You shouldn't {verb}` (L28) → `You shouldn't drink cold water`; back (L28) as a body part; October, months (L24) for the rainy season; numbers (L3) + days for durations; way (L34) in `on the way home`; was, there was (L21/L9) in `there was a flood`.
+
+## Coverage after L35
+
+- Allocation rows placed in this part: **25** none, each, both, much, few, little, less, most, only · **26** could · **27** its, whose, between, under, over, through (+ `on` place sense recycled) · **28** done, been, just, soon · **30** myself, yourself, during, used to · **31** our, their · **33** being, while, although, though, unless · **34** won't, until · **35** `get` = become recycled. Extra closed-class words placed outside the table because a frame needed them: `as` (25, `the same as`), `up / down / out` (27), `shouldn't` (28), `without` (32), `even / instead / since / else / rather` (33). Part 3 adds 233 items (L25 22 · L26 20 · L27 22 · L28 21 · L29 20 · L30 22 · L31 22 · L32 22 · L33 20 · L34 20 · L35 22), 33 patterns, 22 dialogues.
+- Deviations from the brief: `until` is first taught at L34 (table), so L33 does not recycle it; `pick` is not an id (L14 `pick up` is the unit, `pick it up` is noted); `sore` lives only inside the phrase `sore throat`; `age`, `grow` (bare) and `alone` were cut from L30 for the 22-item cap and are covered by `how old`, `grow up` and `by myself`; `in order to` is noted at L33, not minted (`to` + verb is the spoken purpose form); the pronoun `one` (`a bigger one`) rides on the L3 id `one` with its note in the L29 pattern; `change` (เปลี่ยน / เงินทอน) and `back` (กลับ / หลัง) are single ids with both senses in the note, since the table names no split.
+- Top-300 spoken words still unplaced anywhere after L1–12, the part-2 hand-off and this part (proper nouns, fillers `oh / uh / huh`, honorifics and taboo excluded; contraction fragments count as their `altEn` forms): **into, guy / guys, believe, wanted, happened, found, called (past -ed forms), left (past of leave, unless L13 placed it as the direction), world, own, real, baby, miss, once, hold, such, wasn't, wouldn't, hi / hey** (unless L1 lists them as `altEn` of hello). `away` and `off` exist only inside `take away` (32) and `get off` (14), `kind` only in `kind of`, `used` only in `used to`.
+- Suggested homes for the parent to route: `wanted / happened / found / called / left` → L21 past wave; `into`, `own`, `such`, `once` → a glue level in part 2 (20 or 23); `guy / guys`, `baby`, `real`, `believe`, `miss`, `hold` → wherever part 2 has room in its people or chat levels; `wasn't / wouldn't` → L21 / L19 as `altEn`-style units; `hi / hey / oh` → `altEn` or reaction items at L1 / L10.
+
+## Cross-part reconciliation (2026-10-24)
+
+Parts 2 and 3 were written in parallel. 57 words were planned at two levels; each later occurrence is marked `⚠ already taught at L…` above. Rule: the earlier level keeps the id; the later level recycles it (it is still available to its patterns and dialogues) and its author replaces the lost slot with a new word from the level's theme or from the unplaced top-300 list in "Coverage after L35" (into, guy/guys, believe, found, called, left, world, own, real, baby, miss, once, hold, such, wasn't, wouldn't). Levels most affected: 29 (8 recycled), 32 (10), 35 (8), 34 (7), 27 (4).
