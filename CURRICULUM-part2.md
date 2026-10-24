@@ -429,3 +429,154 @@
   - Monday morning at work · Nam & Tom · `How was your weekend?` / `Great. I went to Chiang Mai with friends. We ate a lot, and I bought a shirt. And you?` / `I stayed home. I was sick` / `Really? Are you okay now?` / `Yes, I feel better. What did you eat in Chiang Mai?` / `Noodles, every day. It was so good` — question tests **why** Nam stayed home (she was sick), not where Tom went.
   - Lost phone at hotel reception · Bank (reception) & Sarah (guest) · `What happened?` / `I can't find my phone. I had it yesterday` / `Where did you go yesterday?` / `I took a taxi to the market, then I ate at a restaurant near the hotel` / `Did you call the restaurant?` / `Not yet` / `Okay, I will call the restaurant now` — question tests where Sarah went **last** (the restaurant), the place the phone most likely is.
 - recycles: `Do you {verb} {thing}` (L4) → `Did you`; `It is {degree} {adj}` (L6) → `It was`; `made` (L19) joins the past pool; `last` (L12) in `last night / last week`; `years` (L9) and `days` with `ago`; `find` (L13), `feel better` (L15), `weekend` (L12); `take a taxi` (L14) → `took`; `with friends` (L8/L9); `not yet` (L5) answering `Did you`; `then` (L11) and `after that` (L20) to sequence the story; `lost` (L13) re-read as the past of lose in notes; `every day` (L18).
+
+## Level 22 — Opinions & Feelings · ความเห็นและความรู้สึก
+- icon: 💬
+- subtitle (Thai, ≤ 60 chars): ฉันคิดว่า… เห็นด้วย/ไม่เห็นด้วย ดีที่สุด น่าเบื่อ ตื่นเต้น — บอกความเห็นเต็มประโยค
+- theme: Real opinions and real feelings — debating a movie, saying what is the best, admitting you are nervous before an interview. `him / them` complete the object pronouns; `best` opens the superlative pool; `quite` softens.
+- grammar focus:
+  - `I think that` + a full clause: `that` is the L6 id doing its conjunction job and is usually dropped in speech (`I think it is …`, L8). Disagree with `I don't think so` / `I don't agree` — `agree` is a verb, so `I am not agree` (the classic Thai-L1 slip) is out.
+  - superlatives: `the` + `-est` on short adjectives (`the biggest`, `the cheapest`), irregular `the best / the worst`; `favorite` already means ที่ชอบที่สุด, so no `the most favorite`. `the most` + long adjective waits for L25 `most`. Thai …ที่สุด follows the adjective; English puts `the` in front and changes the ending.
+  - object pronouns are now complete: `me` (L8), `you`, `him`, `her` (L7), `it`, `us` (L20), `them` — after a verb or a preposition (`I like him`, `go with them`). Thai เขา does both subject and object.
+  - feelings + preposition: `excited / nervous / worried / angry about`, `afraid of` — Thai กลัว / ตื่นเต้นเรื่อง; `quite` before the adjective is ค่อนข้าง, weaker than `very`.
+  - `boring` describes the thing, a person is `bored` (noted, not minted): `The movie is boring`, not `I am boring`.
+- canDo (Thai):
+  - บอกความเห็นเต็มประโยคด้วย I think that … และบอกว่าเห็นด้วยหรือไม่เห็นด้วย
+  - บอกว่าอะไรดีที่สุด แย่ที่สุด ถูกที่สุด และบอกของโปรดของตัวเอง
+  - บอกความรู้สึกตื่นเต้น ประหม่า กังวล โกรธ กลัว และบอกว่าเรื่องอะไร
+  - พูดถึงคนอื่นในตำแหน่งกรรมด้วย him / them ได้ถูกต้อง
+  - บอกว่าเหมือนกันหรือต่างกัน และใช้ quite ลดระดับคำคุณศัพท์
+- items (22):
+  - him — เขา (ผู้ชาย, กรรม) — คำสรรพนาม — pronoun
+  - them — พวกเขา (กรรม) — คำสรรพนาม — pronoun
+  - quite — ค่อนข้าง — คำวิเศษณ์ — degree
+  - best — ดีที่สุด — คำคุณศัพท์ (ขั้นสุด) — superlative (irregular of `good` / `better`)
+  - worst — แย่ที่สุด — คำคุณศัพท์ (ขั้นสุด) — superlative
+  - biggest — ใหญ่ที่สุด — คำคุณศัพท์ (ขั้นสุด) — superlative (doubled g)
+  - cheapest — ถูกที่สุด — คำคุณศัพท์ (ขั้นสุด) — superlative
+  - favorite — ที่ชอบที่สุด / ของโปรด — คำคุณศัพท์ — adj (altEn favourite; `my favorite food` composes)
+  - agree — เห็นด้วย — คำกริยา — core-verb (`I don't agree`, never `I am not agree`)
+  - boring — น่าเบื่อ — คำคุณศัพท์ — adj
+  - interesting — น่าสนใจ — คำคุณศัพท์ — adj
+  - funny — ตลก — คำคุณศัพท์ — adj (`fun` L10 is สนุก — different sense, different id)
+  - afraid — กลัว — คำคุณศัพท์ — feeling (`afraid of`)
+  - nervous — ประหม่า / ตื่นเต้นกังวล — คำคุณศัพท์ — feeling
+  - excited — ตื่นเต้น (ดีใจ) — คำคุณศัพท์ — feeling
+  - angry — โกรธ — คำคุณศัพท์ — feeling (altEn mad)
+  - worried — กังวล — คำคุณศัพท์ — feeling (`Don't worry` in dialogue is glue; verb not minted)
+  - same — เหมือนกัน — คำคุณศัพท์ — adj (`the same`, `Same here` noted)
+  - different — ต่างกัน / แตกต่าง — คำคุณศัพท์ — adj
+  - hate — เกลียด — คำกริยา — core-verb (opposite of L4 `love`)
+  - amazing — สุดยอด / น่าทึ่ง — คำคุณศัพท์ — adj
+  - oh — โอ้ / อ้าว — คำอุทาน — reaction (`Oh no`, `Oh, I see`; placed here with the feelings set, rank 55)
+- patterns (3):
+  - `I think that … is` → `I think that {subject} is {adj}` → ฉันคิดว่า{subject}{adj} → subject: he, she (L4), it (L3), this (L2), Bangkok, Thailand (L4), Chiang Mai (L7), durian (L11), pad thai, tom yum (L19), football (L18); adj: boring, interesting, funny, amazing, different (L22), good, nice, bad, beautiful, expensive, difficult, easy (L1/L6), delicious (L19), spicy (L2), fun, great, cool (L10) → The L8 `I think it is {adj}` frame with `that` made visible and any subject allowed; the clause after `that` is complete, with its own `is`. Disagree with `I don't agree` or `I don't think so`. → I think that he is funny · I think that durian is amazing · I think that it is boring
+  - `… is the best` → `{thing} is the {superlative}` → {thing}{superlative} → thing: this, this one (L2), that (L6), it (L3), Bangkok, Chiang Mai, Thailand (L4/L7), durian (L11), pad thai, tom yum (L19), football (L18); superlative: best, worst, biggest, cheapest (L22) → Extends `{a} is {comparative} than {b}` (L6): three or more things, `the` in front, `-est` or the irregular `best / worst` on the end, and no `than`. Thai ที่สุด follows the adjective with no article. → Pad thai is the best · This one is the cheapest · Bangkok is the biggest
+  - `I am … about` → `I am {feeling} about {thing}` → ฉัน{feeling}เรื่อง{thing} → feeling: excited, nervous, worried, angry (L22), happy (L1), sad (L4); thing: it, that, this (L2/L3/L6), him, them (L22), you (L1), tomorrow, tonight (L5), work (L7), the trip, the party are noted (two tiles) → The L1 `I am {state}` frame with `about` + the cause; `afraid` takes `of` instead (`I am afraid of him`, dialogue). `quite` slots before the feeling (`I am quite nervous`). → I am nervous about tomorrow · I am excited about the trip · I am worried about him
+- dialogues (2):
+  - After the movie · Fah & Jack · `How was the movie?` / `I think that it was boring` / `Really? I think it was the best movie this year` / `I don't agree. The story was too long. But the music was amazing` / `Okay, same. And the actor, do you like him?` / `Kind of. I think that he is funny` — question tests the one thing they **agree** on (the music), not who liked the movie.
+  - Night before a job interview abroad · Nut & Emma · `Are you okay? You look nervous` / `I am so nervous about tomorrow. I have a job interview` / `Don't worry. You will be great. Your English is quite good` / `Thank you. I am afraid of the questions` / `Me too, every time. But I think that you are ready` / `I hope so` — question tests **why** Nut is nervous (the interview tomorrow), carried by `about tomorrow` and `job interview`.
+- recycles: `I think it is {adj}` (L8) grown into the `that` frame; `{a} is {comparative} than {b}` (L6) → superlative; `I am {state}` (L1) with `about`; `How was the {noun}` and `It was {adj}` (L21) in dialogue; `look` (L16) + adjective (`You look nervous`); `kind of`, `really`, `me too` (L10); `I hope so` and `ready` (L20); `movie`, `music`, `her` (L7); `every time` from L18 + L5; `questions` composes from L17 `question` + plural -s in notes only (plural id not minted).
+
+## Level 23 — This, That & Not · ของฉัน ของคุณ และไม่ใช่
+- icon: 🔑
+- subtitle (Thai, ≤ 60 chars): นี่ของฉัน นั่นไม่ใช่ของคุณ ไม่มีอะไร ไม่มีใคร — ชี้ตัว ยืนยัน และปฏิเสธ
+- theme: Whose is it, which one, and what is not — lost property at reception, the free table, `Anything else?` at the till. The possessive pronouns, the `-thing / -one` words and the contracted negatives `isn't / aren't` land here as sets.
+- grammar focus:
+  - possessive pronouns stand alone with no noun after them: `This is mine`, `Is this yours?` — Thai ของฉัน does both jobs (`my` L1 and `mine`). `his` is the same word in both jobs and keeps its L7 id; `hers` is new.
+  - `isn't / aren't`: the be-verb takes `not` directly and contracts; other verbs need `don't` (L4). So `This isn't mine` but `I don't like it`. Full forms `is not / are not` are accepted when typed.
+  - one negative per sentence: `Nothing is free`, `Nobody is here`, `I have nothing` — Thai ไม่มีอะไร stacks negatives naturally; English `I don't have nothing` is wrong. Questions and `not`-sentences switch to `anything / anyone`: `Do you need anything?`, `I don't know anyone`.
+  - `else` goes after the indefinite: `something else`, `Anything else?`, `Nothing else` — the whole till conversation. `other` needs `the`: `the other table`, `the other one`.
+- canDo (Thai):
+  - บอกว่าของชิ้นนี้เป็นของฉัน ของคุณ หรือไม่ใช่ของฉัน และถามว่า Is this yours?
+  - ปฏิเสธด้วย isn't / aren't ว่าไม่ใช่ ไม่ว่าง หรือไม่ถูกต้อง
+  - ใช้ something / anything / nothing / someone / nobody / everyone ได้ถูกประโยค
+  - ถามลูกค้าว่ารับอะไรเพิ่มไหม (Anything else?) และตอบว่าไม่แล้ว (Nothing else)
+  - แจ้งของหาย กระเป๋า กระเป๋าสตางค์ กุญแจ พาสปอร์ต และขอให้ช่วยเช็ก
+- items (21):
+  - mine — ของฉัน (สรรพนาม ไม่มีนามตาม) — คำสรรพนาม — pronoun
+  - yours — ของคุณ (สรรพนาม) — คำสรรพนาม — pronoun
+  - hers — ของเธอ (สรรพนาม) — คำสรรพนาม — pronoun (`his` L7 serves both jobs)
+  - nothing — ไม่มีอะไร — คำสรรพนาม — indefinite
+  - nobody — ไม่มีใคร — คำสรรพนาม — indefinite (altEn no one)
+  - isn't — ไม่ใช่ / ไม่ (is + not) — คำกริยา — grammar (phrase; altEn is not)
+  - aren't — ไม่ใช่ / ไม่ (are + not) — คำกริยา — grammar (phrase; altEn are not)
+  - other — อื่น (the other one) — คำคุณศัพท์ — determiner
+  - something — บางอย่าง / อะไรสักอย่าง — คำสรรพนาม — indefinite
+  - anything — อะไรก็ได้ / อะไรบ้าง (คำถาม ปฏิเสธ) — คำสรรพนาม — indefinite
+  - everything — ทุกอย่าง — คำสรรพนาม — indefinite
+  - someone — ใครบางคน — คำสรรพนาม — indefinite (altEn somebody)
+  - anyone — ใครก็ได้ / ใครบ้าง (คำถาม ปฏิเสธ) — คำสรรพนาม — indefinite (altEn anybody)
+  - everyone — ทุกคน — คำสรรพนาม — indefinite (altEn everybody; not in the allocation table, added to complete the set)
+  - else — อื่นอีก (something else) — คำวิเศษณ์ — adverb
+  - wallet — กระเป๋าสตางค์ — คำนาม — thing
+  - keys — กุญแจ (พวง) — คำนาม (พหูพจน์) — plural (singular not minted)
+  - passport — พาสปอร์ต / หนังสือเดินทาง — คำนาม — thing
+  - bag — กระเป๋า / ถุง — คำนาม — thing (`Do you need a bag` at the till)
+  - check — ตรวจ / เช็ก — คำกริยา — core-verb (`Let me check` in dialogue; `let me` is glue, not an id)
+  - table — โต๊ะ — คำนาม — thing (`a table for two` with L9 `for`)
+- patterns (3):
+  - `Is this yours?` → `Is this {possessive}` → นี่ของ{possessive}หรือเปล่า → possessive: yours, mine, hers (L23), his (L7) → `Is` flips to the front (L1) and the possessive pronoun closes the sentence alone — no noun, no ของ-phrase after it. Answer `Yes, it is mine` / `No, it isn't`. → Is this yours · Is this his · Is this mine
+  - `… isn't …` → `{thing} isn't {x}` → {thing}ไม่ใช่{x} / {thing}ไม่{x} → thing: this, this one (L2), that (L6), it (L3); x: mine, yours, hers (L23), his (L7), free, busy (L5), spicy (L2), expensive, cheap, big, new (L6), right (L10), wrong (L15), ready (L20) → `isn't` is `is` + `not` in one tile: the be-verb negates itself, no `don't`. Thai ไม่ใช่ before a noun, ไม่ before an adjective — English uses one word for both. `These / those aren't …` is the plural (dialogue). → That isn't mine · This one isn't free · It isn't spicy
+  - `Nothing / Everyone is …` → `{indefinite} is {state}` → {indefinite}{state} → indefinite: something, nothing, everything, someone, nobody, everyone (L23); state: wrong (L15), okay, good (L1), free, busy (L5), here (L3), ready (L20), expensive, cheap, new (L6), delicious (L19), late (L14), different (L22); `compat`: someone / nobody / everyone → here / busy / free / ready / late / okay; something / nothing / everything → wrong / okay / free / expensive / cheap / new / delicious / ready → Every indefinite is singular, so the verb is `is`; `nothing / nobody` already carry the negative, so the sentence has no `not`. Thai ไม่มีอะไรผิด → `Nothing is wrong`. → Something is wrong · Nobody is here · Everything is ready
+- dialogues (2):
+  - Hotel lost and found · Ploy (reception) & Tom (guest) · `Excuse me, I lost my bag. It is black` / `Is this yours?` / `No, that isn't mine. Mine is bigger` / `What is in your bag?` / `My wallet, my keys and my passport. Everything!` / `Oh no. Let me check… Is this yours?` / `Yes! Thank you so much` — question tests what is **in** the bag (wallet, keys, passport), not which bag was shown first.
+  - Restaurant, free table and the vegetarian question · Tee (waiter) & Anna (customer) · `Is this table free?` / `Sorry, it isn't. This one is free` / `Thank you. Can I have the menu?` / `Here. Would you like anything to drink?` / `Water please. Is there anything vegetarian?` / `Yes, pad thai with egg, no shrimp` / `Great. Nothing else, thank you` — question tests what Anna can eat (pad thai with egg, no shrimp), the waiter's answer carrying it.
+- recycles: `Is this …` from the L2 `What is this` / L6 `This {thing} is {adj}` machinery; `This is my {person}` (L4) → `This is mine`; `lost` (L13) now `I lost my bag` (past of lose, noted); `Would you like anything` (L19) with `anything`; `table` picks up the L9 `a table for two` note; `free` (L5) for tables; `wrong` (L15) under `something`; `bigger` (L6); `Excuse me` (L3); `vegetarian`, `menu`, `egg`, `shrimp` (L19); `right` (L10) in `That isn't right`; `Oh no` (L22).
+
+## Level 24 — Counting & Clock · นับเลขและบอกเวลา
+- icon: 🕙
+- subtitle (Thai, ≤ 60 chars): สิบโมงครึ่ง เจอกันบ่ายสอง หลักพัน หลักล้าน เดือนมกราคม–ธันวาคม — เวลาและวันที่
+- theme: Telling the time, fixing an hour to meet, big prices, months and dates — the A2 waypoint of this part: a Thai adult can now book, quote, arrive and narrate with a clock and a calendar.
+- grammar focus:
+  - clock: `It is ten o'clock`, `ten thirty`, `half past ten`, and `at` + time for appointments (`See you at seven`) — the clock sense of L7 `at`. Thai counts the day in four six-hour blocks (สิบโมง, บ่ายสอง, สี่ทุ่ม); English counts one to twelve twice and adds `in the morning / afternoon / evening` (L5/L12) or a.m. / p.m. (noted). `o'clock` only on the exact hour.
+  - `hour` (ชั่วโมง) vs `time` (L5, เวลา); `half an hour` with L6 `an`; `minute` is the singular of L14 `minutes`.
+  - big numbers: `thousand`, `million`, and L3 `hundred` take **no -s** after a number (`two thousand baht`, `five million`); `one thousand two hundred` with no `and` in the American pattern, British `and` noted.
+  - months are capitalised; `in` + month (`in May`, L7 `in` in its L12 time sense), `on` + date (`on May first` / `on the first of May`, L12 `on`); ordinals `first / second / third` (L12), the rest `-th` composing from L3 numbers.
+  - `What time do you …` replaces `When do you …` (L9/L17) when the answer is a clock time; `What time is it` has composed since L5.
+- canDo (Thai):
+  - บอกเวลาและถามเวลาแบบนาฬิกาได้ (ten o'clock, ten thirty, half past ten)
+  - นัดเวลาด้วย See you at … และถามว่าทำ…กี่โมงด้วย What time do you …
+  - นับเลขหลักพัน หลักล้าน และบอกราคาสูงๆ เป็นบาทได้
+  - พูดชื่อเดือนทั้งสิบสองและบอกเดือนเกิด เดือนที่จะเดินทาง หรือวันที่
+  - บอกจำนวนชั่วโมง นาที และขอหรือบอกเบอร์โทรศัพท์ได้
+- items (22):
+  - thousand — พัน — จำนวน — number (no -s after a number)
+  - million — ล้าน — จำนวน — number
+  - half — ครึ่ง — จำนวน — number (`half past ten`, `half an hour`)
+  - hour — ชั่วโมง — คำนาม — time (`an hour`: silent h, L5 phonics note)
+  - hours — ชั่วโมง (หลายชั่วโมง) — คำนาม (พหูพจน์) — plural (`two hours`; held back from L14 to keep that level at 22)
+  - minute — นาที — คำนาม — time (singular of L14 `minutes`; `one minute please`)
+  - o'clock — โมง / นาฬิกา (ตรง) — คำวิเศษณ์ — time (altEn oclock)
+  - past — ผ่าน / หลัง (half past ten) — คำบุพบท — time (clock sense only; `past tense` is a grammar word, not this id)
+  - January — มกราคม — คำนาม — month
+  - February — กุมภาพันธ์ — คำนาม — month (note: first r often silent)
+  - March — มีนาคม — คำนาม — month
+  - April — เมษายน — คำนาม — month
+  - May — พฤษภาคม — คำนาม — month (id `may-month`; the modal `may` is L16)
+  - June — มิถุนายน — คำนาม — month
+  - July — กรกฎาคม — คำนาม — month (stress on -ly)
+  - August — สิงหาคม — คำนาม — month
+  - September — กันยายน — คำนาม — month
+  - October — ตุลาคม — คำนาม — month
+  - November — พฤศจิกายน — คำนาม — month
+  - December — ธันวาคม — คำนาม — month
+  - date — วันที่ — คำนาม — time (`What is the date today` composes; romantic sense not taught)
+  - number — เบอร์ / หมายเลข / จำนวน — คำนาม — noun (`phone number` composes with L7 `phone`)
+- patterns (3):
+  - `What time do you …` → `What time do you {verb} {thing}` → คุณ{verb}{thing}กี่โมง → verb: start, finish (L17), work, study (L7), sleep, go, come (L5), eat, have (L2), leave (L14); thing: work (L7), lunch (L17), home (L5), it (L3), optional; `compat`: start / finish → work / it; have → lunch; go / leave → home → The L17 `When do you {verb} {thing}` frame with `What time` in front when a clock answer is wanted; `What time is it` is the same opener with `is it`. Thai กี่โมง closes the sentence. → What time do you start work · What time do you have lunch · What time do you leave home
+  - `See you at …` → `See you at {hour} {minutes}` → เจอกัน{hour}โมง{minutes} → hour: one … twelve (L3); minutes: o'clock (L24), ten, fifteen, twenty, thirty, forty, fifty (L3), optional → The L12 `See you {time}` frame with `at` + a clock time: hour first, minutes second, `o'clock` only when the minutes are zero. `half past ten` and `in the morning` are noted additions, not slot fills. → See you at seven o'clock · See you at ten thirty · See you at six fifteen
+  - `My … is in …` → `My {event} is in {month}` → {event}ของฉันอยู่ในเดือน{month} → event: birthday, holiday, day off (L12), trip, party (L21), meeting (L17); month: January … December (L24) → `in` + month, no article; the exact day adds `on` and an ordinal (`on the first of May`, notes). Thai เดือน before every month name — English never says `month May`. → My birthday is in May · My trip is in December · My holiday is in April
+- dialogues (2):
+  - Booking a massage hour · Nam (shop staff) & Mr. Lee (customer) · `What time do you start?` / `We start at nine o'clock. What time do you want?` / `Ten thirty?` / `Sorry, ten thirty isn't free. How about eleven?` / `Okay, eleven. How much is one hour?` / `Five hundred baht. Two hours is nine hundred` / `One hour please. See you at eleven` — question tests the time Mr. Lee **actually** books (eleven), not the time he first asked for.
+  - The December trip · Bank & Sarah · `When is your trip to Thailand?` / `In December. I come on December first` / `Great, it is cool in December. How long is the trip?` / `Ten days` / `What time do you get to Bangkok?` / `Six o'clock in the morning` / `Okay. I will pick you up at the airport. Can I have your phone number?` / `Sure` — question tests **when** Sarah lands (December first, six in the morning), two facts the listener must hold together.
+- recycles: `See you {time}` (L12) → `See you at {clock}`; `When do you {verb} {thing}` (L17) → `What time do you`; `What time is it` (L5) as the opener; `at` (L7) in its clock sense, `in` (L7/L12) with months, `on` (L12) with dates; `first / second / third` (L12); `hundred` and 1–100 (L3); `minutes`, `how long`, `pick up`, `airport` (L14); `trip`, `days` (L21); `phone` (L7) + `number`; `half` + `an` (L6) + `hour`; `isn't` (L23); `How about` (L20); `cool` (L10) for weather in dialogue.
+
+## Hand-off to part 3
+
+- Lexicon after L24: **554 items** (288 from L1–12 + L13 22 · L14 22 · L15 21 · L16 22 · L17 22 · L18 22 · L19 22 · L20 22 · L21 26 · L22 22 · L23 21 · L24 22), 71 patterns, 51 dialogues. New sense-split ids minted here: `right-side` (ขวา), `so-conj`, `may-month`; phrase ids standing in for words taught later: `over there` (word `over` L27), `the one` / `which one` (pronoun `one` is never a word id), `after that`, `try on`, `get on` / `get off` / `pick up`, `need to`, `how long`.
+- Allocation-table rows still owed, by level: **25** none, each, both, much, few, little, less, most, only · **26** could, tag questions, reported speech lite, `would you mind` · **27** its, whose, between, under, over, through, on (place) · **28** done, been, just, soon · **30** myself, yourself, during, used to · **31** our, their · **33** being, while, although, though, unless · **34** won't, until · **35** `get` = become (id `get-become`). Every other row of the table is now placed (13–24 took near, next to, behind, in front of, around, get, how long, should, need to, which, these, those, by, may, every, never, always, usually, often, sometimes, another, would, enough, us, let's, so-conj, after, before, also, was, were, did, had, didn't, yesterday, ago, him, them, quite, mine, yours, nothing, nobody, isn't, aren't, other, something / anything / everything / someone / anyone, thousand, million, half, hour, minute, o'clock, the twelve months).
+- Deviations from the parts-2–3 hand-off, so part 3 does not redo them: `How much are {plural}` was built at **L16** (not 25) because `these / those` land there; `made` is an **L19** pp id (recycled as past at L21, not re-minted); `stop` and `way` went to L13, `hours` to L24; `everyone`, `hers`, `else`, `past`, `oh`, `ready`, `back`, `join`, `together` were added though no row names them.
+- Top-1,000 words from the hand-off still unplaced (suggested homes): give, wear, taste (25, shopping/food recycle) · let, wish (26) · put, open, close, keep, sit, stand (27) · sell, change (29) · move, grow, become (30) · marry, born, man, woman, boy, girl, son, daughter, husband, wife (31) · rain, break (verb), hurt (recycle) (35). Also owed: bases `lose`, `happen`, `worry`; singulars `eye`, `key`, `game`, `week`→`weeks`, `month`→`months`; 3sg `goes`, `does` (main verb); -ing `looking`, `thinking`, `getting`, `playing`; pp `gone`, `done`, `been`, `bought` (same form as the L21 past — one id, note both jobs); `bored`, `scared`, `sure` composites (`I'm not sure`).
+- Frames to extend rather than replace: `Can I have {thing} please` → `Could I have …` (26) · `{thing} is the {superlative}` → `{thing} is the most {adj}` (25) · `It is {position} the {landmark}` → between / under / over / on (27) · `Is this {possessive}` → `Whose {thing} is this` (27) · `Have you ever {pp}` / `I have never {pp}` → `I have just {pp}` and `Have you done …` (28) · `I am going to {verb} {time}` → `I am about to {verb}` (28) · `Did you {verb} {thing} {time}` → `What did you {verb}` and `I was {verb-ing}` (29) · `I think that {subject} is {adj}` → `She said that …` (26) · `Would you like {thing}` → `Would you mind {verb-ing}` (26) · `Let's {verb}` → `Why don't we {verb}` (26) · `See you at {hour} {minutes}` → `until {time}` (34) · `My {part} hurts` → the body / describing-people set (35).
+- Dialogue stance: from L13 the Thai speaker is sometimes the one who knows less (lost in L13, on a foreign train in L14, sick abroad in L15, nervous before an interview in L22), so the comprehension question tests the foreigner's answer; keep that mix in 25–35 and keep every dialogue to one Thai speaker from the fixed cast.
