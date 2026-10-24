@@ -38,9 +38,17 @@ export const DH_NON_INITIAL = 'ธ'
  * Inside an onset cluster the leading S is ส and the stop after it is the
  * unaspirated letter: stop สตอป, spa สปา, sky สกาย, street สตรีต, small สมอล.
  * (school สคูล is the one fixed Thai spelling that breaks this — exceptions.ts.)
+ *
+ * The same unaspirated letters open an UNSTRESSED syllable right after a
+ * closed one (a coda, or the ร์ of ER), and any syllable after an S coda:
+ * sister ซิส-เตอร์, doctor ดอก-เตอร์, party พาร์-ตี้, thirty เธอร์-ตี้,
+ * example เอ็ก-แซม-เปิล, monkey มัง-กี้, Boston บอส-ตัน. A stressed syllable
+ * keeps พ ท ค (fifteen ฟิฟ-ทีน, contain คัน-เทน), as does one after an open
+ * syllable (water วอ-เทอร์, people พี-เพิล).
  */
 export const ONSET_S_CLUSTER = 'ส'
-export const ONSET_AFTER_S: Partial<Record<Consonant, string>> = { P: 'ป', T: 'ต', K: 'ก' }
+export const UNASPIRATED: Partial<Record<Consonant, string>> = { P: 'ป', T: 'ต', K: 'ก' }
+export const ONSET_AFTER_S = UNASPIRATED
 /** …except K before a glide, which Thai writes ค: square สแควร์, screen สครีน, script สคริปต์. */
 export const ONSET_S_K_BEFORE_GLIDE = 'ค'
 export const S_K_GLIDES: ReadonlySet<Consonant> = new Set<Consonant>(['R', 'W'])
@@ -66,16 +74,20 @@ export const KARAN = '์'
  * the consonant — it closes syllable 1 AND opens syllable 2 (happy แฮป-ปี้,
  * city ซิต-ตี้, lesson เลส-ซัน). The pair is [coda letter, onset letter]:
  * usually the coda letter twice (Thai hears intervocalic p t k as ป ต ก), but
- * S/Z/V show their voiced/onset letter the second time (busy บิซ-ซี่,
- * lesson เลส-ซัน, heavy เฮฟ-วี่). Consonants absent here never geminate:
- * R W Y HH DH leave the vowel open (very เว-รี่, father ฟา-เธอร์) and NG is
+ * S/Z show their onset letter the second time (lesson เลส-ซัน, busy บิซ-ซี่).
+ * Consonants absent here never geminate: R W Y HH DH V leave the vowel open
+ * (very เว-รี่, father ฟา-เธอร์, seven เซ-เว็น, heavy เฮ-วี่) and NG is
  * always a plain coda (singer ซิง-เออร์).
  */
 export const GEMINATE: Partial<Record<Consonant, [string, string]>> = {
   P: ['ป', 'ป'], B: ['บ', 'บ'], T: ['ต', 'ต'], D: ['ด', 'ด'], K: ['ก', 'ก'], G: ['ก', 'ก'],
-  F: ['ฟ', 'ฟ'], V: ['ฟ', 'ว'], TH: ['ธ', 'ธ'], S: ['ส', 'ซ'], Z: ['ซ', 'ซ'],
+  F: ['ฟ', 'ฟ'], TH: ['ธ', 'ธ'], S: ['ส', 'ซ'], Z: ['ซ', 'ซ'],
   SH: ['ช', 'ช'], ZH: ['ช', 'ช'], CH: ['ช', 'ช'], JH: ['จ', 'จ'],
   M: ['ม', 'ม'], N: ['น', 'น'], L: ['ล', 'ล'],
+}
+/** A doubled affricate closes with the stop its spelling shows: kitchen คิท-เช็น (tch), budget บัด-เจ็ต (dg). */
+export const GEMINATE_SPELLING: Partial<Record<Consonant, [spelled: string, coda: string]>> = {
+  CH: ['tch', 'ท'], JH: ['dg', 'ด'],
 }
 
 /**
@@ -170,8 +182,41 @@ export const AH0_L = 'เCิF'
 /** SH/ZH/CH/JH + AH0 + N — the -tion/-sion ending: station สเต-ชั่น, vision วิ-ชั่น. */
 export const AH0_PALATAL_N = 'Cั่F'
 export const PALATALS: ReadonlySet<Consonant> = new Set<Consonant>(['SH', 'ZH', 'CH', 'JH'])
-/** EY with Z as its only coda is the open form + s: days เดย์ส์, always ออล-เวย์ส์ (plurals and 3sg outnumber raise/phase in speech). */
-export const EY_Z = 'เCย์F'
+// ─── Spelling-sensitive forms (derive.ts reads the word's letters for these) ──
+
+/**
+ * A reduced LAST syllable (AH0/IH0/EH0, or secondary stress) with a coda, when
+ * the word's last vowel letter is `e` (a silent final e does not count):
+ * -et -ed -en -em -ent -ence → เ-็- (ticket ทิก-เก็ต, student สตู-เด็นต์,
+ * problem พรอบ-เล็ม); before S Z SH CH JH L → เ- with no ็ (buses บัส-เซส,
+ * college คอล-เลจ, level เล-เวล). Other spellings keep ั/ิ (lesson เลส-ซัน,
+ * woman วุม-มัน). Contractions are skipped (doesn't ดัซ-ซันต์).
+ */
+export const SPELLED_E_SHORT = 'เC็F'
+export const SPELLED_E_PLAIN = 'เCF'
+export const SPELLED_E_PLAIN_CODAS: ReadonlySet<Consonant> = new Set<Consonant>(['S', 'Z', 'SH', 'CH', 'JH', 'L'])
+
+/** EY written ay/ey keeps its ย์ before an -s or -ed: days เดย์ส์, always ออล-เวย์ส์, played เพลย์ด (raise เรส, paid เพด do not). */
+export const EY_SPELLED_Y_F = 'เCย์F'
+/** Word-final OW written ow: know โนว์, show โชว์, window วิน-โดว์, and knows โนว์ส์, showed โชว์ด (go โก, no โน keep โ-). */
+export const OW_SPELLED_OW = 'โCว์'
+export const OW_SPELLED_OW_F = 'โCว์F'
+
+/** The ex- prefix: IH0/EH + K S → เอ็กซ์- before a consonant (explain เอ็กซ์-เพลน), เอ็ก- before a vowel or for G Z (exit เอ็ก-ซิต, exercise เอ็ก-เซอร์-ไซส์). */
+export const EX_PREFIX = { ks: 'เอ็กซ์', k: 'เอ็ก' }
+
+/** The short mark ็ is never written before an L coda (bell เบล, hotel โฮ-เทล, pal แพล)… */
+export const NO_SHORT_MARK_BEFORE: ReadonlySet<Consonant> = new Set<Consonant>(['L'])
+/** …nor before S/Z in a polysyllable (express เอ็กซ์-เพรส, princess พริน-เซส); a monosyllable keeps it (yes เย็ส). */
+export const NO_SHORT_MARK_POLYSYLLABLE: ReadonlySet<Consonant> = new Set<Consonant>(['S', 'Z'])
+/**
+ * Before a coda CLUSTER the short mark is kept only when the cluster starts
+ * with a stop (exact แซ็กต์, act แอ็กต์, box บ็อกซ์, kept เค็ปต์, cats แค็ตส์);
+ * a sonorant or fricative drops it (friend เฟรนด์, can't แคนต์, test เทสต์, help เฮลป์).
+ */
+export const SHORT_MARK_CLUSTER_STARTS: ReadonlySet<Consonant> = new Set<Consonant>(['P', 'B', 'T', 'D', 'K', 'G'])
+/** The letter x is written กซ์, not กส์: box บอกซ์, six ซิกซ์, next เน็กซ์ต์, sixty ซิกซ์-ตี้ (books บุกส์ keeps ส). */
+export const CODA_S_FOR_X = 'ซ'
 /** AW before an N or L coda keeps the าว shape: down ดาวน์, town ทาวน์, owl อาวล์. */
 export const AW_NL = 'CาวF'
 export const AW_NL_CODAS: ReadonlySet<Consonant> = new Set<Consonant>(['N', 'L'])

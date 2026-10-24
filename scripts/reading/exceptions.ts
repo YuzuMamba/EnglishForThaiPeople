@@ -36,6 +36,27 @@ export const EXCEPTIONS: Record<string, Exception> = {
   line: { reading: 'ไลน์' },                                      // the app; also the common noun, same reading
   '7-eleven': { reading: 'เซ-เว่น', ipa: '/ˈsɛvən/' },            // Thai says just "เซเว่น"; digits are not in CMUdict
 
+  // ── The dialogue cast (src/data/listening.ts) and fixed Thai spellings ──
+  // Pinned so a name never drifts between dialogues. Thai names are the Thai
+  // word; English names take the form Thai people always write. IPA comes
+  // from CMUdict where it has the name.
+  nam: { reading: 'น้ำ', ipa: '/nɑm/' },
+  ploy: { reading: 'พลอย', ipa: '/plɔɪ/' },
+  fah: { reading: 'ฟ้า', ipa: '/fɑ/' },
+  bank: { reading: 'แบงค์' },
+  tee: { reading: 'ตี้' },
+  nut: { reading: 'นัท' },
+  emma: { reading: 'เอ็ม-ม่า' },
+  sarah: { reading: 'ซา-ร่า' },
+  anna: { reading: 'แอน-นา' },
+  tom: { reading: 'ทอม' },
+  jack: { reading: 'แจ็ค' },                                      // rules give แจ็ก; the name is always แจ็ค
+  lee: { reading: 'ลี' },
+  mr: { reading: 'มิส-เตอร์' },                                    // "Mr. Lee" → มิส-เตอร์ ลี (the period is stripped before lookup)
+  thai: { reading: 'ไท' },
+  okay: { reading: 'โอ-เค' },                                     // OW2 K EY1 → โอ-เคย์; Thai writes โอเค
+  ok: { reading: 'โอ-เค' },                                       // as above
+
   // ── Interjections CMUdict lists without a vowel (HH M) — nothing to syllabify ──
   hmm: { reading: 'อืม', ipa: '/hm/' },
   hm: { reading: 'อืม', ipa: '/hm/' },
@@ -48,11 +69,22 @@ export const EXCEPTIONS: Record<string, Exception> = {
   what: { reading: 'วอต' },              // W AH1 T → วัต; Thai hears the British /ɒ/: ว็อท/วอท
   "what's": { reading: 'วอตส์' },        // as above
   of: { reading: 'ออฟ' },                // AH1 V → อัฟ; Thai writes ออฟ
+  from: { reading: 'ฟรอม' },             // F R AH1 M → ฟรัม; Thai writes ฟรอม (the phonics course agrees)
   the: { reading: 'เดอะ' },              // DH AH0 → ดะ; เดอะ is universal in Thai
   today: { reading: 'ทู-เดย์' },         // T AH0 D EY1 → ทะ-เดย์; Thai keeps "to" as ทู
   tonight: { reading: 'ทู-ไนต์' },       // as above
-  tomorrow: { reading: 'ทู-มอ-โร' },     // as above
+  tomorrow: { reading: 'ทู-มอ-โรว์' },   // as above (the -ow ending is written โ-ว์ by rule, as in window วิน-โดว์)
   together: { reading: 'ทู-เก-เธอร์' },  // as above
+  beautiful: { reading: 'บิว-ติ-ฟูล' },  // B Y UW1 T AH0 F AH0 L → บิว-ทะ-เฟิล; บิวตี้ฟูล is the established Thai form
+  restaurant: { reading: 'เรส-เตอ-รองต์' }, // R EH1 S T ER0 AA2 N T → เรส-เตอ-รานต์; Thai follows the French-flavoured เรสเตอรองต์
+  // AW + ER0 merges to -าวร์ by rule, which is right for hour/our/sour/flour; these four are written with the glide in Thai.
+  power: { reading: 'พาว-เวอร์' },
+  tower: { reading: 'ทาว-เวอร์' },
+  flower: { reading: 'ฟลาว-เวอร์' },
+  shower: { reading: 'ชาว-เวอร์' },
+  // The tens end in -ตี้ (twenty, thirty, forty, fifty, sixty, ninety derive by rule); these two carry a spelling Thai keeps.
+  seventy: { reading: 'เซ-เวน-ตี้' },    // S EH1 V AH0 N T IY0 → เซ-วัน-ตี้; Thai keeps the e of seven
+  eighty: { reading: 'เอต-ตี้' },        // EY1 T IY0 → เอ-ที่; Thai doubles the t
   computer: { reading: 'คอม-พิว-เทอร์' }, // K AH0 M P Y UW1 T ER0 → คัม-พิว-เทอร์; คอมพิวเตอร์ is a Thai dictionary word
   banana: { reading: 'บะ-นา-นะ' },       // B AH0 N AE1 N AH0 → บะ-แนน-นะ by the gemination rule; Thai follows the British /ɑː/
   school: { reading: 'สคูล' },           // S K UW1 L → สกูล by the S-cluster rule (sky สกาย); สคูล is the fixed Thai spelling

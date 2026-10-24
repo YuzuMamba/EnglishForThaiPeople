@@ -34,8 +34,8 @@ export interface Syllable {
   geminateOnset: boolean
 }
 
-/** Consonants that never geminate: the stressed lax vowel before them stays open. */
-export const NO_GEMINATION: ReadonlySet<Consonant> = new Set<Consonant>(['R', 'W', 'Y', 'HH', 'DH'])
+/** Consonants that never geminate: the stressed lax vowel before them stays open (very, father, seven). */
+export const NO_GEMINATION: ReadonlySet<Consonant> = new Set<Consonant>(['R', 'W', 'Y', 'HH', 'DH', 'V'])
 
 /** Is this consonant sequence a legal English onset (given the vowel that follows it)? */
 export function isLegalOnset(cs: Consonant[], nextVowel: Vowel): boolean {

@@ -25,8 +25,9 @@ const sampleN = argv.includes('--sample') ? Number(argv[argv.indexOf('--sample')
 
 // ─── Regression table: English → expected reading ──────────────────────────
 // Readings here are the transcription convention (scripts/reading/README.md),
-// not Thai loanword spellings. "(exception)" rows pass through exceptions.ts.
+// not Thai loanword spellings. Rows that pass through exceptions.ts are marked.
 const TABLE: [string, string][] = [
+  // ── The original specification ──
   ['hello', 'เฮล-โล'], ['thank you', 'แธงค์ ยู'], ['coffee', 'คอฟ-ฟี่'], ['water', 'วอ-เทอร์'],
   ['please', 'พลีส'], ['sorry', 'ซอ-รี่'], ['happy', 'แฮป-ปี้'], ['friend', 'เฟรนด์'],
   ['think', 'ธิงค์'], ['this', 'ดิส'], ['very', 'เว-รี่'], ['work', 'เวิร์ก'],
@@ -46,20 +47,53 @@ const TABLE: [string, string][] = [
   ['late', 'เลต'], ['law', 'ลอ'], ['talk', 'ทอก'], ['her', 'เฮอร์'],
   ['bird', 'เบิร์ด'], ['two', 'ทู'], ['you', 'ยู'], ['phone', 'โฟน'],
   ['about', 'อะ-เบาต์'], ['out', 'เอาต์'], ['love', 'ลัฟ'], ['lesson', 'เลส-ซัน'],
-  ['open', 'โอ-พัน'], ['cats', 'แคตส์'], ['test', 'เทสต์'], ['friends', 'เฟรนด์ส์'],
+  ['open', 'โอ-เพ็น'], ['cats', 'แค็ตส์'], ['test', 'เทสต์'], ['friends', 'เฟรนด์ส์'],
   ["don't", 'โดนต์'], ["I'm", 'ไอม์'], ["it's", 'อิตส์'], ["what's", 'วอตส์'],
   ["can't", 'แคนต์'], ["doesn't", 'ดัซ-ซันต์'], ['Bangkok', 'แบง-ค็อก'],
-  // Rules beyond the first spec, pinned so they cannot drift:
+  // ── Rules beyond the first spec, pinned so they cannot drift ──
   ['music', 'มิว-ซิก'], ['idea', 'ไอ-เดีย'], ['fire', 'ไฟร์'], ['hour', 'อาวร์'],
-  ['around', 'อะ-ราวนด์'], ['player', 'เพล-เยอร์'], ['square', 'สแควร์'], ['twenty', 'ทเวน-ที่'],
-  ['father', 'ฟา-เธอร์'], ['with', 'วิธ'], ['problem', 'พรอบ-ลัม'], ['busy', 'บิซ-ซี่'],
-  ['heavy', 'เฮฟ-วี่'], ['milk', 'มิลค์'], ['desk', 'เดสก์'], ['English', 'อิง-กลิช'],
+  ['around', 'อะ-ราวนด์'], ['player', 'เพล-เยอร์'], ['square', 'สแควร์'], ['twenty', 'ทเวน-ตี้'],
+  ['father', 'ฟา-เธอร์'], ['with', 'วิธ'], ['problem', 'พรอบ-เล็ม'], ['busy', 'บิซ-ซี่'],
+  ['heavy', 'เฮ-วี่'], ['milk', 'มิลค์'], ['desk', 'เดสก์'], ['English', 'อิง-กลิช'],
   ['Hello, world!', 'เฮล-โล เวิลด์'], ['pad thai', 'ผัด-ไทย'], ['t-shirt', 'ที-เชิร์ต'],
   ['days', 'เดย์ส์'], ['always', 'ออล-เวย์ส์'], ['hurry', 'เฮอร์-รี่'], ['mother', 'มา-เธอร์'],
   ['Monday', 'มัน-เดย์'], ['birthday', 'เบิร์ธ-เดย์'], ['apples', 'แอป-เปิลส์'], ['stations', 'สเต-ชั่นส์'],
-  ['nobody', 'โน-บอด-ดี้'], ['playing', 'เพลย์-อิง'], ['trying', 'ทราย-อิง'], ['quiet', 'ไคว-อัต'],
-  ['excuse', 'อิก-สคิวส์'], ['agent', 'เอ-จันต์'], ['live', 'ลิฟ'], ['read', 'รีด'],
-  ['tiger', 'ไท-เกอร์'], ['kitchen', 'คิช-ชั่น'], ['sixteen', 'ซิก-สตีน'], ['yellow', 'เยล-โล'],
+  ['nobody', 'โน-บอด-ดี้'], ['playing', 'เพลย์-อิง'], ['trying', 'ทราย-อิง'], ['quiet', 'ไคว-เอ็ต'],
+  ['excuse', 'เอ็กซ์-คิวส์'], ['agent', 'เอ-เจ็นต์'], ['live', 'ลิฟ'], ['read', 'รีด'],
+  ['tiger', 'ไท-เกอร์'], ['kitchen', 'คิท-เช็น'], ['sixteen', 'ซิกซ์-ทีน'], ['yellow', 'เยล-โลว์'],
+  // ── Spelling-sensitive round ──
+  // 1. reduced last syllable spelled with e
+  ['ticket', 'ทิก-เก็ต'], ['wanted', 'วอน-เต็ด'], ['needed', 'นี-เด็ด'], ['chicken', 'ชิก-เก็น'],
+  ['present', 'เพรซ-เซ็นต์'], ['student', 'สตู-เด็นต์'], ['moment', 'โม-เม็นต์'], ['hundred', 'ฮัน-เดร็ด'],
+  ['buses', 'บัส-เซส'], ['wishes', 'วิช-เชส'], ['places', 'เพล-เซส'], ['level', 'เล-เวล'],
+  ['woman', 'วุม-มัน'], ['Boston', 'บอส-ตัน'], ['budget', 'บัด-เจ็ต'], ['college', 'คอล-เลจ'],
+  // 2. V never geminates
+  ['seven', 'เซ-เว็น'], ['eleven', 'อิ-เล-เว็น'], ['never', 'เน-เวอร์'], ['river', 'ริ-เวอร์'],
+  // 3. no ็ before an L coda
+  ['hotel', 'โฮ-เทล'], ['bell', 'เบล'], ['well', 'เวล'], ['tell', 'เทล'], ['sell', 'เซล'], ['pal', 'แพล'],
+  // 4. word-final -ow
+  ['know', 'โนว์'], ['show', 'โชว์'], ['low', 'โลว์'], ['slow', 'สโลว์'], ['window', 'วิน-โดว์'],
+  ['tomorrow', 'ทู-มอ-โรว์'], ['no', 'โน'], ['so', 'โซ'], ['knows', 'โนว์ส์'], ['showed', 'โชว์ด'],
+  // 5. -ayed / -eyed
+  ['played', 'เพลย์ด'], ['stayed', 'สเตย์ด'], ['obeyed', 'โอ-เบย์ด'], ['paid', 'เพด'], ['raise', 'เรส'],
+  // 6. ex- prefix
+  ['expensive', 'เอ็กซ์-เพน-ซิฟ'], ['explain', 'เอ็กซ์-เพลน'], ['express', 'เอ็กซ์-เพรส'],
+  ['exit', 'เอ็ก-ซิต'], ['example', 'เอ็ก-แซม-เปิล'], ['exact', 'เอ็ก-แซ็กต์'], ['exercise', 'เอ็ก-เซอร์-ไซส์'],
+  // 7. flapped D is a T; the tens
+  ['thirty', 'เธอร์-ตี้'], ['forty', 'ฟอร์-ตี้'], ['dirty', 'เดอร์-ตี้'], ['fifty', 'ฟิฟ-ตี้'],
+  ['sixty', 'ซิกซ์-ตี้'], ['seventy', 'เซ-เวน-ตี้'], ['eighty', 'เอต-ตี้'], ['ninety', 'ไนน์-ตี้'],
+  ['party', 'พาร์-ตี้'], ['sister', 'ซิส-เตอร์'], ['doctor', 'ดอก-เตอร์'], ['fifteen', 'ฟิฟ-ทีน'],
+  // 8. exceptions with comments
+  ['beautiful', 'บิว-ติ-ฟูล'], ['restaurant', 'เรส-เตอ-รองต์'], ['power', 'พาว-เวอร์'],
+  ['tower', 'ทาว-เวอร์'], ['flower', 'ฟลาว-เวอร์'], ['shower', 'ชาว-เวอร์'],
+  // 9. uniform gemination
+  ['vision', 'วิช-ชั่น'],
+  // ็ before a stop-initial cluster; the letter x; the syllabic -le; compounds keep aspiration
+  ['exact', 'เอ็ก-แซ็กต์'], ['act', 'แอ็กต์'], ['kept', 'เค็ปต์'], ['box', 'บอกซ์'], ['six', 'ซิกซ์'],
+  ['next', 'เน็กซ์ต์'], ['taxi', 'แทก-ซี่'], ['books', 'บุกส์'], ['settled', 'เซต-เติลด์'], ['levels', 'เล-เวลส์'],
+  ['expert', 'เอ็กซ์-เพิร์ต'], ['sometimes', 'ซัม-ไทมส์'], ['airport', 'แอร์-พอร์ต'], ['contain', 'คัน-เทน'],
+  // the dialogue cast and fixed Thai spellings (exceptions)
+  ['Mr. Lee', 'มิส-เตอร์ ลี'], ['okay', 'โอ-เค'], ['OK', 'โอ-เค'], ['Emma', 'เอ็ม-ม่า'], ['Thai', 'ไท'], ['Jack', 'แจ็ค'],
 ]
 
 let fail = 0

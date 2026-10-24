@@ -1,0 +1,1 @@
+# ChaiEnglish — Curriculum plan, part 2 (levels 13–24). Continues `CURRICULUM.md`: same header rules, same Global allocation table (binding), same fixed cast; ids from L1–12 are reused, never re-minted.
